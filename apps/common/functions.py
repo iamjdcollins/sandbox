@@ -175,6 +175,9 @@ def usersave(self, *args, **kwargs):
 
 
 def pagesave(self, *args, **kwargs):
+  f = open('/tmp/movingfile.txt', 'a')
+      f.write('Saving Page ' + '\n')
+      f.close()
   # Setup New and Deleted Variables
   is_new = self._state.adding
   is_deleted = '_' if self.deleted == True else ''
@@ -199,6 +202,9 @@ def pagesave(self, *args, **kwargs):
   #   self.menu_title = self.title
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
+  f = open('/tmp/movingfile.txt', 'a')
+      f.write('Page URL Changed: ' + urlchanged + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
+      f.close()
   if urlchanged:
       # Save Children
       for child in self.get_children():
@@ -246,6 +252,9 @@ def taxonomysave(self, *args, **kwargs):
       silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
 
 def imagesave(self, *args, **kwargs):
+  f = open('/tmp/movingfile.txt', 'a')
+      f.write('Saving Image ' + '\n')
+      f.close()
   # Setup New and Deleted Variables
   is_new = self._state.adding
   is_deleted = '_' if self.deleted == True else ''
@@ -261,8 +270,8 @@ def imagesave(self, *args, **kwargs):
   # Track URL Changes
   urlchanged = False
   parent_url = self.parent.url if self.parent else self.PARENT_URL
-  oldurl = self.url
   if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/'):
+    oldurl = self.url 
     self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/')
     if not is_new:
       urlchanged = True
@@ -282,6 +291,9 @@ def imagesave(self, *args, **kwargs):
   self.node_type = 'image'
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
+  f = open('/tmp/movingfile.txt', 'a')
+      f.write('Image URL Changed: ' + urlchanged + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
+      f.close()
   if urlchanged:
       # Save Children
       for child in self.get_children():
