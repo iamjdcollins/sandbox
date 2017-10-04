@@ -114,7 +114,7 @@ def movechildren(self):
 
 # Upload Image Funcations
 
-def thumbimage_image_upload_to(instance, filename):
+def thumbnail_image_upload_to(instance, filename):
   url = instance.url[1:]
   title = urlclean_objname(instance.title)
   original_file, original_extension = findfileext_media(filename)
