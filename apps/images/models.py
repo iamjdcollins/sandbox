@@ -32,7 +32,7 @@ class PageBanner(Image):
   class Meta:
     db_table = 'images_pagebanner'
     get_latest_by = 'update_date'
-    permissions = (('trash_pagebanner', 'Can soft delete page banner'),('restore_fullbanner', 'Can restore page banner'))
+    permissions = (('trash_pagebanner', 'Can soft delete page banner'),('restore_pagebanner', 'Can restore page banner'))
     verbose_name = 'Page Banner'
     verbose_name_plural = 'Page Banners'
 
@@ -50,9 +50,9 @@ class ContentBanner(Image):
   contentbanner_image_node = models.OneToOneField(Image, db_column='contentbanner_image_node', on_delete=models.CASCADE, parent_link=True,)
 
   class Meta:
-    db_table = 'images_pagebanner'
+    db_table = 'images_contentbanner'
     get_latest_by = 'update_date'
-    permissions = (('trash_pagebanner', 'Can soft delete page banner'),('restore_fullbanner', 'Can restore page banner'))
+    permissions = (('trash_contentbanner', 'Can soft delete content banner'),('restore_contentbanner', 'Can restore content banner'))
     verbose_name = 'Content Banner'
     verbose_name_plural = 'Content Banners'
 
