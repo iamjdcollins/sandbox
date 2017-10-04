@@ -228,14 +228,6 @@ def imagesave(self, *args, **kwargs):
       self.parent = Node.objects.exclude(uuid=self.uuid).get(url=self.PARENT_URL)
     except Node.DoesNotExist:
       pass
-  # Move Files
-  if self.image_file:
-      currentname = findfileext_media(self.image_file.name)
-      newname = thumbnail_image_upload_to(self,currentname[0] + currentname[1])
-      currentname = '/'.join (newname.split('/')[:-1]) + '/' + currentname[0] + currentname[1]
-      self.image_file.name = newname
-      if currentname != newname:
-        silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
   # Track URL Changes
   urlchanged = False
   parent_url = self.parent.url if self.parent else self.PARENT_URL
@@ -253,5 +245,13 @@ def imagesave(self, *args, **kwargs):
   self.node_type = 'image'
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
-  # if urlchanged:
-  #     silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
+  if urlchanged:
+      silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
+  # Move Files
+  if self.image_file:
+      currentname = findfileext_media(self.image_file.name)
+      newname = thumbnail_image_upload_to(self,currentname[0] + currentname[1])
+      currentname = '/'.join (newname.split('/')[:-1]) + '/' + currentname[0] + currentname[1]
+      self.image_file.name = newname
+      if currentname != newname:
+        silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
