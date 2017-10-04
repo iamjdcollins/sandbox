@@ -253,5 +253,5 @@ def imagesave(self, *args, **kwargs):
   self.node_type = 'image'
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
-  if urlchanged:
-      silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
+  # if urlchanged:
+  #     silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
