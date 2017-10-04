@@ -120,7 +120,7 @@ def thumbimage_image_upload_to(instance, filename):
   original_file, original_extension = findfileext_media(filename)
   extension = urlclean_fileext(original_extension)
   full_path = '{0}{1}{2}'.format(url,title, extension)
-  if not instance.image._committed:
+  if not instance.image_file._committed:
     silentdelete_media(settings.MEDIA_ROOT + '/' + full_path)
   return full_path
 
