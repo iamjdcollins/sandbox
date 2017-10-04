@@ -3,6 +3,9 @@ import apps.common.functions
 from apps.objects.models import Image
 
 class Thumbnail(Image):
+
+  PARENT_URL = ''
+
   title = models.CharField(max_length=200, unique=True, help_text='')
   image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
@@ -23,6 +26,9 @@ class Thumbnail(Image):
   delete = apps.common.functions.modeltrash
 
 class PageBanner(Image):
+
+  PARENT_URL = ''
+
   title = models.CharField(max_length=200, unique=True, help_text='')
   image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
@@ -43,6 +49,9 @@ class PageBanner(Image):
   delete = apps.common.functions.modeltrash
 
 class ContentBanner(Image):
+
+  PARENT_URL = ''
+
   title = models.CharField(max_length=200, unique=True, help_text='')
   image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
