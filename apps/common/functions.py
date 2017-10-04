@@ -253,8 +253,49 @@ def imagesave(self, *args, **kwargs):
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
   if urlchanged:
+      # Save Children
+      for child in self.get_children():
+        object = nodefindobject(child)
+        object.save()
       # Move Directory
       silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
   # Move File
   if currentname != newname:
     silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
+
+# Model Inheritance Object
+def nodefindobject(node):
+  if node.node_type == 'user':
+    if node.user.user_type == 'employee':
+      return node.user.employee
+    if node.user.user_type == 'system':
+      return node.user.system
+  if node.node_type == 'page':
+    if node.page.page_type == 'page':
+      return node.page.page
+    if node.page.page_type == 'school':
+      return node.page.school
+  if node.node_type == 'taxonomy':
+    if node.taxonomy.taxonomy_type == 'location':
+      return node.taxonomy.location
+    if node.taxonomy.taxonomy_type == 'city':
+      return node.taxonomy.city
+    if node.taxonomy.taxonomy_type == 'state':
+      return node.taxonomy.state
+    if node.taxonomy.taxonomy_type == 'zipcode':
+      return node.taxonomy.zipcode
+    if node.taxonomy.taxonomy_type == 'language':
+      return node.taxonomy.language
+    if node.taxonomy.taxonomy_type == 'translationtype':
+      return node.taxonomy.translationtype
+    if node.taxonomy.taxonomy_type == 'schooltype':
+      return node.taxonomy.schooltype
+    if node.taxonomy.taxonomy_type == 'openenrollmentstatus':
+      return node.taxonomy.openenrollmentstatus
+  if node.node_type == 'image':
+    if node.image.image_type == 'thumbnail':
+      return node.image.thumbnail
+    if node.image.image_type == 'pagebanner':
+      return node.image.pagebanner
+    if node.image.image_type == 'contentbanner':
+      return node.image.contentbanner
