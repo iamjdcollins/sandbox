@@ -228,14 +228,6 @@ def imagesave(self, *args, **kwargs):
       self.parent = Node.objects.exclude(uuid=self.uuid).get(url=self.PARENT_URL)
     except Node.DoesNotExist:
       pass
-  # Track URL Changes
-  urlchanged = False
-  parent_url = self.parent.url if self.parent else self.PARENT_URL
-  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/'):
-    oldurl = self.url 
-    self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/')
-    if not is_new:
-      urlchanged = True
   # Move Files
   if self.image_file:
       currentname = findfileext_media(self.image_file.name)
@@ -244,6 +236,14 @@ def imagesave(self, *args, **kwargs):
       self.image_file.name = newname
       if currentname != newname:
         silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
+  # Track URL Changes
+  urlchanged = False
+  parent_url = self.parent.url if self.parent else self.PARENT_URL
+  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/'):
+    oldurl = self.url 
+    self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/')
+    if not is_new:
+      urlchanged = True
   # Set the node_title for the node
   self.node_title = self.title
   # Set the user type node
