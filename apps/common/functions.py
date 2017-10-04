@@ -156,6 +156,13 @@ def usersave(self, *args, **kwargs):
   super(self._meta.model, self).save(*args, **kwargs)
   # Set the user type node
   self.node_type = self.user._meta.model_name
+  if urlchanged:
+      # Save Children
+      for child in self.get_children():
+        object = nodefindobject(child)
+        object.save()
+      # Move Directory
+      silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
 
 
 def pagesave(self, *args, **kwargs):
@@ -183,6 +190,13 @@ def pagesave(self, *args, **kwargs):
   #   self.menu_title = self.title
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
+  if urlchanged:
+      # Save Children
+      for child in self.get_children():
+        object = nodefindobject(child)
+        object.save()
+      # Move Directory
+      silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
 
 def taxonomysave(self, *args, **kwargs):
   # Setup New and Deleted Variables
@@ -214,6 +228,13 @@ def taxonomysave(self, *args, **kwargs):
   self.node_type = 'taxonomy'
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
+  if urlchanged:
+      # Save Children
+      for child in self.get_children():
+        object = nodefindobject(child)
+        object.save()
+      # Move Directory
+      silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
 
 def imagesave(self, *args, **kwargs):
   # Setup New and Deleted Variables
