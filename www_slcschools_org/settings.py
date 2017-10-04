@@ -90,7 +90,7 @@ INSTALLED_APPS = [
     'apps.taxonomy',
     'apps.users',
     'apps.pages',
-    #'apps.images',
+    'apps.images',
     #'apps.schools',
     #'apps.board',
     #'apps.news',
