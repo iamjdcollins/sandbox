@@ -30,11 +30,20 @@ def silentdelete_media(media):
     pass
 
 def silentmove_media(oldpath, newpath):
-  f = open('/tmp/movingfile.txt', 'a')
-  f.write('Moving: ' + oldpath + ' To: ' + newpath + '\n')
-  f.close()
   try:
-    shutil.move(oldpath, newpath)
+    if not os.path.isdir(oldpath) & os.path.isdir(newpath):
+      f = open('/tmp/movingfile.txt', 'a')
+      f.write('Moving: ' + oldpath + ' To: ' + newpath + '\n')
+      f.close()
+      shutil.move(oldpath, newpath)
+    else:
+      try:
+        f = open('/tmp/movingfile.txt', 'a')
+        f.write('Removing: ' + oldpath + '\n')
+        f.close()
+        os.rmdir(oldpath)
+      except OSError:
+        pass
   except OSError:
     pass
 
