@@ -189,11 +189,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-DATA_DIR = '/srv/nginx/www_slcschools_org/'
+DATA_DIR = '/srv/nginx/www_slcschools_org'
 MEDIA_URL = '/'
 MEDIA_ROOT = os.path.join(DATA_DIR)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(MEDIA_ROOT, 'static')
+STATIC_ROOT = os.path.join(MEDIA_ROOT, '/static')
 
 JET_DEFAULT_THEME = 'default'
 
