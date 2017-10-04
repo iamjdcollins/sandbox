@@ -187,8 +187,8 @@ def pagesave(self, *args, **kwargs):
   # Track URL Changes
   urlchanged = False
   parent_url = self.parent.url if self.parent else ''
-  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/'):
-    oldurl = self.url 
+  oldurl = self.url
+  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/'): 
     self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/')
     if not is_new:
       urlchanged = True
@@ -270,8 +270,8 @@ def imagesave(self, *args, **kwargs):
   # Track URL Changes
   urlchanged = False
   parent_url = self.parent.url if self.parent else self.PARENT_URL
+  oldurl = self.url 
   if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/'):
-    oldurl = self.url 
     self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/')
     if not is_new:
       urlchanged = True
