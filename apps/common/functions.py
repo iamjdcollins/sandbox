@@ -117,7 +117,7 @@ def movechildren(self):
 def thumbimage_image_upload_to(instance, filename):
   url = instance.url[1:]
   title = urlclean_objname(instance.title)
-  original_file, original_extension = apps.common.functions.findfileext_media(filename)
+  original_file, original_extension = findfileext_media(filename)
   extension = urlclean_fileext(original_extension)
   full_path = '{0}{1}{2}'.format(url,title, extension)
   if not instance.image._committed:
