@@ -10,7 +10,7 @@ class Thumbnail(Image):
   image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
 
-  thumbnail_image_node = models.OneToOneField(Image, db_column='thumbnail_image_node', on_delete=models.CASCADE, parent_link=True,)
+  thumbnail_image_node = models.OneToOneField(Image, db_column='thumbnail_image_node', on_delete=models.CASCADE, parent_link=True, editable=False)
 
   class Meta:
     db_table = 'images_thumbnail'
