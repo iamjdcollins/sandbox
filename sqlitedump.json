@@ -1,0 +1,1059 @@
+[
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 1,
+    "fields": {
+        "title": "Quick links",
+        "module": "jet.dashboard.modules.LinkList",
+        "app_label": null,
+        "user": 2,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"draggable\": false, \"deletable\": false, \"collapsible\": false, \"layout\": \"inline\"}",
+        "children": "[{\"title\": \"Return to site\", \"url\": \"/\"}, {\"title\": \"Change password\", \"url\": \"/admin/password_change/\"}, {\"title\": \"Log out\", \"url\": \"/admin/logout/\"}]",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 2,
+    "fields": {
+        "title": "Applications",
+        "module": "jet.dashboard.modules.AppList",
+        "app_label": null,
+        "user": 2,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"models\": null, \"exclude\": [\"auth.*\"]}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 3,
+    "fields": {
+        "title": "Administration",
+        "module": "jet.dashboard.modules.AppList",
+        "app_label": null,
+        "user": 2,
+        "column": 2,
+        "order": 0,
+        "settings": "{\"models\": [\"auth.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 4,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": null,
+        "user": 2,
+        "column": 0,
+        "order": 1,
+        "settings": "{\"limit\": 10, \"exclude_list\": null, \"include_list\": null, \"user\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 5,
+    "fields": {
+        "title": "Latest Django News",
+        "module": "jet.dashboard.modules.Feed",
+        "app_label": null,
+        "user": 2,
+        "column": 1,
+        "order": 1,
+        "settings": "{\"feed_url\": \"http://www.djangoproject.com/rss/weblog/\", \"limit\": 5}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 6,
+    "fields": {
+        "title": "Support",
+        "module": "jet.dashboard.modules.LinkList",
+        "app_label": null,
+        "user": 2,
+        "column": 2,
+        "order": 1,
+        "settings": "{\"draggable\": true, \"deletable\": true, \"collapsible\": true, \"layout\": \"stacked\"}",
+        "children": "[{\"external\": true, \"title\": \"Django documentation\", \"url\": \"http://docs.djangoproject.com/\"}, {\"external\": true, \"title\": \"Django \\\"django-users\\\" mailing list\", \"url\": \"http://groups.google.com/group/django-users\"}, {\"external\": true, \"title\": \"Django irc channel\", \"url\": \"irc://irc.freenode.net/django\"}]",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 7,
+    "fields": {
+        "title": "Application models",
+        "module": "jet.dashboard.modules.ModelList",
+        "app_label": "departments",
+        "user": 2,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"models\": [\"departments.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 8,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": "departments",
+        "user": 2,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"exclude_list\": null, \"user\": null, \"limit\": 10, \"include_list\": [\"departments.*\"]}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 9,
+    "fields": {
+        "title": "Application models",
+        "module": "jet.dashboard.modules.ModelList",
+        "app_label": "schools",
+        "user": 2,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"models\": [\"schools.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 10,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": "schools",
+        "user": 2,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"limit\": 10, \"user\": null, \"exclude_list\": null, \"include_list\": [\"schools.*\"]}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 11,
+    "fields": {
+        "title": "Application models",
+        "module": "jet.dashboard.modules.ModelList",
+        "app_label": "board",
+        "user": 2,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"exclude\": null, \"models\": [\"board.*\"]}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 12,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": "board",
+        "user": 2,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"limit\": 10, \"user\": null, \"include_list\": [\"board.*\"], \"exclude_list\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 13,
+    "fields": {
+        "title": "Application models",
+        "module": "jet.dashboard.modules.ModelList",
+        "app_label": "news",
+        "user": 2,
+        "column": 0,
+        "order": 0,
+        "settings": "{\"models\": [\"news.*\"], \"exclude\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "dashboard.userdashboardmodule",
+    "pk": 14,
+    "fields": {
+        "title": "Recent Actions",
+        "module": "jet.dashboard.modules.RecentActions",
+        "app_label": "news",
+        "user": 2,
+        "column": 1,
+        "order": 0,
+        "settings": "{\"limit\": 10, \"exclude_list\": null, \"include_list\": [\"news.*\"], \"user\": null}",
+        "children": "",
+        "collapsed": false
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Backman Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Beacon Heights Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Bennion Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Bonneville Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Bryant Middle School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Clayton Middle School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Dilworth Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: East High School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Edison Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Emerson Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Ensign Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Escalante Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Franklin Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Glendale Middle School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Hawthorne Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Highland High School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Highland Park Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Hillside Middle School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Horizonte Instruction and Training Center",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Indian Hills Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Innovations Early College High School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Jackson Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Lincoln Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Meadowlark Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Mountain View Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Newman Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Nibley Park School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: North Star Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Northwest Middle School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Open Classroom",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Parkview Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Riley Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Rose Park Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Salt Lake Center for Science Education",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Salt Lake School for the Performing Arts",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Uintah Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Wasatch Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Washington Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: West High School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "School: Whittier Elementary School",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Board: Board Of Education",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: Home",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: Schools",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: Elementary Schools",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: Middle Schools",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: K-8 Schools",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: High Schools",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: Charter Schools",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: Departments",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Academic Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Accounting",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Alternative Language Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: American Indian Education",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Assessment & Evaluation",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Athletics",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: AVID",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Budgeting",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Business Administration",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Career & Technical Education",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Character Education",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Child Nutrition",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Communications",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Community Education",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Community Learning Centers",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Construction Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Counseling Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Curriculum",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Development and External Relations",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Early Childhood",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Educational Equity",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Educational Technology & Library Media",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Emergency Immigrant",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Exceptional Children Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Extended Learning Program",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Facility Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Family Support",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Fine Arts",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Health Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Human Resources",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Information Systems",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Insight",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Language and Culture",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Language Arts",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Legal Services and Compliance",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Mathematics",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Media Center",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: MESA",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Multicultural Education",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Payroll",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Printing & Graphics",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Professional Development",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Purchasing",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Refugee Support",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Rentals",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Salt Lake Education Foundation",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: School Choice",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: School Support Team",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Science",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Section 504",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Social Studies",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Special Education",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Student Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Superintendent",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Title I",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Translation Services",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Transportation",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Volunteer",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: Warehouse & Distribution",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Department: World Languages",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: Directory",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: Calendars",
+        "permissions": []
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Page: News",
+        "permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "07j485m8lv0pfmph25q57lefaaes02to",
+    "fields": {
+        "session_data": "ODE4OGM5YjI3NmJkYjU2NjIyYjJmNjNiY2FjNTUxODYzNTVmNmNlODp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiOWRiYTJlMjBiMTUwYzZkMTgwZThiMjZiZjEzNDkwZDYzNDNlMGIyIn0=",
+        "expire_date": "2017-08-21T19:46:19.585Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5eun93aaywu2xqpsjdcca0sc4xnnxu18",
+    "fields": {
+        "session_data": "ODE4OGM5YjI3NmJkYjU2NjIyYjJmNjNiY2FjNTUxODYzNTVmNmNlODp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiOWRiYTJlMjBiMTUwYzZkMTgwZThiMjZiZjEzNDkwZDYzNDNlMGIyIn0=",
+        "expire_date": "2017-08-28T17:06:21.649Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "an4qbhazhhdfl1atlzwuet8jg4mcu5mi",
+    "fields": {
+        "session_data": "NWVlZWU1ZDhjZThkMjY1NzZkODRkMTNkMDllZWRmY2EyYjE2Mzk5OTp7Il9hdXRoX3VzZXJfaGFzaCI6ImI5ZGJhMmUyMGIxNTBjNmQxODBlOGIyNmJmMTM0OTBkNjM0M2UwYjIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=",
+        "expire_date": "2017-09-05T15:59:31.500Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ezrgxz7f13yaj60d7zavogod3y42ehmj",
+    "fields": {
+        "session_data": "ZDZkZjEwYTBmNzIwYmFjM2Y0NzI5MDg0NDQ1MGI2ODZlYWZjYTBjZDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9oYXNoIjoiYjlkYmEyZTIwYjE1MGM2ZDE4MGU4YjI2YmYxMzQ5MGQ2MzQzZTBiMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+        "expire_date": "2017-09-05T16:05:22.039Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "hyzwnj0qzfmcwzzkeoahafrycj76qmbw",
+    "fields": {
+        "session_data": "NWVlZWU1ZDhjZThkMjY1NzZkODRkMTNkMDllZWRmY2EyYjE2Mzk5OTp7Il9hdXRoX3VzZXJfaGFzaCI6ImI5ZGJhMmUyMGIxNTBjNmQxODBlOGIyNmJmMTM0OTBkNjM0M2UwYjIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=",
+        "expire_date": "2017-09-12T21:42:17.559Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "jqab82jpd8yz593liwx556bpzagsc7z5",
+    "fields": {
+        "session_data": "MDI3OWIyMGI4NWFhMDdlMjZkMjMyNjhlODY4ZThkN2NkOTI1NzVhMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImI5ZGJhMmUyMGIxNTBjNmQxODBlOGIyNmJmMTM0OTBkNjM0M2UwYjIiLCJfYXV0aF91c2VyX2lkIjoiMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+        "expire_date": "2017-09-13T15:12:35.303Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "sw1uhjzw1j213gvgfuzgx632od8y3zh8",
+    "fields": {
+        "session_data": "ZDZkZjEwYTBmNzIwYmFjM2Y0NzI5MDg0NDQ1MGI2ODZlYWZjYTBjZDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9oYXNoIjoiYjlkYmEyZTIwYjE1MGM2ZDE4MGU4YjI2YmYxMzQ5MGQ2MzQzZTBiMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+        "expire_date": "2017-09-05T16:06:30.236Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "zy8ucp7aagpnz8kn118qygjbxxidm0c9",
+    "fields": {
+        "session_data": "ZDZkZjEwYTBmNzIwYmFjM2Y0NzI5MDg0NDQ1MGI2ODZlYWZjYTBjZDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9oYXNoIjoiYjlkYmEyZTIwYjE1MGM2ZDE4MGU4YjI2YmYxMzQ5MGQ2MzQzZTBiMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+        "expire_date": "2017-08-11T15:03:19.481Z"
+    }
+}

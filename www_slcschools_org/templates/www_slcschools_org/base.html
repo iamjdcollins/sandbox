@@ -1,0 +1,229 @@
+{% load static mptt_tags guardian_tags admin_urls %}
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <title>{% block title %}{% endblock %} | Salt Lake City School District</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static "www_slcschools_org/css/materialize.min.css" %}"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+    <div class="pushfooter slcschools-grey lighten-3">
+      {% if user.is_authenticated %}
+      {% get_obj_perms request.user for page as "page_perms" %}
+      <div class="authenticated wrapper slcschools-grey white-text">
+        <div class="row">
+          <div class="col s6">
+            <ul id="usermenu" class="dropdown-content">
+              <li><a href="/accounts/logout/" title="Logout"><i class="material-icons">&#xE879;</i>Logout</a></li>
+            </ul>
+            <a href="#!" class="dropdown-button left btn btn-flat" data-activates="usermenu">Hello, {{ request.user.first_name }}<i class="material-icons right">&#xE5C5;</i></a>
+          </div>
+          <div class="col s6">
+            {% for item in page_perms %}
+            {% if 'change_' in item %}
+            <a id="editpagemodaal" href="{% url pageopts|admin_urlname:'change' page.pk %}" class="right btn btn-flat">Edit Page<i class="material-icons left">&#xE254;</i></a>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <div class="preheader wrapper slcschools-teal darken-1 white-text">
+        <div class="row">
+          <ul class="translationlinks col s6 m4 l6">
+            {% for item in TRANSLATION_ITEMS|slice:":4" %}
+            <li class="{% if forloop.counter == 4 or forloop.counter == 3 %}hide-on-med-and-down{% endif %} hide-on-small-only"><a href="#" onclick="doGTranslate('en|{{ item.language_code }}'); return false;" title="{{ item.title }}">{{ item.native_language }}</a></li>
+            {% endfor %}
+            <li><a href="#fulltranslationlist" class="fulltranslationlist"><span class="hide-on-small-only">More</span><span class="hide-on-med-and-up">Translate<i class="material-icons">&#xE5C5;</i></span></a></li>
+          </ul>
+          <ul class="shortcuts col s6 m8 l6">
+            <li><a href="/" title="Home"><i class="material-icons">&#xE88A;</i><span class="hide-on-med-and-down">Home</span></a></li>
+            <li><a href="tel:18015788599" title="Main Phone"><i class="material-icons">&#xE0CD;</i><span class="hide-on-med-and-down">801-578-8599</span></a></li>
+            <li><a href="/" title="Employees"><i class="material-icons">&#xE7FB;</i><span class="hide-on-med-and-down">Employees</span></a></li>
+            {% if not user.is_authenticated %}
+            <li><a href="/accounts/login/?next={{ request.path }}" title="Login"><i class="material-icons">&#xE0DA;</i><span class="hide-on-med-and-down">Login</span></a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <div id="fulltranslationlist" class="hide">
+          <div class="modal-content">
+            <ul>
+              {% for item in TRANSLATION_ITEMS|dictsort:"title" %}
+              <li><a class="btn" href="#" onclick="doGTranslate('en|{{ item.language_code }}'); $('.fulltranslationlist').modaal('close'); return false;" title="{{ item.title }}">{{ item.native_language }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="header wrapper">
+        <nav>
+          <div class="row">
+            <div class="col s12 nav-wrapper">
+              <a href="/" class="brand-logo left"><img src="/static/www_slcschools_org/images/slcschools-logo.png" alt="Salt Lake City School District Logo"></a>
+              <div id="mainnav-mobile" class="hide">
+                <ul>
+                {% for item in MENU_ITEMS %}
+                  {% if item.url in request.path  %}
+                  <li class="active"><a class="btn" href="{{ item.url }}">{{ item.menu_title }}</a></li>
+                  {% else %}
+                  <li class=""><a class="btn" href="{{ item.url }}">{{ item.menu_title }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                </ul>
+              </div>
+              <ul id="mainnav" class="right">
+                {% for item in MENU_ITEMS %}
+                  {% if item.url in request.path  %}
+                  <li class="active hide-on-med-and-down"><a href="{{ item.url }}">{{ item.menu_title }}</a></li>
+                  {% else %}
+                  <li class="hide-on-med-and-down"><a href="{{ item.url }}">{{ item.menu_title }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                  <li class="hide-on-large-only"><a class="mainnav-mobile" href="#mainnav-mobile"><i class="material-icons">&#xE5D2;</i></a></li>
+                  <li><a href="#"><i class="material-icons">&#xE8B6;</i></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="precontent wrapper">
+        {% block precontent %}
+        <div class="unslider slcschools-grey darken-1">
+          <ul class="slides">
+            <li class="slide">
+              <img src="//lorempixel.com/1500/500/nature/1" height="500" width="1500">
+              <div class="row">
+                <div class="col s12">
+                  <div class="caption center-align">
+                    <h3>This is our big Tagline!</h3>
+                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="slide">
+              <img src="//lorempixel.com/1500/500/nature/2" height="500" width="1500">
+              <div class="row">
+                <div class="col s12">
+                  <div class="caption left-align">
+                    <h3>Left Aligned Caption</h3>
+                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="slide">
+              <img src="//lorempixel.com/1500/500/nature/3" height="500" width="1500">
+              <div class="row">
+                <div class="col s12">
+                  <div class="caption right-align">
+                    <h3>Right Aligned Caption</h3>
+                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="slide">
+              <img src="//lorempixel.com/1500/500/nature/4" height="500" width="1500">
+              <div class="row">
+                <div class="col s12">
+                  <div class="caption center-align">
+                    <h3>This is our big Tagline!</h3>
+                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        {% endblock %}
+      </div>
+      <div class="breadcrumbs wrapper">
+        {% block breadcrumb %}
+        <div class="breadcrumbs wrapper">
+          <nav class="slcschools-grey">
+            <div class="row">
+              <div class="nav-wrapper">
+                <div class="col s12">
+                  <a href="/" title="Home" class="breadcrumb">Home</a>  
+                  {% for item in BREADCRUMB %}
+                  <a href="{{ item.url }}" title="{{ item.site_title }}" class="breadcrumb">{{ item.site_title }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        {% endblock %}
+      </div>
+      {% block main %}
+        {% block sidebar_first %}
+        {% endblock %}
+        {% block sidebar_second_mup %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+        {% block sidebar_second_s %}
+        {% endblock %}
+      {% endblock %}
+    </div>
+    <footer class="slcschools-grey white-text">
+    </footer>
+    <div id="{{ page.uuid }}" class="hide">
+      <div class="modal-content">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">&#xE7FD;</i>
+              <input id="name" type="text" class="validate">
+              <label for="name">Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">&#xE0BE;</i>
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">&#xE88E;</i>
+              <select>
+                <option value="1">Question or Comment</option>
+                <option value="2">Incorrect Information</option>
+                <option value="3">Website Malfunction</option>
+              </select>
+              <label>Feedback Concerning</label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">&#xE254;</i>
+            <input id="subject" type="text" class="validate">
+            <label for="subject">Subject</label>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">&#xE0C9;</i>
+              <textarea id="message" class="materialize-textarea"></textarea>
+              <label for="message">Message</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn ">Submit</a>
+      </div>
+    </div>
+    <a id="backtotop" class="slcschools-grey lighten-1 white-text" title="Back To Top" href="#"><i class="material-icons">&#xE316;</i></a>
+    <div id="google_translate_element2"></div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element2');}</script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+    <script type="text/javascript" src="{% static "www_slcschools_org/js/materialize.min.js" %}"></script>
+    {% block pagescript %}
+    {% endblock %}
+  </body>
+</html>

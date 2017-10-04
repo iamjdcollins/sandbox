@@ -1,0 +1,70 @@
+class LocationHelp():
+  location = ("<ol>"
+              "  <li class='help'>"
+              "    <p class='help'>Enter the name of the district location. (example: Backman Elementary School)</p>"
+              "  </li>"
+              "</ol>")
+  street_address = ("<ol>"
+              "  <li class='help'>"
+              "    <p class='help'>Enter the street address for the district location. (example: 440 East 100 South)</p>"
+              "  </li>"
+              "</ol>")
+  city = ("<ol>"
+          "  <li class='help'>"
+          "    <p class='help'>Select the city of the location.</p>"
+          "  </li>"
+          "  <li class='help'>"
+          "    <p class='help'><strong>NOTE: </strong>If authorized you may be able to add available cities with the plus icon to the right of the select list. This is only necessary if the city is not available in the drop down.</p>"
+          "  </li>"
+          "  <li class='help'>"
+          "    <p class='help'><strong>NOTE: </strong>If authorized you may be able to edit the selected city with the pencil icon to the right of the select list.<strong style='color: red'> WARNING: </strong>This will edit the city details for all locations using it.</p>"
+          "  </li>"
+          "</ol>")
+  state = ("<ol>"
+           "  <li class='help'>"
+           "    <p class='help'>Select the state of the location.</p>"
+           "  </li>"
+           "  <li class='help'>"
+           "    <p class='help'><strong>NOTE: </strong>If authorized you may be able to add available states with the plus icon to the right of the select list. This is only necessary if the state is not available in the drop down.</p>"
+           "  </li>"
+           "  <li class='help'>"
+           "    <p class='help'><strong>NOTE: </strong>If authorized you may be able to edit the selected state with the pencil icon to the right of the select list.<strong style='color: red'> WARNING: </strong>This will edit the state details for all locations using it.</p>"
+           "  </li>"
+              "</ol>")
+  zipcode = ("<ol>"
+             "  <li class='help'>"
+             "    <p class='help'>Select the ZIP Code for the school.</p>"
+             "  </li>"
+             "  <li class='help'>"
+             "    <p class='help'><strong>NOTE: </strong>If authorized you may be able to add available ZIP Codes with the plus icon to the right of the select list. This is only necessary if the ZIP Code is not available in the drop down.</p>"
+             "  </li>"
+             "  <li class='help'>"
+             "    <p class='help'><strong>NOTE: </strong>If authorized you may be able to edit the selected ZIP Code with the pencil icon to the right of the select list.<strong style='color: red'> WARNING: </strong>This will edit the ZIP Code details for all locations using it.</p>"
+             "  </li>"
+             "</ol>")
+  google_place = ("<ol>"
+                  "  <li class='help'>"
+                  "    <p class='help'>Enter the Google Place URL for the location.</p>"
+                  "  </li>"
+                  "  <li class='help'>"
+                  "    <p class='help'><strong>NOTE: </strong> This can be found by searching Google Maps for the location then copying the URL from the address bar.</p>"
+                  "  </li>"
+                  "</ol>")
+class CityHelp():
+  city = ("<ol>"
+          "  <li class='help'>"
+          "    <p class='help'>Enter the name of the city. (example: Salt Lake City)</p>"
+          "  </li>"
+              "</ol>")
+class StateHelp():
+  state = ("<ol>"
+           "  <li class='help'>"
+           "    <p class='help'>Enter the name of the state. (example: Utah)</p>"
+           "  </li>"
+           "</ol>")
+class ZipcodeHelp():
+  zipcode = ("<ol>"
+             "  <li class='help'>"
+             "    <p class='help'>Enter the name of the ZIP Code. (example: 84088)</p>"
+             "  </li>"
+             "</ol>")

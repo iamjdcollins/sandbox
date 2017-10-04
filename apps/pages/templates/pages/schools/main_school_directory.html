@@ -1,0 +1,214 @@
+{% extends "www_slcschools_org/contentrighttoc.html" %}
+{% load static mptt_tags %}
+
+{% block title %}
+  {{ page.title }} Directory
+{% endblock %}
+
+{% block precontent %}
+{% endblock %}
+
+{% block sidebar_first %}
+<div class="row">
+  <div class="table-of-contents">
+    <h5>Contents:</h5>
+    <ul>
+      <li><a href="#elementaryschools" onclick="$('.collapsible').collapsible('open', 0);">Elementary Schools ({{ elementary_schools|length }})</a></li>
+      <li><a href="#k8schools" onclick="$('.collapsible').collapsible('open', 1);">K-8 Schools ({{ k8_schools|length }})</a></li>
+      <li><a href="#middleschools" onclick="$('.collapsible').collapsible('open', 2);">Middle Schools ({{ middle_schools|length }})</a></li>
+      <li><a href="#highschools" onclick="$('.collapsible').collapsible('open', 3);">High Schools ({{ high_schools|length }})</a></li>
+      <li><a href="#charterschools" onclick="$('.collapsible').collapsible('open', 4);">Charter Schools ({{ charter_schools|length }})</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
+{% block sidebar_second_mup %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="input-field mobile-table-of-contents hide-on-med-and-up">
+    <select class="browser-default z-depth-1">
+      <option value="#!" disabled selected style="display:none;">Table of Contents</option>
+      <option value="#elementaryschools">Elementary Schools ({{ elementary_schools|length }})</option>
+      <option value="#k8schools">K-8 Schools ({{ k8_schools|length }})</option>
+      <option value="#middleschools">Middle Schools ({{ middle_schools|length }})</option>
+      <option value="#highschools">High Schools ({{ high_schools|length }})</option>
+      <option value="#charterschools">Charter Schools ({{ charter_schools|length }})</option>
+    </select>
+  </div>
+  <div id="main" class="card-content">
+    <h1>{{page.title}} Directory</h1>
+    <form class="textfieldboxes" onsubmit="myFunction(); return false;">
+      <input class="autocomplete" onkeyup="myFunction()" placeholder="Search Schools" title="Search Schools" id="search" type="text">
+    </form>
+    <div id="elementaryschools" class="scrollspy filterpoint">
+      <h2>Elementary Schools</h2>
+      <div class="row">
+        {% for school in elementary_schools %}
+        <div class="col s12 l4 filterpoint">
+          <div class="card schoolcard">
+            <div class="card-image">
+              <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{% get_media_prefix %}{{ school.schools_schoolthumbimage_school.image }}" alt="{{ school.schools_schoolthumbimage_school.alttext }}" />
+            </div>
+            <div class="card-content">
+              <h5 class="school-title">{{ school.title }}</h5>
+              <a href="{{ school.building_location.google_place }}" target="_blank">
+                <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
+                <i class="material-icons tiny blank black-text"></i> {{ school.building_location.city }}<br>
+              </a>
+              <a href="tel:+{{school.main_phone|slice:"0:1"}}-{{school.main_phone|slice:"1:4"}}-{{school.main_phone|slice:"4:7"}}-{{school.main_phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{school.main_phone|slice:"1:4"}}.{{school.main_phone|slice:"4:7"}}.{{school.main_phone|slice:"7:11"}}
+              </a>
+            </div>
+            <div class="card-action">
+              <a href="{{ school.website_url }}" title="{{ school.title }}">Website</a>
+              <a href="{{school.url}}" title="{{ school.title }}" class="right">About</a>
+            </div>
+          </div>
+        </div>    
+        {% endfor %}
+      </div>
+    </div>
+    <div id="k8schools" class="scrollspy filterpoint">
+      <h2>K-8 Schools</h2>
+      <div class="row">
+        {% for school in k8_schools %}
+        <div class="col s12 l4 filterpoint">
+          <div class="card schoolcard">
+            <div class="card-image">
+              <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{% get_media_prefix %}{{ school.schools_schoolthumbimage_school.image }}" alt="{{ school.schools_schoolthumbimage_school.alttext }}" />
+            </div>
+            <div class="card-content">
+              <h5 class="school-title">{{ school.title }}</h5>
+              <a href="{{ school.building_location.google_place }}" target="_blank">
+                <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
+                <i class="material-icons tiny blank black-text"></i> {{ school.building_location.city }}<br>
+              </a>
+              <a href="tel:+{{school.main_phone|slice:"0:1"}}-{{school.main_phone|slice:"1:4"}}-{{school.main_phone|slice:"4:7"}}-{{school.main_phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{school.main_phone|slice:"1:4"}}.{{school.main_phone|slice:"4:7"}}.{{school.main_phone|slice:"7:11"}}
+              </a>
+            </div>
+            <div class="card-action">
+              <a href="{{ school.website_url }}" title="{{ school.title }}">Website</a>
+              <a href="{{school.url}}" title="{{ school.title }}" class="right">About</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="middleschools" class="scrollspy filterpoint">
+      <h2>Middle Schools</h2>
+      <div class="row">
+        {% for school in middle_schools %}
+        <div class="col s12 l4 filterpoint">
+          <div class="card schoolcard">
+            <div class="card-image">
+              <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{% get_media_prefix %}{{ school.schools_schoolthumbimage_school.image }}" alt="{{ school.schools_schoolthumbimage_school.alttext }}" />
+            </div>
+            <div class="card-content">
+              <h5 class="school-title">{{ school.title }}</h5>
+              <a href="{{ school.building_location.google_place }}" target="_blank">
+                <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
+                <i class="material-icons tiny blank black-text"></i> {{ school.building_location.city }}<br>
+              </a>
+              <a href="tel:+{{school.main_phone|slice:"0:1"}}-{{school.main_phone|slice:"1:4"}}-{{school.main_phone|slice:"4:7"}}-{{school.main_phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{school.main_phone|slice:"1:4"}}.{{school.main_phone|slice:"4:7"}}.{{school.main_phone|slice:"7:11"}}
+              </a>
+            </div>
+            <div class="card-action">
+              <a href="{{ school.website_url }}" title="{{ school.title }}">Website</a>
+              <a href="{{school.url}}" title="{{ school.title }}" class="right">About</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="highschools" class="scrollspy filterpoint">
+      <h2>High Schools</h2>
+      <div class="row">
+        {% for school in high_schools %}
+        <div class="col s12 l4 filterpoint">
+          <div class="card schoolcard">
+            <div class="card-image">
+              <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{% get_media_prefix %}{{ school.schools_schoolthumbimage_school.image }}" alt="{{ school.schools_schoolthumbimage_school.alttext }}" />
+            </div>
+            <div class="card-content">
+              <h5 class="school-title">{{ school.title }}</h5>
+              <a href="{{ school.building_location.google_place }}" target="_blank">
+                <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
+                <i class="material-icons tiny blank black-text"></i> {{ school.building_location.city }}<br>
+              </a>
+              <a href="tel:+{{school.main_phone|slice:"0:1"}}-{{school.main_phone|slice:"1:4"}}-{{school.main_phone|slice:"4:7"}}-{{school.main_phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{school.main_phone|slice:"1:4"}}.{{school.main_phone|slice:"4:7"}}.{{school.main_phone|slice:"7:11"}}
+              </a>
+            </div>
+            <div class="card-action">
+              <a href="{{ school.website_url }}" title="{{ school.title }}">Website</a>
+              <a href="{{school.url}}" title="{{ school.title }}" class="right">About</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="charterschools" class="scrollspy filterpoint">
+      <h2>Charter Schools</h2>
+      <div class="row">
+        {% for school in charter_schools %}
+        <div class="col s12 l4 filterpoint">
+          <div class="card schoolcard">
+            <div class="card-image">
+              <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{% get_media_prefix %}{{ school.schools_schoolthumbimage_school.image }}" alt="{{ school.schools_schoolthumbimage_school.alttext }}" />
+            </div>
+            <div class="card-content">
+              <h5 class="school-title">{{ school.title }}</h5>
+              <a href="{{ school.building_location.google_place }}" target="_blank">
+                <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
+                <i class="material-icons tiny blank black-text"></i> {{ school.building_location.city }}<br>
+              </a>
+              <a href="tel:+{{school.main_phone|slice:"0:1"}}-{{school.main_phone|slice:"1:4"}}-{{school.main_phone|slice:"4:7"}}-{{school.main_phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{school.main_phone|slice:"1:4"}}.{{school.main_phone|slice:"4:7"}}.{{school.main_phone|slice:"7:11"}}
+              </a>
+            </div>
+            <div class="card-action">
+              <a href="{{ school.website_url }}" title="{{ school.title }}">Website</a>
+              <a href="{{school.url}}" title="{{ school.title }}" class="right">About</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="card-action">
+    <a class="btn-flat disabled narrow" title="Last Updated"><i class="material-icons left">&#xE192;</i>{{ page.update_date|date:"N d, Y" }}</a>
+    <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback" title="Page Feedback"><i class="material-icons left">&#xE254;</i>Page Feedback</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar_second_s %}
+{% endblock %}
+
+{% block pagescript %}
+{{ block.super }}
+<script>
+function myFunction() {
+  var input, filter, filterpoint;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  school = document.getElementsByClassName("filterpoint");
+  for (i = 0; i < school.length; i++) {
+      if (school[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        school[i].style.display = "";
+      } else {
+        school[i].style.display = "none";
+      }       
+  }
+  bLazy.revalidate()
+}
+</script>
+{% endblock %}

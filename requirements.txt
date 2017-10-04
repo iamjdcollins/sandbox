@@ -1,0 +1,23 @@
+#set version to 1.10 by jordan
+gunicorn
+psycopg2
+Django>=1.10,<1.11
+pytz
+django-classy-tags>=0.7
+html5lib>=0.999999,<0.99999999
+Pillow>=3.0
+#django-sekizai>=0.9
+six
+#added by jordan
+uuid
+django_saml2_auth
+django-ckeditor
+django-guardian
+django-jet
+django-material
+django-admin-sortable2
+django-treebeard
+django-mptt
+ldap3
+django-ajax-selects
+django-debug-toolbar

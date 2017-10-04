@@ -1,0 +1,31 @@
+{% extends "www_slcschools_org/contentfullwidth.html" %}
+{% load static mptt_tags %}
+
+{% block title %}
+  {{ page.title }} 
+{% endblock %}
+
+{% block precontent %}
+{% endblock %}
+
+{% block sidebar_first %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div id="main" class="card-content">
+    <h1>{{ page.title }}</h1>
+  </div>
+  <div class="card-action">
+    <a class="btn-flat disabled narrow" title="Last Updated"><i class="material-icons left">&#xE192;</i>{{ page.update_date|date:"N d, Y" }}</a>
+    <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback" title="Page Feedback"><i class="material-icons left">&#xE254;</i>Page Feedback</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar_second_s %}
+{% endblock %}
+
+{% block pagescript %}
+{{ block.super }}
+{% endblock %}

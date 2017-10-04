@@ -1,0 +1,309 @@
+{% extends "www_slcschools_org/contentrighttoc.html" %}
+{% load static mptt_tags %}
+
+{% block title %}
+  {{page.title}}
+{% endblock %}
+
+{% block precontent %}
+{% endblock %}
+
+{% block sidebar_first %}
+<div class="row ">
+  <div class="table-of-contents">
+    <h5>Contents:</h5>
+    <ul>
+      {% if page.body != '' %}
+      <li><a href="#about">About</a></li>
+      {% endif %}
+      {%if page.building_location or page.main_phone or page.main_fax %}
+      <li><a href="#contact">Contact</a></li>
+      {% endif %}
+      {% if page.departments_departmentstaff_department.all or page.departments_departmentsubpagestaff_department.all%}
+      <li><a href="#staff">Staff</a></li>
+      {% endif %}
+      {% if page.departments_departmentdocument_department.all %}
+      <li><a href="#documents">Documents</a></li>
+      {% endif %}
+      {% if  page.content_type == 'Department' and page.parent.content_type == 'Department' or department_children %}
+      <li><a href="#relateddepartments">Departments / Programs</a></li>
+      {% endif %}
+      {% if department_subpages %}
+      <li><a href="#pages">Pages</a></li>
+      <ul>
+      {% for department_subpage in department_subpages %}
+        <li><a href="{{ department_subpage.url }}" title="{{ department_subpage.title }}">{{ department_subpage.title }}</a></li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% if page.departments_departmentbannerimage_department.all %}
+<div class="card">
+  <div class="unslider slcschools-grey darken-1">
+    <ul class="slides">
+      {% for bannerimage in page.departments_departmentbannerimage_department.all %}
+      <li class="slide">
+        <img src="/{{bannerimage.image}}" alt="{{bannerimage.alttext}}" />
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+<div class="card">
+  <div class="input-field mobile-table-of-contents hide-on-med-and-up">
+    <select class="browser-default z-depth-1">
+      <option value="#!" disabled selected style="display:none;">Table of Contents</option>
+      {% if page.body != '' %}
+      <option value="#about">About</option>
+      {% endif %}
+      {%if page.building_location or page.main_phone or page.main_fax %}
+      <option value="#contact">Contact</option>
+      {% endif %}
+      {% if page.departments_departmentstaff_department.all or page.departments_departmentsubpagestaff_department.all%}
+      <option value="#staff">Staff</option>
+      {% endif %}
+      {% if page.departments_departmentdocument_department.all %}
+      <option value="#documents">Documents</option>
+      {% endif %}
+      {% if  page.content_type == 'Department' and page.parent.content_type == 'Department' or department_children %}
+      <option value="#relateddepartments">Departments / Programs</option>
+      {% endif %}
+      {% if department_subpages %}
+      <option value="#pages">Pages</option>
+      {% for department_subpage in department_subpages %}
+      <option class="page" value="{{ department_subpage.url }}" title="{{ department_subpage.title }}">-- {{ department_subpage.title }}</option>
+      {% endfor %}
+      {% endif %}
+    </select>
+  </div>
+  <div id="main" class="card-content">
+    <h1>{{page.title}}</h1>
+    {% if page.body != '' %}
+    <div class="row">
+      <div id="about" class="richtext scrollspy">
+        <h2>About</h2>
+        <div class="body">
+          {{page.body|safe}}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {%if page.building_location or page.main_phone or page.main_fax %}
+    <div class="row">
+      <div id="contact" class="scrollspy">
+        <h2>Contact</h2>
+        <div class="card primarycontact">
+          <div class="card-content">
+            <div class="collection">
+              <a href="{{page.building_location.google_place}}" class="collection-item">
+                <span class="title">Address</span>
+                <address class="address">
+                  <p class="streetaddress">{{page.building_location.street_address}} <br />
+                                           {{page.building_location.city}}, {{page.building_location.state}} {{page.building_location.zipcode}}
+                  </p>
+                </address>
+                <i class="material-icons secondary-content absolute-right small">&#xE55F;</i>
+              </a>
+              <a href="tel:+{{page.main_phone|slice:"0:1"}}-{{page.main_phone|slice:"1:4"}}-{{page.main_phone|slice:"4:7"}}-{{page.main_phone|slice:"7:11"}}" class="collection-item">
+                <span class="title">Phone</span>
+                <div class="mainphone">{{page.main_phone|slice:"1:4"}}.{{page.main_phone|slice:"4:7"}}.{{page.main_phone|slice:"7:11"}}</div>
+                <i class="material-icons secondary-content absolute-right small">&#xE0CD;</i>
+              </a>
+              {% if page.main_fax %}
+              <a href="#!" class="collection-item">
+                <span class="title">Fax</span>
+                <div class="mainfax">{{page.main_fax|slice:"1:4"}}.{{page.main_fax|slice:"4:7"}}.{{page.main_fax|slice:"7:11"}}</div>
+                <i class="material-icons secondary-content absolute-right small">&#xE8AD;</i>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="card-action">
+            <a href="#">Send Us A Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if page.departments_departmentstaff_department.all or page.departments_departmentsubpagestaff_department.all%}
+    <div class="row">
+      <div id="staff" class="scrollspy contactcardlist">
+        <h2>Staff</h2>
+        {% for staff in page.departments_departmentstaff_department.all %}
+        <div class="card horizontal">
+          <div class="card-image">
+            <img src="{% if staff.employee.users_userprofileimage_user.image %}/{{staff.employee.users_userprofileimage_user.image}}{% else %}/users/images/placeholder.jpg{% endif %}" />
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5 class="contactcardname">{{ staff.employee.first_name }} {{ staff.employee.last_name }}</h5>
+              <strong>{{ staff.position }}</strong> <br />
+               {% if staff.main_phone %}
+               <a href="tel:+{{staff.main_phone|slice:"0:1"}}-{{staff.main_phone|slice:"1:4"}}-{{staff.main_phone|slice:"4:7"}}-{{staff.main_phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{staff.main_phone|slice:"1:4"}}.{{staff.main_phone|slice:"4:7"}}.{{staff.main_phone|slice:"7:11"}}
+               </a>
+               {% endif %}
+            </div>
+            <div class="card-action">
+              {% if staff.contact_form %}
+              <a href="#">SEND ME A MESSAGE</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% for staff in page.departments_departmentsubpagestaff_department.all %}
+        <div class="card horizontal">
+          <div class="card-image">
+            <img src="{% if staff.employee.users_userprofileimage_user.image %}/{{staff.employee.users_userprofileimage_user.image}}{% else %}/users/images/placeholder.jpg{% endif %}" />
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5 class="contactcardname">{{ staff.employee.first_name }} {{ staff.employee.last_name }}</h5>
+              <strong>{{ staff.position }}</strong> <br />
+               {% if staff.main_phone %}
+               <a href="tel:+{{staff.main_phone|slice:"0:1"}}-{{staff.main_phone|slice:"1:4"}}-{{staff.main_phone|slice:"4:7"}}-{{staff.main_phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{staff.main_phone|slice:"1:4"}}.{{staff.main_phone|slice:"4:7"}}.{{staff.main_phone|slice:"7:11"}}
+               </a>
+               {% endif %}
+            </div>
+            <div class="card-action">
+              {% if staff.contact_form %}
+              <a href="#">SEND ME A MESSAGE</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% if page.departments_departmentdocument_department.all %}
+    <div class="row">
+      <h2>Documents</h2>
+      <div id="documents" class="scrollspy">
+        <div class="collection">
+          {% for document in page.departments_departmentdocument_department.all %}
+          <a href="#{{ document.uuid }}" title="{{ document.title }}" class="collection-item">{{ document.title }} <i class="material-icons right">&#xE2C4;</i></a>
+          <div id="{{ document.uuid }}" class="modal modal-fixed-footer" style="width: 300px; height: 500px;">
+            <div class="modal-content">
+              <div class="collection">
+                {% for file in document.departments_departmentdocumentfile_document.all %}
+                <a class="collection-item" href="/{{ file.file }}">{{ file.language.native_language }} <i class="material-icons right">&#xE2C4;</i></a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if  page.content_type == 'Department' and page.parent.content_type == 'Department' or department_children %}
+    <div class="row">
+      <h2>Departments / Programs</h2>
+      <div id="relateddepartments" class="scrollspy">
+        <table class="striped">
+          {% if page.parent.content_type == 'Department' %}
+          <thead>
+              <th>Phone</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="{{ page.parent.department.url }}" title="{{ page.parent.department.title }}">{{ page.parent.department.title  }}</a>{% if page.parent.department.short_description %} <a href="#!" class="short_description tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ page.parent.department.short_description }}"><i class="material-icons tiny">info_outline</i></a>{% endif %}</td>
+              <td>
+                <a href="tel:+{{page.parent.department.main_phone|slice:'0:1'}}-{{page.parent.department.main_phone|slice:'1:4'}}-{{page.parent.department.main_phone|slice:'4:7'}}-{{page.parent.department.main_phone|slice:'7:11'}}">
+                  <i class="material-icons tiny black-text">&#xE0CD;</i> {{page.parent.department.main_phone|slice:"1:4"}}.{{page.parent.department.main_phone|slice:"4:7"}}.{{page.parent.department.main_phone|slice:"7:11"}}
+                </a>
+              </td>
+              <td>
+                <a href="{{ page.parent.department.building_location.google_place }}" target="_blank">
+                  <i class="material-icons tiny black-text">&#xE55F;</i> {{ page.parent.department.building_location.street_address }}<br>
+                  <i class="material-icons tiny blank black-text"></i> {{ page.parent.department.building_location.city }}<br>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+  {% comment %}        <thead>
+            <th>Parent Department / Program</th>
+            <th>Visit Department</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="{{ page.parent.url }}" title="{{ page.parent.menu_title }}">{{ page.parent.menu_title }}</a>
+              </td>
+              <td>
+              </td>
+            </tr>
+          </tbody>{% endcomment %}
+          {% endif %}
+          {% if department_children %}
+          <thead>
+            <tr>
+              <th>Sub Department / Program</th>
+              <th>Phone</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for child in department_children %}
+            {% if child.content_type == 'Department' %}
+            <tr>
+              <td><a href="{{ child.url }}" title="{{ child.title }}">{{ child.title  }}</a>{% if child.short_description %} <a href="#!" class="short_description tooltipped" data-position="bottom" data-delay="50" data-tooltip="{{ child.short_description }}"><i class="material-icons tiny">info_outline</i></a>{% endif %}</td>
+              <td>
+                <a href="tel:+{{child.main_phone|slice:'0:1'}}-{{child.main_phone|slice:'1:4'}}-{{child.main_phone|slice:'4:7'}}-{{child.main_phone|slice:'7:11'}}">
+                  <i class="material-icons tiny black-text">&#xE0CD;</i> {{child.main_phone|slice:"1:4"}}.{{child.main_phone|slice:"4:7"}}.{{child.main_phone|slice:"7:11"}}
+                </a>
+              </td>
+              <td>
+                <a href="{{ child.building_location.google_place }}" target="_blank">
+                  <i class="material-icons tiny black-text">&#xE55F;</i> {{ child.building_location.street_address }}<br>
+                  <i class="material-icons tiny blank black-text"></i> {{ child.building_location.city }}<br>
+                </a>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+          {% comment %}
+          <thead>
+            <th>Sub Department / Program</th>
+            <th>Visit Department</th>
+          </thead>
+          <tbody>
+            {% for child in department_children %}
+              {% if child.content_type == 'Department' %}
+              <tr>
+                <td>
+                  <a href="{{ child.url }}" title="{{ child.menu_title }}">{{ child.menu_title }}</a>
+                </td>
+                <td>
+                </td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>{% endcomment %}
+          {% endif %}
+        </table>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="card-action">
+    <a class="btn-flat disabled narrow" title="Last Updated"><i class="material-icons left">&#xE192;</i>{{ page.update_date|date:"N d, Y" }}</a>
+    <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback" title="Page Feedback"><i class="material-icons left">&#xE254;</i>Page Feedback</a>
+  </div>
+</div>
+  {% endblock %}

@@ -1,0 +1,14 @@
+{% block content %}
+{% for school in schools %}
+<div id="main" class="card-content">
+    <h1>{{school.title}}</h1>
+    <div class="row">
+      <div id="about" class="richtext scrollspy">
+        <h4>About</h4>
+        <div class="body flow-text">
+          {{school.body|safe}}
+        </div>
+      </div>
+    </div>
+{% endfor %}
+{% endblock %}

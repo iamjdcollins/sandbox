@@ -1,0 +1,92 @@
+{% extends "www_slcschools_org/contentrighttoc.html" %}
+{% load static mptt_tags %}
+
+{% block title %}
+  {{ page.title }} Directory
+{% endblock %} 
+
+{% block precontent %}
+{% endblock %}
+
+{% block sidebar_first %}
+<div class="row">
+  <div class="table-of-contents">
+  <h5>Contents:</h5>
+    <ul>
+      <li><a href="#schools">{{schools.0.parent}} ({{ schools|length }})</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
+{% block sidebar_second_mup %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="input-field mobile-table-of-contents hide-on-med-and-up">
+    <select class="browser-default z-depth-1">
+      <option value="#!" disabled selected style="display:none;">Table of Contents</option>
+      <option value="#schools">{{schools.0.parent}} ({{ schools|length }})</option>
+    </select>
+  </div>
+  <div id="main" class="card-content">
+    <h1>{{ page.title }} Directory</h1>
+    <form class="textfieldboxes" onsubmit="myFunction(); return false;">
+      <input class="autocomplete" onkeyup="myFunction()" placeholder="Search Schools" title="Search Schools" id="search" type="text">
+    </form>
+    <div id="schools" class="scrollspy filterpoint">
+      <div class="row">
+        {% for school in schools %}
+        <div class="col s12 l4 filterpoint">
+          <div class="card schoolcard">
+            <div class="card-image">
+              <img src="{% get_media_prefix %}{{ school.schools_schoolthumbimage_school.image }}" alt="{{ school.schools_schoolthumbimage_school.alttext }}" />
+            </div>
+            <div class="card-content">
+              <h5 class="school-title">{{ school.title }}</h5>
+              <a href="{{ school.building_location.google_place }}" target="_blank">
+                <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
+                <i class="material-icons tiny blank black-text"></i> {{ school.building_location.city }}<br>
+              </a>
+              <a href="tel:+{{school.main_phone|slice:"0:1"}}-{{school.main_phone|slice:"1:4"}}-{{school.main_phone|slice:"4:7"}}-{{school.main_phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{school.main_phone|slice:"1:4"}}.{{school.main_phone|slice:"4:7"}}.{{school.main_phone|slice:"7:11"}}<br>
+              </a>
+            </div>
+            <div class="card-action clearfix">
+              <a href="{{ school.website_url }}" title="{{ school.title }}">Website</a>
+              <a href="{{school.url}}" title="{{ school.title }}" class="right">About</a>
+            </div>
+          </div>
+        </div>    
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="card-action">
+    <a class="btn-flat disabled narrow" title="Last Updated"><i class="material-icons left">&#xE192;</i>{{ page.update_date|date:"N d, Y" }}</a>
+    <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback" title="Page Feedback"><i class="material-icons left">&#xE254;</i>Page Feedback</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar_second_s %}
+{% endblock %}
+
+{% block pagescript %}
+{{ block.super }}
+<script>
+function myFunction() {
+  var input, filter, filterpoint;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  school = document.getElementsByClassName("filterpoint");
+  for (i = 0; i < school.length; i++) {
+      if (school[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        school[i].style.display = "";
+      } else {
+        school[i].style.display = "none";
+      }
+  }
+}
+</script>
+{% endblock %}

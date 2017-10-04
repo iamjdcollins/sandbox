@@ -1,0 +1,28 @@
+class PageHelp():
+  title = ("<ol>"
+         "  <li class='help'>"
+         "    <p class='help'>Enter the title of the page. (example: Home)</p>"
+         "  </li>"
+         "  <li class='help'>"
+         "    <p class='help'><strong>Note: </strong>This value cannot be changed after inital creation..</p>"
+         "  </li>"
+         "</ol>")
+  body = ("<ol>"
+               "  <li class='help'>"
+               "    <p class='help'></p>"
+               "  </li>"
+               "</ol>")
+  parent_page = ("<ol>"
+                       "  <li class='help'>"
+                       "    <p class='help'>Select the parent page..</p>"
+                       "  </li>"
+                       "  <li class='help'>"
+                       "    <p class='help'><strong>Note: </strong>This value cannot be changed after inital creation..</p>"
+                       "  </li>"
+                       "  <li class='help'>"
+                       "    <p class='help'><strong>NOTE: </strong>If authorized you may be able to add pages with the plus icon to the right of the select list.</p>"
+                       "  </li>"
+                       "  <li class='help'>"
+                       "    <p class='help'><strong>NOTE: </strong>If authorized you may be able to edit the selected page with the pencil icon to the right of the select list.</p>"
+                       "  </li>"
+                       "</ol>")

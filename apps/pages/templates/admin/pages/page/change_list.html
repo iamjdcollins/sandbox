@@ -1,0 +1,21 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+{% if perms.pages.restore_page %}
+<script>
+(function($) { // < start of closure
+    // within this block, $ = django.jQuery
+    $(document).ready(function() {
+      $('#changelist-filter h3:contains("deleted"), #changelist-filter h3:contains("deleted") + ul').addClass('hidden');
+      if ( django.jQuery('#changelist-filter h3:contains("deleted") + ul li.selected a').text() == 'Yes' ){
+        $('#changelist-form .actions').append('<button id="hidedeleted" title="Show Active" style="float:right;line-height: 18px;margin-right: 0px; margin-left: 10px;" name="trash" value="0" class="button">Show Active</button>')      } else {
+        $('#changelist-form .actions').append('<button id="showdeleted" title="Show Deleted" style="float:right;line-height: 18px;margin-right: 0px; margin-left: 10px;" name="trash" value="0" class="button">Show Deleted</button>')
+      }
+      $("#result_list th.column-deleted, #result_list td.field-deleted").addClass('hidden');
+    showDeletedActions();
+    });
+})(django.jQuery);
+</script>
+{% endif %}
+{{block.super}}
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "www_slcschools_org/contentfullwidth.html" %}
+{% load static mptt_tags %}
+
+{% block title %}
+  Employee {{ page.title }} 
+{% endblock %}
+
+{% block precontent %}
+{% endblock %}
+
+{% block sidebar_first %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div id="main" class="card-content">
+    <h1>Employee Directory</h1>
+    <div class="row alphafilter">
+      <div class="col s12 l6">
+        <a class="alphafilter" href="/directory/last-name-a/" title="Last Name A">A</a>
+        <a class="alphafilter" href="/directory/last-name-b/" title="Last Name B">B</a>
+        <a class="alphafilter" href="/directory/last-name-c/" title="Last Name C">C</a>
+        <a class="alphafilter" href="/directory/last-name-d/" title="Last Name D">D</a>
+        <a class="alphafilter" href="/directory/last-name-e/" title="Last Name E">E</a>
+        <a class="alphafilter" href="/directory/last-name-f/" title="Last Name F">F</a>
+        <a class="alphafilter" href="/directory/last-name-g/" title="Last Name G">G</a>
+        <a class="alphafilter" href="/directory/last-name-h/" title="Last Name H">H</a>
+        <a class="alphafilter" href="/directory/last-name-i/" title="Last Name I">I</a>
+        <a class="alphafilter" href="/directory/last-name-j/" title="Last Name J">J</a>
+        <a class="alphafilter" href="/directory/last-name-k/" title="Last Name K">K</a>
+        <a class="alphafilter" href="/directory/last-name-l/" title="Last Name L">L</a>
+        <a class="alphafilter" href="/directory/last-name-m/" title="Last Name M">M</a>
+      </div>
+      <div class="col s12 l6">
+        <a class="alphafilter" href="/directory/last-name-n/" title="Last Name N">N</a>
+        <a class="alphafilter" href="/directory/last-name-o/" title="Last Name O">O</a>
+        <a class="alphafilter" href="/directory/last-name-p/" title="Last Name P">P</a>
+        <a class="alphafilter" href="/directory/last-name-q/" title="Last Name Q">Q</a>
+        <a class="alphafilter" href="/directory/last-name-r/" title="Last Name R">R</a>
+        <a class="alphafilter" href="/directory/last-name-s/" title="Last Name S">S</a>
+        <a class="alphafilter" href="/directory/last-name-t/" title="Last Name T">T</a>
+        <a class="alphafilter" href="/directory/last-name-u/" title="Last Name U">U</a>
+        <a class="alphafilter" href="/directory/last-name-v/" title="Last Name V">V</a>
+        <a class="alphafilter" href="/directory/last-name-w/" title="Last Name W">W</a>
+        <a class="alphafilter" href="/directory/last-name-x/" title="Last Name X">X</a>
+        <a class="alphafilter" href="/directory/last-name-y/" title="Last Name Y">Y</a>
+        <a class="alphafilter" href="/directory/last-name-z/" title="Last Name Z">Z</a>
+      </div>
+    </div>
+    <!--<form class="textfieldboxes" onsubmit="myFunction(); return false;">
+      <input id="tableSearch" class="autocomplete" onchange="myFunction()" placeholder="Search People" title="Search People" type="text">
+    </form>-->
+    <div id="people" class="scrollspy">
+      <div class="row">
+        <table id="searchTable" class="striped highlight mobileblock" style="width: 100%;">
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card-action">
+    <a class="btn-flat disabled narrow" title="Last Updated"><i class="material-icons left">&#xE192;</i>{{ page.update_date|date:"N d, Y" }}</a>
+    <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback" title="Page Feedback"><i class="material-icons left">&#xE254;</i>Page Feedback</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar_second_s %}
+{% endblock %}
+
+{% block pagescript %}
+{{ block.super }}
+<script>
+function myFunction() {
+  var input, filter, table, tbody, tr, td, i;
+  input = document.getElementById("tableSearch");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("searchTableBody");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+      if (tr[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }       
+  }
+}
+var dataSet = [
+  {% for person in people %}
+  ["{{ person.last_name  }}, {{ person.first_name }}","","","","","{{ person.email }}"],
+  {% endfor %}
+];
+$('#searchTable').DataTable({
+  dom: '<"wrapper textfieldboxes"lfrtip>',
+  pageLength: 50,
+  language: { lengthMenu: "", search: "", searchPlaceholder: "Filter People", paginate: { previous: '<i class="material-icons">&#xE5CB;</i>', next: '<i class="material-icons">&#xE5CC;</i>'},},
+  data: dataSet,
+  columns: [
+    { title: "Name", className: "name" },
+    { title: "Title", className: "title" },
+    { title: "Department", className: "department" },
+    { title: "Location", className: "location" },
+    { title: "Room", className: "room" },
+    { title: "Email", className: "email" }
+  ],
+  renderer: {
+    "pageButton": "bootstrap",
+  },
+  responsive: true,
+});
+</script>
+{% endblock %}

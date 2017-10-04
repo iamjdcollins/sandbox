@@ -1,0 +1,188 @@
+{% extends "www_slcschools_org/contentrighttoc.html" %}
+{% load static mptt_tags %}
+
+{% block title %}
+  {{page.title}}
+{% endblock %}
+
+{% block precontent %}
+{% endblock %}
+
+{% block sidebar_first %}
+<div class="row ">
+  <div class="table-of-contents">
+    <h5>Contents:</h5>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#administration">Administration</a></li>
+      {% if page.scc_url or page.schools_schoolquicklink_school.all %}
+      <li><a href="#quicklinks">Quick Links</a></li>
+      {% endif %}
+      {% if page.boundary_map %}
+      <li><a href="#boundarymap">Boundary Map</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar_second_mup %}
+{% endblock %}
+
+{% comment %}{% block breadcrumb %}
+<div class="row">
+  <nav class="slcschools-grey lighten-2">
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="/" title="Home" class="breadcrumb">Home</a>
+        {% for item in BREADCRUMB %}
+        <a href="{{ item.url }}" title="{{ item.menu_title }}" class="breadcrumb">{{ item.menu_title }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+</div>
+{% endblock %}{% endcomment %}
+
+{% block content %}
+<div class="card">
+  <div class="unslider slcschools-grey darken-1">
+    <ul class="slides">
+      {% for bannerimage in page.schools_schoolbannerimage_school.all %}
+      <li class="slide">
+        <img src="/{{bannerimage.image}}" alt="{{bannerimage.alttext}}" />
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="card">
+  <div class="input-field mobile-table-of-contents hide-on-med-and-up">
+    <select class="browser-default z-depth-1">
+      <option value="#!" disabled selected style="display:none;">Table of Contents</option>
+      <option value="#about">About</option>
+      <option value="#contact">Contact</option>
+      <option value="#administration">Administration</option>
+      {% if page.scc_url or page.schools_schoolquicklink_school.all %}
+      <option value="#quicklinks">Quick Links</option>
+      {% endif %}
+      {% if page.boundary_map %}
+      <option value="#boundarymap">Boundary Map</option>
+      {% endif %}
+    </select>
+  </div>  
+  <div id="main" class="card-content">
+    <h1>{{page.title}}</h1>
+    <div class="row">
+      <div id="about" class="richtext scrollspy">
+        <h2>About</h2>
+        <div class="body">
+          {{page.body|safe}}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="contact" class="scrollspy">
+        <h2>Contact</h2>
+        <div class="card primarycontact">
+          <div class="card-content">
+            <div class="collection">
+              <a href="{{page.building_location.google_place}}" class="collection-item">
+                <span class="title">Address</span>
+                <address class="schooladdress">
+                  <p class="streetaddress">{{page.building_location.street_address}} <br />
+                                           {{page.building_location.city}}, {{page.building_location.state}} {{page.building_location.zipcode}}
+                  </p>
+                </address>
+                <i class="material-icons secondary-content absolute-right small">&#xE55F;</i>
+              </a>
+              <a href="tel:+{{page.main_phone|slice:"0:1"}}-{{page.main_phone|slice:"1:4"}}-{{page.main_phone|slice:"4:7"}}-{{page.main_phone|slice:"7:11"}}" class="collection-item">
+                <span class="title">Phone</span>
+                <div class="schoolphone">{{page.main_phone|slice:"1:4"}}.{{page.main_phone|slice:"4:7"}}.{{page.main_phone|slice:"7:11"}}</div>
+                <i class="material-icons secondary-content absolute-right small">&#xE0CD;</i>
+              </a>
+              <a href="#!" class="collection-item">
+                <span class="title">Fax</span>
+                <div class="schoolfax">{{page.main_fax|slice:"1:4"}}.{{page.main_fax|slice:"4:7"}}.{{page.main_fax|slice:"7:11"}}</div>
+                <i class="material-icons secondary-content absolute-right small">&#xE8AD;</i>
+              </a>
+              <a href="#!" class="collection-item">
+                <span class="title">Enrollment</span>
+                <div class="schoolenrollment">
+                  <div class="chip">
+                    {% if page.open_enrollment_status.title == 'Open' %}
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD//gA+Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8AAEQgAAQABAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8Anooorwz5o//Z" />
+                    {% elif page.open_enrollment_status.title == 'Closed' %}
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD//gA+Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8AAEQgAAQABAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8Aq0UUV8+fqB//2Q==" />
+                    {% endif %}{{page.open_enrollment_status.title}}
+                  </div>
+                  <div class="chip">
+                    Enrollment: {{page.enrollment}}
+                  </div>
+                </div>
+                <i class="material-icons secondary-content absolute-right small">&#xE80C;</i>
+              </a>
+            </div>
+          </div>
+          <div class="card-action">
+            <a href="{{page.website_url}}">Visit Our Website</a>
+            <a href="#">Send Us A Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="administration" class="scrollspy contactcardlist">
+        <h2>Administration</h2>
+        {% for admin in page.schools_schooladmin_school.all %}
+        <div class="card horizontal">
+          <div class="card-image">
+            <img src="{% if admin.employee.users_userprofileimage_user.image %}/{{admin.employee.users_userprofileimage_user.image}}{% else %}/users/images/placeholder.jpg{% endif %}" />
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5 class="contactcardname">{{ admin.employee.first_name }} {{ admin.employee.last_name }}</h5>
+              <strong>{{ admin.admin_type }}</strong> <br />
+               <a href="tel:+{{admin.phone|slice:"0:1"}}-{{admin.phone|slice:"1:4"}}-{{admin.phone|slice:"4:7"}}-{{admin.phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{admin.phone|slice:"1:4"}}.{{admin.phone|slice:"4:7"}}.{{admin.phone|slice:"7:11"}}
+              </a>
+            </div>
+            <div class="card-action">
+              <a href="#">SEND ME A MESSAGE</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if page.scc_url or page.schools_schoolquicklink_school.all %}
+    <div class="row">
+      <div id="quicklinks" class="scrollspy">
+        <h2>Quick Links</h2>
+        <div class="collection">
+          {% if page.scc_url %}
+          <a href="{{ page.scc_url }}" title="School Community Council" class="collection-item">School Community Council <i class="material-icons right">&#xE157;</i></a>
+          {% endif %}
+          {% for quicklink in page.schools_schoolquicklink_school.all %}
+          <a href="{{ quicklink.url }}" title="{{ quicklink.title }}" class="collection-item">{{ quicklink.title }} <i class="material-icons right">&#xE157;</i></a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if page.boundary_map %}
+    <div class="row">
+      <div id="boundarymap" class="scrollspy">
+        <h2>Boundary Map</h2>
+        <iframe class="googlemap" width="850" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{ page.boundary_map }}"></iframe>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="card-action">
+    <a class="btn-flat disabled narrow" title="Last Updated"><i class="material-icons left">&#xE192;</i>{{ page.update_date|date:"N d, Y" }}</a>
+    <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback" title="Page Feedback"><i class="material-icons left">&#xE254;</i>Page Feedback</a>
+  </div>
+</div>
+{% endblock %}

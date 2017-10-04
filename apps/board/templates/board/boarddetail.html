@@ -1,0 +1,615 @@
+{% extends "www_slcschools_org/contentrighttoc.html" %}
+{% load static mptt_tags %}
+
+{% block title %}
+  {{page.title}}
+{% endblock %}
+
+{% block precontent %}
+{% endblock %}
+
+{% block sidebar_first %}
+<div class="row ">
+  <div class="table-of-contents">
+    <h5>Contents:</h5>
+    <ul>
+      {% if page.body %}
+      <li><a href="#about">About</a></li>
+      {% endif %}
+      {% if page.building_location or page.main_phone or page.main_fax %}
+      <li><a href="#contact">Contact</a></li>
+      {% endif %}
+      {% if request.path == '/board-of-education/board-policies/' %}
+      {% if board_policies %}
+      <li><a href="#board_policies">Board Policies ({{ board_policies|length }})</a></li>
+      {% endif %}
+      {% if community_policies %}
+      <li><a href="#community_policies">Community Policies ({{ community_policies|length }})</a></li>
+      {% endif %}
+      {% if financial_policies %}
+      <li><a href="#financial_policies">Financial Policies ({{ financial_policies|length }})</a></li>
+      {% endif %}
+      {% if general_policies %}
+      <li><a href="#general_policies">General Policies ({{ general_policies|length }})</a></li>
+      {% endif %}
+      {% if instructional_policies %}
+      <li><a href="#instructional_policies">Instructional Policies ({{ instructional_policies|length }})</a></li>
+      {% endif %}
+      {% if personnel_policies %}
+      <li><a href="#personnel_policies">Personnel Policies ({{ personnel_policies|length }})</a></li>
+      {% endif %}
+      {% if student_policies %}
+      <li><a href="#student_policies">Student Policies ({{ student_policies|length }})</a></li>
+      {% endif %}
+      {% endif %}
+      {% if request.path == '/board-of-education/board-meetings/' %}
+      <li><a href="#board_meetings">Board Meetings</a></li>
+      {% endif %}
+      {% if  page.board_boardmember_board.all %}
+      <li><a href="#members">Board Members</a></li>
+      {% endif %}
+      {% if page.mission_statement %}
+      <li><a href="#mission">Mission Statement</a></li>
+      {% endif %}
+      {% if page.vision_statement %}
+      <li><a href="#vision">Vision Statement</a></li>
+      {% endif %}
+      {% if board_subpages %}
+      <li><a href="#pages">Pages</a></li>
+      <ul>
+      {% for board_subpage in board_subpages %}
+        <li><a href="{{ board_subpage.url }}" title="{{ board_subpage.title }}">{{ board_subpage.title }}</a></li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% comment %}{% block breadcrumb %}
+<div class="row">
+  <nav class="slcschools-grey lighten-2">
+    <div class="nav-wrapper">
+      <div class="col s12">
+        <a href="/" title="Home" class="breadcrumb">Home</a>
+        {% for item in BREADCRUMB %}
+        <a href="{{ item.url }}" title="{{ item.menu_title }}" class="breadcrumb">{{ item.menu_title }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+</div>
+{% endblock %}{% endcomment %}
+
+{% block content %}
+{% if page.board_boardbannerimage_board.all %}
+<div class="card">
+  <div class="unslider slcschools-grey darken-1">
+    <ul class="slides">
+      {% for bannerimage in page.board_boardbannerimage_board.all %}
+      <li class="slide">
+        <img src="/{{bannerimage.image}}" alt="{{bannerimage.alttext}}" />
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+<div class="card">
+  <div class="input-field mobile-table-of-contents hide-on-med-and-up">
+    <select class="browser-default z-depth-1">
+      <option value="#!" disabled selected style="display:none;">Table of Contents</option>
+      {% if page.body %}
+      <option value="#about">About</option>
+      {% endif %}
+      {% if page.building_location or page.main_phone or page.main_fax %}
+      <option value="#contact">Contact</option>
+      {% endif %}
+      {% if  page.board_boardmember_board.all %}
+      <option value="#members">Board Members</option>
+      {% endif %}
+      {% if page.mission_statement %}
+      <option value="#mission">Mission Statement</option>
+      {% endif %}
+      {% if page.vision_statement %}
+      <option value="#vision">Vision Statement</option>
+      {% endif %}
+      {% if board_subpages %}
+      <option value="#pages">Pages</option>
+      {% for board_subpage in board_subpages %}
+      <option class="page" value="{{ board_subpage.url }}" title="{{ board_subpage.title }}">-- {{ board_subpage.title }}</option>
+      {% endfor %}
+      {% endif %}
+    </select>
+  </div>
+  <div id="main" class="card-content">
+    <h1>{{page.title}}</h1>
+    {% if page.body %}
+    <div class="row">
+      <div id="about" class="richtext scrollspy">
+        <h2>About</h2>
+        <div class="body">
+          {{page.body|safe}}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if page.building_location or page.main_phone or page.main_fax %}
+    <div class="row">
+      <div id="contact" class="scrollspy">
+        <h2>Contact</h2>
+        <div class="card primarycontact">
+          <div class="card-content">
+            <div class="collection">
+              {% if page.building_location %}
+              <a href="{{page.building_location.google_place}}" class="collection-item">
+                <span class="title">Address</span>
+                <address class="schooladdress">
+                  <p class="streetaddress">{{page.building_location.street_address}}<br>
+                                           {{page.building_location.city}}, {{page.building_location.state}} {{page.building_location.zipcode}}
+                  </p>
+                </address>
+                <i class="material-icons secondary-content absolute-right small">&#xE55F;</i>
+              </a>
+              {% endif %}
+              {% if page.main_phone %}
+              <a href="tel:+{{page.main_phone|slice:"0:1"}}-{{page.main_phone|slice:"1:4"}}-{{page.main_phone|slice:"4:7"}}-{{page.main_phone|slice:"7:11"}}" class="collection-item">
+                <span class="title">Phone</span>
+                <div class="schoolphone">{{page.main_phone|slice:"1:4"}}.{{page.main_phone|slice:"4:7"}}.{{page.main_phone|slice:"7:11"}}</div>
+                <i class="material-icons secondary-content absolute-right small">&#xE0CD;</i>
+              </a>
+              {% endif %}
+              {% if page.main_fax %}
+              <a href="#!" class="collection-item">
+                <span class="title">Fax</span>
+                <div class="schoolfax">{{page.main_fax|slice:"1:4"}}.{{page.main_fax|slice:"4:7"}}.{{page.main_fax|slice:"7:11"}}</div>
+                <i class="material-icons secondary-content absolute-right small">&#xE8AD;</i>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="card-action">
+            <a href="#">Send Us A Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if request.path == '/board-of-education/board-policies/' %}
+    {% if board_policies %}
+    <div class="row">
+      <div id="board_policies" class="scrollspy">
+        <h2>Board Policies</h2>
+        <p class="policydescription">{{ board_policies.0.section.description }}</p>
+        <table class="board_policies">
+          <thead>
+            <tr>
+              <th class="policyindex">Index</th>
+              <th>Policy Title</th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for policy in board_policies %}
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex">{{ policy.get_policy_index }}</td>
+              <td>{{ policy.title }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Question / Comment"><i class="material-icons">&#xE0C9;</i></a></td>
+            </tr>
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Administrative Procedure</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% for document in "0" %}
+            <tr {% if forloop.parentloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Supporting Document {{ forloop.counter }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% if community_policies %}
+    <div class="row">
+      <div id="community_policies" class="scrollspy">
+        <h2>Community Policies</h2>
+        <p class="policydescription">{{ community_policies.0.section.description }}</p>
+        <table class="board_policies">
+          <thead>
+            <tr>
+              <th class="policyindex">Index</th>
+              <th>Policy Title</th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for policy in community_policies %}
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex">{{ policy.get_policy_index }}</td>
+              <td>{{ policy.title }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Question / Comment"><i class="material-icons">&#xE0C9;</i></a></td>
+            </tr>
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Administrative Procedure</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% for document in "0" %}
+            <tr {% if forloop.parentloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Supporting Document {{ forloop.counter }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% if financial_policies %}
+    <div class="row">
+      <div id="financial_policies" class="scrollspy">
+        <h2>Financial Policies</h2>
+        <p class="policydescription">{{ financial_policies.0.section.description }}</p>
+        <table class="board_policies">
+          <thead>
+            <tr>
+              <th class="policyindex">Index</th>
+              <th>Policy Title</th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for policy in financial_policies %}
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex">{{ policy.get_policy_index }}</td>
+              <td>{{ policy.title }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Question / Comment"><i class="material-icons">&#xE0C9;</i></a></td>
+            </tr>
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Administrative Procedure</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% for document in "0" %}
+            <tr {% if forloop.parentloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Supporting Document {{ forloop.counter }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% if general_policies %}
+    <div class="row">
+      <div id="general_policies" class="scrollspy">
+        <h2>General Policies</h2>
+        <p class="policydescription">{{ general_policies.0.section.description }}</p>
+        <table class="board_policies">
+          <thead>
+            <tr>
+              <th class="policyindex">Index</th>
+              <th>Policy Title</th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for policy in general_policies %}
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex">{{ policy.get_policy_index }}</td>
+              <td>{{ policy.title }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Question / Comment"><i class="material-icons">&#xE0C9;</i></a></td>
+            </tr>
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Administrative Procedure</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% for document in "0" %}
+            <tr {% if forloop.parentloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Supporting Document {{ forloop.counter }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% if instructional_policies %}
+    <div class="row">
+      <div id="instructional_policies" class="scrollspy">
+        <h2>Instructional Policies</h2>
+        <p class="policydescription">{{ instructional_policies.0.section.description }}</p>
+        <table class="board_policies">
+          <thead>
+            <tr>
+              <th class="policyindex">Index</th>
+              <th>Policy Title</th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for policy in instructional_policies %}
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex">{{ policy.get_policy_index }}</td>
+              <td>{{ policy.title }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Question / Comment"><i class="material-icons">&#xE0C9;</i></a></td>
+            </tr>
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Administrative Procedure</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% for document in "0" %}
+            <tr {% if forloop.parentloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Supporting Document {{ forloop.counter }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% if personnel_policies %}
+    <div class="row">
+      <div id="personnel_policies" class="scrollspy">
+        <h2>Personnel Policies</h2>
+        <p class="policydescription">{{ personnel_policies.0.section.description }}</p>
+        <table class="board_policies">
+          <thead>
+            <tr>
+              <th class="policyindex">Index</th>
+              <th>Policy Title</th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for policy in personnel_policies %}
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex">{{ policy.get_policy_index }}</td>
+              <td>{{ policy.title }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Question / Comment"><i class="material-icons">&#xE0C9;</i></a></td>
+            </tr>
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Administrative Procedure</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% for document in "0" %}
+            <tr {% if forloop.parentloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Supporting Document {{ forloop.counter }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% if student_policies %}
+    <div class="row">
+      <div id="student_policies" class="scrollspy">
+        <h2>Student Policies</h2>
+        <p class="policydescription">{{ student_policies.0.section.description }}</p>
+        <table class="board_policies">
+          <thead>
+            <tr>
+              <th class="policyindex">Index</th>
+              <th>Policy Title</th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+              <th class="rowaction"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for policy in student_policies %}
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex">{{ policy.get_policy_index }}</td>
+              <td>{{ policy.title }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Question / Comment"><i class="material-icons">&#xE0C9;</i></a></td>
+            </tr>
+            <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Administrative Procedure</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% for document in "0" %}
+            <tr {% if forloop.parentloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+              <td class="policyindex"><i class="material-icons">&#xE5DA;</i></td>
+              <td>Supporting Document {{ forloop.counter }}</td>
+              <td class="rowaction"><a href="#!" title="Link"><i class="material-icons">&#xE157;</i></a></td>
+              <td class="rowaction"><a href="#!" title="Download"><i class="material-icons">&#xE2C4;</i></a></td>
+              <td class="rowaction"></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% if request.path == '/board-of-education/board-meetings/' %}
+    {% if board_meetings %}
+    <div class="row">
+      <div id="board_meetings" class="scrollspy">
+        <form id="schoolyearfilter" class="textfieldboxes">
+          <select>
+            {% for key,value in board_meeting_years.years.items|dictsortreversed:0 %}
+            <option value="{{ key }}" {% if board_meeting_years.current == key %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+          </select>
+        </form>
+        <table class="striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Meeting Type</th>
+              <th class="center">Agenda</th>
+              <th class="center">Minutes</th>
+              <th class="center">Recordings</th>
+            </tr>
+          </thead>
+          <tbody>
+        {% for meeting in board_meetings %}
+            <tr class="{{meeting.get_school_year}} {% if meeting.cancelled %}red lighten-4{% endif %}">
+              <td><div>{{ meeting.startdate|date:"M. d, Y" }}</div>{% if meeting.startdate|date:"l" != 'Tuesday' %}<div class="yellow lighten-4">{{ meeting.startdate|date:"l" }}</div>{% endif %}{% if meeting.startdate|date:"H:i" != '18:30' %}<div class="yellow lighten-4">{{ meeting.startdate|date:"g:i A" }}</div>{% endif %}</td> 
+              <td><a href="{% if meeting.location_overwrite_google_place %}{{  meeting.location_overwrite_google_place }}{% else %}{{meeting.location.google_place}}{% endif %}" target="_blank">{% if meeting.location_overwrite_title %}{{  meeting.location_overwrite_title }}{% else %}{{ meeting.location.location }}{% endif %}<i class="material-icons tiny">&#xE55F;</i></a></td>
+              <td>{% if meeting.cancelled %}**MEETING CANCELLED**{% else %}{% if meeting.meeting_type.all %}{% for type in meeting.meeting_type.all %}{% if not forloop.first %} <br> {% endif %}{{ type.title }}{% endfor %}{% endif %}{% endif %}</td>
+              <td class="center"><a href="#!"><i class="material-icons">&#xE24D;</i></a></td>
+              <td class="center"><a href="#!"><i class="material-icons">&#xE24D;</i></a></td>
+              <td class="center"><a href="#!"><i class="material-icons">&#xE039;</i></a></td>
+            </tr>
+        {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% if  page.board_boardmember_board.all %}
+    <div class="row">
+      <div id="members" class="scrollspy contactcardlist">
+        <h2>Board Members</h2>
+        {% for member in page.board_boardmember_board.all %}
+        <div class="card horizontal">
+          <div class="card-image">
+            <img src="{% if member.employee.users_userprofileimage_user.image %}/{{member.employee.users_userprofileimage_user.image}}{% else %}/users/images/placeholder.jpg{% endif %}" />
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5 class="contactcardname">{{ member.employee.first_name }} {{ member.employee.last_name }}</h5>
+              <strong>Precinct: </strong>{{ member.precinct }}<br>
+              <i class="material-icons tiny">&#xE55F;</i> {{ member.street_address }}<br>
+              <i class="material-icons tiny blank"></i> {{ member.city.city }}<br>
+               <a href="tel:+{{member.phone|slice:"0:1"}}-{{member.phone|slice:"1:4"}}-{{member.phone|slice:"4:7"}}-{{member.phone|slice:"7:11"}}">
+                <i class="material-icons tiny black-text">&#xE0CD;</i> {{member.phone|slice:"1:4"}}.{{member.phone|slice:"4:7"}}.{{member.phone|slice:"7:11"}}
+              </a>
+            </div>
+            <div class="card-action">
+              <a href="#">SEND ME A MESSAGE</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% if page.mission_statement %}
+    <div class="row">
+      <div id="mission" class="scrollspy">
+        <h2>Mission Statement</h2>
+        <blockquote>
+          {{page.mission_statement}}
+        </blockquote>
+      </div>
+    </div>
+    {% endif %}
+    {% if page.vision_statement %}
+    <div class="row">
+      <div id="vision" class="scrollspy">
+        <h2>Vision Statement</h2>
+        <blockquote>
+          {{page.vision_statement}}
+        </blockquote>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="card-action">
+    <a class="btn-flat disabled narrow" title="Last Updated"><i class="material-icons left">&#xE192;</i>{{ page.update_date|date:"N d, Y" }}</a>
+    <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback" title="Page Feedback"><i class="material-icons left">&#xE254;</i>Page Feedback</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block pagescript %}
+{{ block.super }}
+<script>
+$(document).ready(function(){
+  $("#schoolyearfilter").change(function(event) {
+    $year = $(this).find(":selected").val();
+    $("#board_meetings table tbody tr").each(function(){
+      if($(this).hasClass($year)){
+        $(this).removeClass('hide');
+      } else {
+        $(this).addClass('hide');
+      }
+    });
+  });
+  $("#schoolyearfilter").change();
+});
+</script>
+{% endblock %}
