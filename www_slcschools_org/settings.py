@@ -193,7 +193,7 @@ DATA_DIR = '/srv/nginx/www_slcschools_org'
 MEDIA_URL = '/'
 MEDIA_ROOT = os.path.join(DATA_DIR)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(MEDIA_ROOT, '/static')
+STATIC_ROOT = os.path.join(MEDIA_ROOT, 'static')
 
 JET_DEFAULT_THEME = 'default'
 
