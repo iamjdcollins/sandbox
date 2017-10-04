@@ -236,6 +236,14 @@ def imagesave(self, *args, **kwargs):
     self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/')
     if not is_new:
       urlchanged = True
+  # Move Files
+  if self.image_file:
+      currentname = findfileext_media(self.image_file.name)
+      newname = thumbnail_image_upload_to(self,currentname[0] + currentname[1])
+      currentname = '/'.join (newname.split('/')[:-1]) + '/' + currentname[0] + currentname[1]
+      self.image_file.name = newname
+      if currentname != newname:
+        silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
   # Set the node_title for the node
   self.node_title = self.title
   # Set the user type node
