@@ -7,7 +7,7 @@ class Thumbnail(Image):
   PARENT_URL = ''
 
   title = models.CharField(max_length=200, unique=True, help_text='')
-  image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
+  image_file = models.ImageField(max_length=2000, upload_to=apps.common.functions.thumbimage_image_upload_to, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
 
   thumbnail_image_node = models.OneToOneField(Image, db_column='thumbnail_image_node', on_delete=models.CASCADE, parent_link=True, editable=False)
