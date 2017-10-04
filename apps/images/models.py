@@ -33,7 +33,7 @@ class PageBanner(Image):
   image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
 
-  pagebanner_image_node = models.OneToOneField(Image, db_column='pagebanner_image_node', on_delete=models.CASCADE, parent_link=True,)
+  pagebanner_image_node = models.OneToOneField(Image, db_column='pagebanner_image_node', on_delete=models.CASCADE, parent_link=True, editable=False)
 
   class Meta:
     db_table = 'images_pagebanner'
@@ -56,7 +56,7 @@ class ContentBanner(Image):
   image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
 
-  contentbanner_image_node = models.OneToOneField(Image, db_column='contentbanner_image_node', on_delete=models.CASCADE, parent_link=True,)
+  contentbanner_image_node = models.OneToOneField(Image, db_column='contentbanner_image_node', on_delete=models.CASCADE, parent_link=True, editable=False)
 
   class Meta:
     db_table = 'images_contentbanner'
