@@ -203,7 +203,7 @@ def pagesave(self, *args, **kwargs):
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
   f = open('/tmp/movingfile.txt', 'a')
-  f.write('Page URL Changed: ' + urlchanged + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
+  f.write('Page URL Changed: ' + str(urlchanged) + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
   f.close()
   if urlchanged:
       # Save Children
@@ -292,7 +292,7 @@ def imagesave(self, *args, **kwargs):
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
   f = open('/tmp/movingfile.txt', 'a')
-  f.write('Image URL Changed: ' + urlchanged + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
+  f.write('Image URL Changed: ' + str(urlchanged) + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
   f.close()
   if urlchanged:
       # Save Children
