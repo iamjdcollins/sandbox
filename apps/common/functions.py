@@ -176,8 +176,8 @@ def usersave(self, *args, **kwargs):
 
 def pagesave(self, *args, **kwargs):
   f = open('/tmp/movingfile.txt', 'a')
-    f.write('Saving Page ' + '\n')
-    f.close()
+  f.write('Saving Page ' + '\n')
+  f.close()
   # Setup New and Deleted Variables
   is_new = self._state.adding
   is_deleted = '_' if self.deleted == True else ''
@@ -203,8 +203,8 @@ def pagesave(self, *args, **kwargs):
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
   f = open('/tmp/movingfile.txt', 'a')
-    f.write('Page URL Changed: ' + urlchanged + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
-    f.close()
+  f.write('Page URL Changed: ' + urlchanged + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
+  f.close()
   if urlchanged:
       # Save Children
       for child in self.get_children():
@@ -253,8 +253,8 @@ def taxonomysave(self, *args, **kwargs):
 
 def imagesave(self, *args, **kwargs):
   f = open('/tmp/movingfile.txt', 'a')
-    f.write('Saving Image ' + '\n')
-    f.close()
+  f.write('Saving Image ' + '\n')
+  f.close()
   # Setup New and Deleted Variables
   is_new = self._state.adding
   is_deleted = '_' if self.deleted == True else ''
@@ -292,8 +292,8 @@ def imagesave(self, *args, **kwargs):
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
   f = open('/tmp/movingfile.txt', 'a')
-    f.write('Image URL Changed: ' + urlchanged + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
-    f.close()
+  f.write('Image URL Changed: ' + urlchanged + ' From: ' + oldurl + ' To: ' + self.url +  '\n')
+  f.close()
   if urlchanged:
       # Save Children
       for child in self.get_children():
