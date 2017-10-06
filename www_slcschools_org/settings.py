@@ -27,7 +27,7 @@ DEBUG = True
 APPEND_SLASH = True
 ALLOWED_HOSTS = ['www.slcschools.org','www2.slcschools.org']
 MULTISITE_EXTRA_HOSTS = ['www2.slcschools.org']
-INTERNAL_IPS = '205.127.101.214'
+INTERNAL_IPS = '205.127.101.161'
 
 #SAML
 SAML2_AUTH = {
@@ -78,7 +78,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'debug_toolbar',
+    'debug_toolbar',
     'guardian',
     'adminsortable2',
     'treebeard',
@@ -98,6 +98,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'www_slcschools_org.RemoteAddress'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,7 +106,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'www_slcschools_org.urls'
