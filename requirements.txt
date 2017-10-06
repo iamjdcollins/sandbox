@@ -21,3 +21,4 @@ django-mptt
 ldap3
 django-ajax-selects
 django-debug-toolbar
+python-memcached
