@@ -159,8 +159,11 @@ def usersave(self, *args, **kwargs):
   # Set Username
   if self.username:
     self.node_title = self.username
-  # Set the user type node
+  # Set the node type
+  self.node_type = 'user'
+  # Set the content type
   self.user_type = self._meta.model_name
+  self.content_type = self._meta.model_name
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
   # Set the user type node
@@ -194,10 +197,11 @@ def pagesave(self, *args, **kwargs):
       urlchanged = True
   # Set the node_title for the node
   self.node_title = self.title
-  # Set the page type for node
-  self.page_type = self._meta.model_name
-  #Set the page type node
+  # Set the node type
   self.node_type = 'page'
+  # Set the content type
+  self.page_type = self._meta.model_name
+  self.content_type = self._meta.model_name
   # if not self.menu_title:
   #   self.menu_title = self.title
   # Save the item
@@ -236,11 +240,11 @@ def taxonomysave(self, *args, **kwargs):
       urlchanged = True
   # Set the node_title for the node
   self.node_title = self.title
-  # Set the user type node
-  self.taxonomy_type = self._meta.model_name
-  #Set the page type node
-  #Set the page type node
+  # Set the node type
   self.node_type = 'taxonomy'
+  # Set the content type
+  self.taxonomy_type = self._meta.model_name
+  self.content_type = self._meta.model_name
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
   if urlchanged:
@@ -289,11 +293,11 @@ def imagesave(self, *args, **kwargs):
       
   # Set the node_title for the node
   self.node_title = self.title
-  # Set the user type node
-  self.image_type = self._meta.model_name
-  #Set the page type node
-  #Set the page type node
+  # Set the node type
   self.node_type = 'image'
+  # Set the content type
+  self.image_type = self._meta.model_name
+  self.content_type = self._meta.model_name
   # Save the item
   super(self._meta.model, self).save(*args, **kwargs)
   f = open('/tmp/movingfile.txt', 'a')
