@@ -285,6 +285,8 @@ def imagesave(self, *args, **kwargs):
     if not is_new:
       urlchanged = True
   # Move Files
+  currentname = None
+  newname = None
   if self.image_file:
       currentname = findfileext_media(self.image_file.name)
       newname = thumbnail_image_upload_to(self,currentname[0] + currentname[1])
