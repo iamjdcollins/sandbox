@@ -8,6 +8,7 @@ from apps.objects.models import Page as BasePage
 from apps.pages.help import PageHelp
 from django.contrib.auth import get_permission_codename
 from apps.taxonomy.models import Location, SchoolType, OpenEnrollmentStatus
+from apps.images.models import Thumbnail
 
 # Create your models here.
 
@@ -48,11 +49,19 @@ class School(BasePage):
 
   school_page_node = models.OneToOneField(BasePage, db_column='school_page_node', on_delete=models.CASCADE, parent_link=True,)
 
+  # def thumbnails(self):
+  #   nodes =  self.get_children().filter(node_type='image').filter(content_type='thumbnail')
+  #   thumbnails = []
+  #   for node in nodes:
+  #     thumbnail = apps.common.functions.nodefindobject(node)
+  #     thumbnails += [{'title':thumbnail.title,'path':thumbnail.image_file,'alttext':thumbnail.alttext}]
+  #   return thumbnails
+
   def thumbnails(self):
-    nodes =  self.get_children().filter(node_type='image').filter(content_type='thumbnail')
+    # nodes =  self.get_children().filter(node_type='image').filter(content_type='thumbnail')
+
     thumbnails = []
-    for node in nodes:
-      thumbnail = apps.common.functions.nodefindobject(node)
+    for thumbnail in Thumbnail.objects.filter(parent=self.pk):
       thumbnails += [{'title':thumbnail.title,'path':thumbnail.image_file,'alttext':thumbnail.alttext}]
     return thumbnails
 
