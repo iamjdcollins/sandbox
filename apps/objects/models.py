@@ -6,7 +6,6 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.models import AbstractUser
 
 class Node(MPTTModel):
-  #id = models.AutoField(primary_key=True)
   uuid = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False,)
   node_title = models.CharField(max_length=200,)
   parent = TreeForeignKey('self', null=True, blank=True, related_name='objects_node_parent', db_index=True)
