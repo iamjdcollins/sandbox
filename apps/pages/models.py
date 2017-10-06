@@ -53,7 +53,7 @@ class School(BasePage):
     thumbnails = []
     for node in nodes:
       thumbnail = apps.common.functions.nodefindobject(node)
-      thumbnails += [{'title':thumbnail.title,'path':thumbnail.image_file.url,'alttext':thumbnail.alttext}]
+      thumbnails += [{'title':thumbnail.title,'path':thumbnail.image_file,'alttext':thumbnail.alttext}]
     return thumbnails
 
   class Meta:
