@@ -23,9 +23,9 @@ class NodeAdmin(MPTTModelAdmin):
 
   def get_list_display(self,request):
     if request.user.has_perm('sitestructure.restore_sitestricture'):
-      return ('node_title','node_type',)
+      return ('node_title','node_type','content_type',)
     else:
-      return ('node_title','node_type',)
+      return ('node_title','node_type','content_type',)
 
 # Register your models here.
 admin.site.register(Node, NodeAdmin)
