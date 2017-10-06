@@ -270,7 +270,12 @@ def imagesave(self, *args, **kwargs):
   # Track URL Changes
   urlchanged = False
   parent_url = self.parent.url if self.parent else self.PARENT_URL
-  oldurl = self.url 
+  if not self.url.startswith(parent_url):
+    try:
+      self.url = Node.objects.get(pk=self.pk).url
+    except Node.DoesNotExist:
+      pass
+  oldurl = self.url
   if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/'):
     self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/')
     if not is_new:
