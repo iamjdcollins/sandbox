@@ -317,36 +317,36 @@ def imagesave(self, *args, **kwargs):
 # Model Inheritance Object
 def nodefindobject(node):
   if node.node_type == 'user':
-    if node.user.user_type == 'employee':
+    if node.content_type == 'employee':
       return node.user.employee
-    if node.user.user_type == 'system':
+    if node.content_type == 'system':
       return node.user.system
   if node.node_type == 'page':
-    if node.page.page_type == 'page':
+    if node.content_type == 'page':
       return node.page.page
-    if node.page.page_type == 'school':
+    if node.content_type == 'school':
       return node.page.school
   if node.node_type == 'taxonomy':
-    if node.taxonomy.taxonomy_type == 'location':
+    if node.content_type == 'location':
       return node.taxonomy.location
-    if node.taxonomy.taxonomy_type == 'city':
+    if node.content_type == 'city':
       return node.taxonomy.city
-    if node.taxonomy.taxonomy_type == 'state':
+    if node.content_type == 'state':
       return node.taxonomy.state
-    if node.taxonomy.taxonomy_type == 'zipcode':
+    if node.content_type == 'zipcode':
       return node.taxonomy.zipcode
-    if node.taxonomy.taxonomy_type == 'language':
+    if node.content_type == 'language':
       return node.taxonomy.language
-    if node.taxonomy.taxonomy_type == 'translationtype':
+    if node.content_type == 'translationtype':
       return node.taxonomy.translationtype
-    if node.taxonomy.taxonomy_type == 'schooltype':
+    if node.content_type == 'schooltype':
       return node.taxonomy.schooltype
-    if node.taxonomy.taxonomy_type == 'openenrollmentstatus':
+    if node.content_type == 'openenrollmentstatus':
       return node.taxonomy.openenrollmentstatus
   if node.node_type == 'image':
-    if node.image.image_type == 'thumbnail':
+    if node.content_type == 'thumbnail':
       return node.image.thumbnail
-    if node.image.image_type == 'pagebanner':
+    if node.content_type == 'pagebanner':
       return node.image.pagebanner
-    if node.image.image_type == 'contentbanner':
+    if node.content_type == 'contentbanner':
       return node.image.contentbanner
