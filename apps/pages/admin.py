@@ -15,6 +15,7 @@ from django.core.urlresolvers import reverse
 class ThumbnailInline(admin.TabularInline):
   model = Thumbnail
   fk_name = 'parent'
+  fields = ('title','image_file','alttext',)
   extra = 0 
   min_num = 0
   max_num = 1
