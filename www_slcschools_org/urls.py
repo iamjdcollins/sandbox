@@ -69,7 +69,7 @@ urlpatterns += [
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += [
-        #url(r'^__debug__/', include(debug_toolbar.urls)),
+        url(r'^__debug__/', include(debug_toolbar.urls)),
         url(r'^(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
         ] + staticfiles_urlpatterns() #+ urlpatterns
