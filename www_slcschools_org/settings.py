@@ -225,6 +225,12 @@ LOGGING = {
         },
     },
 }
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'unix:/var/run/memcached/memcached.sock',
+    }
+}
 
 # The cache connection to use for django-multisite.
 # Default: 'default'

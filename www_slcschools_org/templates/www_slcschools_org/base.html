@@ -1,4 +1,4 @@
-{% load static mptt_tags guardian_tags admin_urls %}
+{% load static mptt_tags guardian_tags admin_urls cache %}
 <!DOCTYPE html>
 <html class="no-js">
   <head>
@@ -31,12 +31,14 @@
       {% endif %}
       <div class="preheader wrapper slcschools-teal darken-1 white-text">
         <div class="row">
+          {% cache 86400 shorttranslationlinks %}
           <ul class="translationlinks col s6 m4 l6">
             {% for item in TRANSLATION_ITEMS|slice:":4" %}
             <li class="{% if forloop.counter == 4 or forloop.counter == 3 %}hide-on-med-and-down{% endif %} hide-on-small-only"><a href="#" onclick="doGTranslate('en|{{ item.language_code }}'); return false;" title="{{ item.title }}">{{ item.native_language }}</a></li>
             {% endfor %}
             <li><a href="#fulltranslationlist" class="fulltranslationlist"><span class="hide-on-small-only">More</span><span class="hide-on-med-and-up">Translate<i class="material-icons">&#xE5C5;</i></span></a></li>
           </ul>
+          {% endcache %}
           <ul class="shortcuts col s6 m8 l6">
             <li><a href="/" title="Home"><i class="material-icons">&#xE88A;</i><span class="hide-on-med-and-down">Home</span></a></li>
             <li><a href="tel:18015788599" title="Main Phone"><i class="material-icons">&#xE0CD;</i><span class="hide-on-med-and-down">801-578-8599</span></a></li>
@@ -48,11 +50,13 @@
         </div>
         <div id="fulltranslationlist" class="hide">
           <div class="modal-content">
+            {% cache 86400 fulltranslationlinks %}
             <ul>
               {% for item in TRANSLATION_ITEMS|dictsort:"title" %}
               <li><a class="btn" href="#" onclick="doGTranslate('en|{{ item.language_code }}'); $('.fulltranslationlist').modaal('close'); return false;" title="{{ item.title }}">{{ item.native_language }}</a></li>
               {% endfor %}
             </ul>
+            {% endcache %}
           </div>
         </div>
       </div>
