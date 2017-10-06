@@ -98,7 +98,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'www_slcschools_org.RemoteAddress'
+    'www_slcschools_org.RemoteAddress',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
