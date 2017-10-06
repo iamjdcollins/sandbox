@@ -57,7 +57,7 @@ class Page(Node):
 class Taxonomy(Node):
   taxonomy_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
 
-  taxonomy_node = models.OneToOneField(Node, db_column='taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  taxonomy_node = models.OneToOneField(Node, db_column='taxonomy_node', on_delete=models.CASCADE, parent_link=True, db_index=True)
 
   class Meta:
     db_table = 'objects_taxonomy'

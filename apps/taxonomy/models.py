@@ -104,7 +104,7 @@ class Language(Taxonomy):
   language_code = models.CharField(max_length=5, unique=True, help_text='', verbose_name='Language Code')
   language_translationtype = models.ForeignKey('TranslationType',db_column='translationtype',to_field='translationtype_taxonomy_node', on_delete=models.PROTECT, limit_choices_to={'deleted': False,}, related_name='taxonomy_language_translationtype', verbose_name='Translation Type')
 
-  language_taxonomy_node = models.OneToOneField(Taxonomy, db_column='language_taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  language_taxonomy_node = models.OneToOneField(Taxonomy, db_column='language_taxonomy_node', on_delete=models.CASCADE, parent_link=True, db_index=True)
 
   class Meta:
     db_table = 'taxonomy_language'
