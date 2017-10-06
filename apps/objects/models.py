@@ -11,16 +11,16 @@ class Node(MPTTModel):
   node_title = models.CharField(max_length=200,)
   parent = TreeForeignKey('self', null=True, blank=True, related_name='objects_node_parent', db_index=True)
   url = models.CharField(max_length=2000, unique=True, db_index=True)
-  node_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
-  content_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
-  menu_item = models.BooleanField(default=False)
+  node_type = models.CharField(max_length=200, editable=False, null=True, blank=True, db_index=True)
+  content_type = models.CharField(max_length=200, editable=False, null=True, blank=True, db_index=True)
+  menu_item = models.BooleanField(default=False, db_index=True)
   menu_title = models.CharField(max_length=200, null=True, blank=True)
-  create_date = models.DateTimeField(auto_now_add=True)
+  create_date = models.DateTimeField(auto_now_add=True, db_index=True)
   create_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, to_field='uuid', on_delete=models.DO_NOTHING, related_name='objects_node_create_user')
-  update_date = models.DateTimeField(auto_now=True)
+  update_date = models.DateTimeField(auto_now=True, db_index=True)
   update_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, to_field='uuid', on_delete=models.DO_NOTHING, related_name='objects_node_update_user')
-  published = models.BooleanField(default=True)
-  deleted = models.BooleanField(default=False)
+  published = models.BooleanField(default=True,db_index=True)
+  deleted = models.BooleanField(default=False,db_index=True)
 
   class Meta:
     db_table = 'objects_node'
