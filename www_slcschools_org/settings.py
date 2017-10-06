@@ -28,18 +28,6 @@ APPEND_SLASH = True
 ALLOWED_HOSTS = ['www.slcschools.org','www2.slcschools.org']
 MULTISITE_EXTRA_HOSTS = ['www2.slcschools.org']
 INTERNAL_IPS = '205.127.101.161'
-def custom_show_toolbar(request.META.get('HTTP_X_REAL_IP', None) in INTERNAL_IPS):
-    return True 
-# Show toolbar, if the IP returned from HTTP_X_REAL_IP IS listed as INTERNAL_IPS in settings
-    if request.is_ajax():
-        return False
-# Show toolbar, if the request is not ajax
-    return bool(settings.DEBUG)
-# show toolbar if debug is true
-
-DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
-}
 
 #SAML
 SAML2_AUTH = {
