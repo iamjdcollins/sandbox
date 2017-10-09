@@ -23,7 +23,6 @@ def home(request):
 #   return render(request, 'pages/news/newsyears.html', {'page': page,'pageopts': pageopts,'newsyears': newsyears})
 
 def schools(request):
-  return render(request, 'pages/schools/main_school_directory.html',{})
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
   elementary_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Elementary Schools').order_by('title')
