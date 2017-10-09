@@ -5,7 +5,9 @@ from django.core.cache import cache
 
 from django.http import HttpResponse
 
+import apps.common.functions
 from .models import Page, School
+
 # from apps.schools.models import School
 # from apps.departments.models import Department
 # from apps.news.models import News, NewsYear
@@ -24,12 +26,7 @@ def home(request):
 #   return render(request, 'pages/news/newsyears.html', {'page': page,'pageopts': pageopts,'newsyears': newsyears})
 
 def schools(request):
-  elementary_schools = []
-  k8_schools = []
-  middle_schools = []
-  high_schools = []
-  charter_schools = []
-  
+
   def school_dict(school):
     return [{
       'schooltype': school.schooltype.title,
@@ -90,45 +87,201 @@ def schools(request):
       if school['schooltype'] == 'Charter Schools':
         charter_schools_directory += [school]
     charter_schools_directory = cache.get_or_set('CHARTER_SCHOOLS_DIRECTORY', charter_schools_directory, 86400)
-  # k8_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='K-8 Schools').order_by('title')
-  # middle_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Middle Schools').order_by('title')
-  # high_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='High Schools').order_by('title')
-  # charter_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Charter Schools').order_by('title')
   return render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
 
 # def temp(request):
 #   schools = School.objects.filter(deleted=0).filter(published=1).order_by('title')
 #   return render(request, 'pages/schools/temp.html', {'schools': schools,})
 
-# def elementaryschools(request):
-#   page = get_object_or_404(Page, url=request.path)
-#   pageopts = page._meta
-#   schools = School.objects.filter(deleted=0).filter(published=1).filter(parent__url='/schools/elementary-schools/').order_by('title') 
-#   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+def elementaryschools(request):
 
-# def k8schools(request):
-#   page = get_object_or_404(Page, url=request.path)
-#   pageopts = page._meta
-#   schools = School.objects.filter(deleted=0).filter(published=1).filter(parent__url='/schools/k-8-schools/').order_by('title')
-#   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  def school_dict(school):
+    return [{
+      'schooltype': school.schooltype.title,
+      'thumbnails': school.thumbnails(),
+      'title': school.title,
+      'building_location': {
+        'street_address': school.building_location.street_address,
+        'city': school.building_location.location_city.title,
+        'state': school.building_location.location_state.title,
+        'zipcode': school.building_location.location_zipcode.title,
+      },
+      'main_phone': school.main_phone,
+      'website_url': school.website_url,
+      'url': school.url,
+    }]
 
-# def middleschools(request):
-#   page = get_object_or_404(Page, url=request.path)
-#   pageopts = page._meta
-#   schools = School.objects.filter(deleted=0).filter(published=1).filter(parent__url='/schools/middle-schools/').order_by('title')
-#   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  page = get_object_or_404(Page, url=request.path)
+  pageopts = page._meta
 
-# def highschools(request):
-#   page = get_object_or_404(Page, url=request.path)
-#   pageopts = page._meta
-#   schools = School.objects.filter(deleted=0).filter(published=1).filter(parent__url='/schools/high-schools/').order_by('title')
-#   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
+  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
+  if schools_directory == None:
+    schools_directory = []
+    for school in schools_query:
+      schools_directory += school_dict(school)
+    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
+  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  if schools == None:
+    schools = []
+    for school in schools_directory:
+      if school['schooltype'] == 'Elementary Schools':
+        schools += [school]
+    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
 
-# def charterschools(request):
-#   page = get_object_or_404(Page, url=request.path)
-#   pageopts = page._meta
-#   schools = School.objects.filter(deleted=0).filter(published=1).filter(parent__url='/schools/charter-schools/').order_by('title')
-#   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+
+def k8schools(request):
+
+  def school_dict(school):
+    return [{
+      'schooltype': school.schooltype.title,
+      'thumbnails': school.thumbnails(),
+      'title': school.title,
+      'building_location': {
+        'street_address': school.building_location.street_address,
+        'city': school.building_location.location_city.title,
+        'state': school.building_location.location_state.title,
+        'zipcode': school.building_location.location_zipcode.title,
+      },
+      'main_phone': school.main_phone,
+      'website_url': school.website_url,
+      'url': school.url,
+    }]
+
+  page = get_object_or_404(Page, url=request.path)
+  pageopts = page._meta
+
+  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
+  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
+  if schools_directory == None:
+    schools_directory = []
+    for school in schools_query:
+      schools_directory += school_dict(school)
+    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
+  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  if schools == None:
+    schools = []
+    for school in schools_directory:
+      if school['schooltype'] == 'Elementary Schools':
+        schools += [school]
+    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
+
+  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+
+def middleschools(request):
+
+  def school_dict(school):
+    return [{
+      'schooltype': school.schooltype.title,
+      'thumbnails': school.thumbnails(),
+      'title': school.title,
+      'building_location': {
+        'street_address': school.building_location.street_address,
+        'city': school.building_location.location_city.title,
+        'state': school.building_location.location_state.title,
+        'zipcode': school.building_location.location_zipcode.title,
+      },
+      'main_phone': school.main_phone,
+      'website_url': school.website_url,
+      'url': school.url,
+    }]
+
+  page = get_object_or_404(Page, url=request.path)
+  pageopts = page._meta
+
+  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
+  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
+  if schools_directory == None:
+    schools_directory = []
+    for school in schools_query:
+      schools_directory += school_dict(school)
+    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
+  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  if schools == None:
+    schools = []
+    for school in schools_directory:
+      if school['schooltype'] == 'Elementary Schools':
+        schools += [school]
+    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
+
+  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+
+def highschools(request):
+  
+  def school_dict(school):
+    return [{
+      'schooltype': school.schooltype.title,
+      'thumbnails': school.thumbnails(),
+      'title': school.title,
+      'building_location': {
+        'street_address': school.building_location.street_address,
+        'city': school.building_location.location_city.title,
+        'state': school.building_location.location_state.title,
+        'zipcode': school.building_location.location_zipcode.title,
+      },
+      'main_phone': school.main_phone,
+      'website_url': school.website_url,
+      'url': school.url,
+    }]
+
+  page = get_object_or_404(Page, url=request.path)
+  pageopts = page._meta
+
+  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
+  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
+  if schools_directory == None:
+    schools_directory = []
+    for school in schools_query:
+      schools_directory += school_dict(school)
+    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
+  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  if schools == None:
+    schools = []
+    for school in schools_directory:
+      if school['schooltype'] == 'Elementary Schools':
+        schools += [school]
+    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
+
+  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+
+def charterschools(request):
+  
+  def school_dict(school):
+    return [{
+      'schooltype': school.schooltype.title,
+      'thumbnails': school.thumbnails(),
+      'title': school.title,
+      'building_location': {
+        'street_address': school.building_location.street_address,
+        'city': school.building_location.location_city.title,
+        'state': school.building_location.location_state.title,
+        'zipcode': school.building_location.location_zipcode.title,
+      },
+      'main_phone': school.main_phone,
+      'website_url': school.website_url,
+      'url': school.url,
+    }]
+
+  page = get_object_or_404(Page, url=request.path)
+  pageopts = page._meta
+
+  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
+  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
+  if schools_directory == None:
+    schools_directory = []
+    for school in schools_query:
+      schools_directory += school_dict(school)
+    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
+  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  if schools == None:
+    schools = []
+    for school in schools_directory:
+      if school['schooltype'] == 'Elementary Schools':
+        schools += [school]
+    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
+    
+  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
 
 # def departments(request):
 #   page = get_object_or_404(Page, url=request.path)
