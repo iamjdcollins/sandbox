@@ -159,13 +159,13 @@ def k8schools(request):
     for school in schools_query:
       schools_directory += school_dict(school)
     schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  schools = cache.get('K8_SCHOOLS_DIRECTORY',None)
   if schools == None:
     schools = []
     for school in schools_directory:
-      if school['schooltype'] == 'Elementary Schools':
+      if school['schooltype'] == 'K-8 Schools':
         schools += [school]
-    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
+    schools = cache.get_or_set('K8_SCHOOLS_DIRECTORY', schools, 86400)
 
   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
 
@@ -197,13 +197,13 @@ def middleschools(request):
     for school in schools_query:
       schools_directory += school_dict(school)
     schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  schools = cache.get('MIDDLE_SCHOOLS_DIRECTORY',None)
   if schools == None:
     schools = []
     for school in schools_directory:
-      if school['schooltype'] == 'Elementary Schools':
+      if school['schooltype'] == 'Middle Schools':
         schools += [school]
-    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
+    schools = cache.get_or_set('MIDDLE_SCHOOLS_DIRECTORY', schools, 86400)
 
   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
 
@@ -235,13 +235,13 @@ def highschools(request):
     for school in schools_query:
       schools_directory += school_dict(school)
     schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  schools = cache.get('HIGH_SCHOOLS_DIRECTORY',None)
   if schools == None:
     schools = []
     for school in schools_directory:
-      if school['schooltype'] == 'Elementary Schools':
+      if school['schooltype'] == 'High Schools':
         schools += [school]
-    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
+    schools = cache.get_or_set('HIGH_SCHOOLS_DIRECTORY', schools, 86400)
 
   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
 
@@ -273,14 +273,14 @@ def charterschools(request):
     for school in schools_query:
       schools_directory += school_dict(school)
     schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  schools = cache.get('CHARTER_SCHOOLS_DIRECTORY',None)
   if schools == None:
     schools = []
     for school in schools_directory:
-      if school['schooltype'] == 'Elementary Schools':
+      if school['schooltype'] == 'Charter Schools':
         schools += [school]
-    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
-    
+    schools = cache.get_or_set('CHARTER_SCHOOLS_DIRECTORY', schools, 86400)
+
   return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
 
 # def departments(request):
