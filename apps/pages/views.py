@@ -53,8 +53,8 @@ def schools(request):
   if schools_directory == None:
     schools_directory = []
     for school in schools_query:
-      school_directory += school_dict(school)
-    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', school_directory, 86400)
+      schools_directory += school_dict(school)
+    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
   elementary_schools_directory = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
   if elementary_schools_directory == None:
     elementary_schools_directory = []
