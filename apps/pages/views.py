@@ -35,12 +35,12 @@ def schools(request):
       'schooltype': school.schooltype.title,
       'thumbnails': school.thumbnails(),
       'title': school.title,
-      'building_location': [{
+      'building_location': {
         'street_address': school.building_location.street_address,
         'city': school.building_location.location_city.title,
         'state': school.building_location.location_state.title,
         'zipcode': school.building_location.location_zipcode.title,
-      }],
+      },
       'main_phone': school.main_phone,
       'website_url': school.website_url,
       'url': school.url,
@@ -60,7 +60,7 @@ def schools(request):
     elementary_schools_directory = []
     for school in schools_directory:
       if school['schooltype'] == 'Elementary Schools':
-        elementary_schools_directory += school
+        elementary_schools_directory += [school]
     elementary_schools_directory = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', elementary_schools_directory, 86400)
   k8_schools_directory = cache.get('K8_SCHOOLS_DIRECTORY',None)
   if k8_schools_directory == None:

@@ -13,11 +13,11 @@
   <div class="table-of-contents">
     <h5>Contents:</h5>
     <ul>
-      <li><a href="#elementaryschools" onclick="$('.collapsible').collapsible('open', 0);">Elementary Schools ({{ elementary_schools|length }})</a></li>
-      <li><a href="#k8schools" onclick="$('.collapsible').collapsible('open', 1);">K-8 Schools ({{ k8_schools|length }})</a></li>
-      <li><a href="#middleschools" onclick="$('.collapsible').collapsible('open', 2);">Middle Schools ({{ middle_schools|length }})</a></li>
-      <li><a href="#highschools" onclick="$('.collapsible').collapsible('open', 3);">High Schools ({{ high_schools|length }})</a></li>
-      <li><a href="#charterschools" onclick="$('.collapsible').collapsible('open', 4);">Charter Schools ({{ charter_schools|length }})</a></li>
+      <li><a href="#elementaryschools" onclick="$('.collapsible').collapsible('open', 0);">Elementary Schools ({{ elementary_schools_directory|length }})</a></li>
+      <li><a href="#k8schools" onclick="$('.collapsible').collapsible('open', 1);">K-8 Schools ({{ k8_schools_directory|length }})</a></li>
+      <li><a href="#middleschools" onclick="$('.collapsible').collapsible('open', 2);">Middle Schools ({{ middle_schools_directory|length }})</a></li>
+      <li><a href="#highschools" onclick="$('.collapsible').collapsible('open', 3);">High Schools ({{ high_schools_directory|length }})</a></li>
+      <li><a href="#charterschools" onclick="$('.collapsible').collapsible('open', 4);">Charter Schools ({{ charter_schools_directory|length }})</a></li>
     </ul>
   </div>
 </div>
@@ -30,11 +30,11 @@
   <div class="input-field mobile-table-of-contents hide-on-med-and-up">
     <select class="browser-default z-depth-1">
       <option value="#!" disabled selected style="display:none;">Table of Contents</option>
-      <option value="#elementaryschools">Elementary Schools ({{ elementary_schools|length }})</option>
-      <option value="#k8schools">K-8 Schools ({{ k8_schools|length }})</option>
-      <option value="#middleschools">Middle Schools ({{ middle_schools|length }})</option>
-      <option value="#highschools">High Schools ({{ high_schools|length }})</option>
-      <option value="#charterschools">Charter Schools ({{ charter_schools|length }})</option>
+      <option value="#elementaryschools">Elementary Schools ({{ elementary_schools_directory|length }})</option>
+      <option value="#k8schools">K-8 Schools ({{ k8_schools_directory|length }})</option>
+      <option value="#middleschools">Middle Schools ({{ middle_schools_directory|length }})</option>
+      <option value="#highschools">High Schools ({{ high_schools_directory|length }})</option>
+      <option value="#charterschools">Charter Schools ({{ charter_schools_directory|length }})</option>
     </select>
   </div>
   <div id="main" class="card-content">
