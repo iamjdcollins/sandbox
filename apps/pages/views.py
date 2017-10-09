@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.cache import cache
 
 # Create your views here.
 
@@ -23,14 +24,77 @@ def home(request):
 #   return render(request, 'pages/news/newsyears.html', {'page': page,'pageopts': pageopts,'newsyears': newsyears})
 
 def schools(request):
+  elementary_schools = []
+  k8_schools = []
+  middle_schools = []
+  high_schools = []
+  charter_schools = []
+  
+  def school_dict(school):
+    return [{
+      'schooltype': school.schooltype.title,
+      'thumbnails': school.thumbnails(),
+      'title': school.title,
+      'building_location': [{
+        'street_address': school.building_location.street_address,
+        'city': school.building_location.location_city.title,
+        'state': school.building_location.location_state.title,
+        'zipcode': school.building_location.location_zipcode.title,
+      }],
+      'main_phone': school.main_phone,
+      'website_url': school.website_url,
+      'url': school.url,
+    }]
+
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  elementary_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Elementary Schools').order_by('title')
-  k8_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='K-8 Schools').order_by('title')
-  middle_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Middle Schools').order_by('title')
-  high_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='High Schools').order_by('title')
-  charter_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Charter Schools').order_by('title')
-  return render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools': elementary_schools, 'k8_schools': k8_schools,'middle_schools': middle_schools,'high_schools': high_schools,'charter_schools': charter_schools})
+  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
+  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
+  if schools_directory == None:
+    schools_directory = []
+    for school in schools_query:
+      school_directory += school_dict(school)
+    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', school_directory, 86400)
+  elementary_schools_directory = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
+  if elementary_schools_directory == None:
+    elementary_schools_directory = []
+    for school in schools_directory:
+      if school['schooltype'] == 'Elementary Schools':
+        elementary_schools_directory += school
+    elementary_schools_directory = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', elementary_schools_directory, 86400)
+  k8_schools_directory = cache.get('K8_SCHOOLS_DIRECTORY',None)
+  if k8_schools_directory == None:
+    k8_schools_directory = []
+    for school in schools_directory:
+      if school['schooltype'] == 'K-8 Schools':
+        k8_schools_directory += school
+    k8_schools_directory = cache.get_or_set('K8_SCHOOLS_DIRECTORY', k8_schools_directory, 86400)
+  middle_schools_directory = cache.get('MIDDLE_SCHOOLS_DIRECTORY',None)
+  if middle_schools_directory == None:
+    middle_schools_directory = []
+    for school in schools_directory:
+      if school['schooltype'] == 'Middle Schools':
+        middle_schools_directory += school
+    middle_schools_directory = cache.get_or_set('MIDDLE_SCHOOLS_DIRECTORY', middle_schools_directory, 86400)
+  high_schools_directory = cache.get('HIGH_SCHOOLS_DIRECTORY',None)
+  if high_schools_directory == None:
+    high_schools_directory = []
+    for school in schools_directory:
+      if school['schooltype'] == 'High Schools':
+        high_schools_directory += school
+    high_schools_directory = cache.get_or_set('HIGH_SCHOOLS_DIRECTORY', high_schools_directory, 86400)
+  charter_schools_directory = cache.get('CHARTER_SCHOOLS_DIRECTORY',None)
+  if charter_schools_directory == None:
+    charter_schools_directory = []
+    for school in schools_directory:
+      if school['schooltype'] == 'Charter Schools':
+        charter_schools_directory += school
+    k8_schools_directory = cache.get_or_set('CHARTER_SCHOOLS_DIRECTORY', charter_schools_directory, 86400)
+  # k8_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='K-8 Schools').order_by('title')
+  # middle_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Middle Schools').order_by('title')
+  # high_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='High Schools').order_by('title')
+  # charter_schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Charter Schools').order_by('title')
+  return render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
 
 # def temp(request):
 #   schools = School.objects.filter(deleted=0).filter(published=1).order_by('title')
