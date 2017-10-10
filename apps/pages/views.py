@@ -14,15 +14,17 @@ from .models import Page, School
 #from apps.users.models import User
 
 def home(request):
+  if not request.user.is_authenticated:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result != None:
+      return result
   page = get_object_or_404(Page, url='/home/')
   pageopts = page._meta
   # news = News.objects.all().filter(deleted=0).filter(published=1).order_by('-pinned','-author_date')[0:5]
   if request.user.is_authenticated:
-    result = render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,})# 'news': news}}
+    result = render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,})
   else:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result == None:
-       result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,}), 86400)
+    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,}), 86400)
   return result
 
 # def news(request):
@@ -49,6 +51,10 @@ def schools(request):
       'url': school.url,
     }]
 
+  if not request.user.is_authenticated:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result != None:
+      return result
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
   schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
@@ -94,11 +100,9 @@ def schools(request):
         charter_schools_directory += [school]
     charter_schools_directory = cache.get_or_set('CHARTER_SCHOOLS_DIRECTORY', charter_schools_directory, 86400)
   if request.user.is_authenticated:
-    result =  render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
+    result = render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
   else:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result == None:
-       result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory}), 86400)
+    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory}), 86400)
   return result
 
 # def temp(request):
