@@ -38,7 +38,7 @@
           <span class="postedon">Posted: {{ article.author_date|date:"D. m-d-Y - h:i A" }}</span>
           {{ article.summary|truncatechars_html:400|safe }}
         </div>
-        <a href="{{ article.url }}" class="btn-flat right" hreflang="en">Read More</a>
+        <a href="{{ article.url }}" class="btn-flat right" hreflang="en">Read More <span class="sr-only">about {{ article.title }}</span></a>
       </div>
      {% endfor %}
      <a href="/news/{{ currentyear.long }}/" class="btn-large btn-stretch">Full News Archive</a>
