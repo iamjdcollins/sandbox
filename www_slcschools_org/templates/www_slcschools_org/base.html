@@ -33,9 +33,9 @@
         <div class="row">
           <ul class="translationlinks col s6 m4 l6">
             {% for item in TRANSLATION_ITEMS|slice:":4" %}
-            <li class="{% if forloop.counter == 4 or forloop.counter == 3 %}hide-on-med-and-down{% endif %} hide-on-small-only"><a href="#" onclick="doGTranslate('en|{{ item.language_code }}'); return false;" {% if item.title != item.native_language %}title="{{ item.title }}"{% endif %}>{{ item.native_language }}</a></li>
+            <li class="{% if forloop.counter == 4 or forloop.counter == 3 %}hide-on-med-and-down{% endif %} hide-on-small-only"><a href="#" onclick="doGTranslate('en|{{ item.language_code }}'); return false;" {% if item.title != item.native_language %}title="{{ item.title }}"{% endif %}><span class="sr-only">Translate to</span> {{ item.native_language }}</a></li>
             {% endfor %}
-            <li><a href="#fulltranslationlist" class="fulltranslationlist"><span class="hide-on-small-only">More</span><span class="hide-on-med-and-up">Translate<i class="material-icons">&#xE5C5;</i></span></a></li>
+            <li><a href="#fulltranslationlist" class="fulltranslationlist"><span class="hide-on-small-only">More <span class="sr-only">translation languages</span> </span><span class="hide-on-med-and-up">Translate<i class="material-icons">&#xE5C5;</i></span></a></li>
           </ul>
           <ul class="shortcuts col s6 m8 l6">
             <li><a href="/" title="Home"><i class="material-icons">&#xE88A;</i><span class="hide-on-med-and-down">Home</span></a></li>
