@@ -17,6 +17,8 @@ def home(request):
   page = get_object_or_404(Page, url='/home/')
   pageopts = page._meta
   # news = News.objects.all().filter(deleted=0).filter(published=1).order_by('-pinned','-author_date')[0:5]
+  if request.user.is_authenticated:
+    pass
   return render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,})# 'news': news})
 
 # def news(request):
