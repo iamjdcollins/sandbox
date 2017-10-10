@@ -50,7 +50,7 @@
           <div class="modal-content">
             <ul>
               {% for item in TRANSLATION_ITEMS|dictsort:"title" %}
-              <li><a class="btn" href="#" onclick="doGTranslate('en|{{ item.language_code }}'); $('.fulltranslationlist').modaal('close'); return false;" {% if item.title != item.native_language %}title="{{ item.title }}"{% endif %}><span class="sr-only">Translate to</span> {{ item.native_language }}</a></li>
+              <li><a class="btn" href="#" onclick="doGTranslate('en|{{ item.language_code }}'); $('.fulltranslationlist').modaal('close'); return false;" {% if item.title != item.native_language %}title="{{ item.title }}"{% endif %}><span class="sr-only">Translate to</span> <span class="notranslate">{{ item.native_language }}</span></a></li>
               {% endfor %}
             </ul>
           </div>
