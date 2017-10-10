@@ -20,9 +20,9 @@ def home(request):
   if request.user.is_authenticated:
     result = render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,})# 'news': news}}
   else:
-    result = cache.get(request.META.HTTP_HOST + request.path,None)
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
     if result == None:
-       result = cache.get_or_set(request.META.HTTP_HOST + request.path, render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,}), 86400)
+       result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,}), 86400)
   return result
 
 # def news(request):
@@ -96,9 +96,9 @@ def schools(request):
   if request.user.is_authenticated:
     result =  render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
   else:
-    result = cache.get(request.META.HTTP_HOST + request.path,None)
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
     if result == None:
-       result = cache.get_or_set(request.META.HTTP_HOST + request.path, render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory}), 86400)
+       result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory}), 86400)
   return result
 
 # def temp(request):
@@ -141,7 +141,13 @@ def elementaryschools(request):
         schools += [school]
     schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
 
-  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  if request.user.is_authenticated:
+    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  else:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result == None:
+       result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  return result
 
 def k8schools(request):
 
