@@ -18,8 +18,12 @@ def home(request):
   pageopts = page._meta
   # news = News.objects.all().filter(deleted=0).filter(published=1).order_by('-pinned','-author_date')[0:5]
   if request.user.is_authenticated:
-    pass
-  return render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,})# 'news': news})
+    result = render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,})# 'news': news}}
+  else:
+    result = cache.get(request.META.HTTP_HOST + request.path,None)
+    if result == None:
+       result = cache.get_or_set(request.META.HTTP_HOST + request.path, render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,}), 86400)
+  return result
 
 # def news(request):
 #   page = get_object_or_404(Page, url=request.path)
@@ -89,7 +93,13 @@ def schools(request):
       if school['schooltype'] == 'Charter Schools':
         charter_schools_directory += [school]
     charter_schools_directory = cache.get_or_set('CHARTER_SCHOOLS_DIRECTORY', charter_schools_directory, 86400)
-  return render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
+  if request.user.is_authenticated:
+    result =  render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
+  else:
+    result = cache.get(request.META.HTTP_HOST + request.path,None)
+    if result == None:
+       result = cache.get_or_set(request.META.HTTP_HOST + request.path, render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory}), 86400)
+  return result
 
 # def temp(request):
 #   schools = School.objects.filter(deleted=0).filter(published=1).order_by('title')

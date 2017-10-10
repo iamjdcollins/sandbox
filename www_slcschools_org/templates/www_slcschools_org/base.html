@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    {{ request.META.HTTP_HOST }}{{ request.path }}
     <div class="pushfooter slcschools-grey lighten-3">
       {% if user.is_authenticated %}
       {% get_obj_perms request.user for page as "page_perms" %}
