@@ -7,7 +7,7 @@ class Thumbnail(Image):
   PARENT_URL = ''
   URL_PREFIX = '/images/thumbnails/'
 
-  title = models.CharField(max_length=200, unique=True, help_text='')
+  title = models.CharField(max_length=200, help_text='')
   image_file = models.ImageField(max_length=2000, upload_to=apps.common.functions.thumbnail_image_upload_to, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
 
@@ -31,7 +31,7 @@ class PageBanner(Image):
   PARENT_URL = ''
   URL_PREFIX = '/images/pagebanners/'
 
-  title = models.CharField(max_length=200, unique=True, help_text='')
+  title = models.CharField(max_length=200, help_text='')
   image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
 
@@ -55,7 +55,7 @@ class ContentBanner(Image):
   PARENT_URL = ''
   URL_PREFIX = '/images/contentbanners/'
 
-  title = models.CharField(max_length=200, unique=True, help_text='')
+  title = models.CharField(max_length=200, help_text='')
   image_file = models.ImageField(max_length=2000, verbose_name='Image', help_text='')
   alttext = models.CharField(max_length=200, verbose_name='Alternative Text', help_text='')
 
