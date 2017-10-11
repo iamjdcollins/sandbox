@@ -369,8 +369,9 @@ def schooldetail(request):
     result = cache.get(request.META['HTTP_HOST'] + request.path,None)
     if result != None:
       return result
-  page = schooldetail_dict(get_object_or_404(School, url=request.path))
+  page = get_object_or_404(School, url=request.path)
   pageopts = page._meta
+  schooldetail_dict(page)
   if request.user.is_authenticated:
     result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
   else:
