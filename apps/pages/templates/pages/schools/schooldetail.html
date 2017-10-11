@@ -49,9 +49,9 @@
 <div class="card">
   <div class="unslider slcschools-grey darken-1">
     <ul class="slides">
-      {% for bannerimage in page.schools_schoolbannerimage_school.all %}
+      {% for contentbanner in page.contentbanners %}
       <li class="slide">
-        <img src="/{{bannerimage.image}}" alt="{{bannerimage.alttext}}" />
+        <img src="{{contentbanner.url}}" alt="{{contentbanner.alttext}}" />
       </li>
       {% endfor %}
     </ul>
