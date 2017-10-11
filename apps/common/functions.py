@@ -352,3 +352,19 @@ def nodefindobject(node):
       return node.image.pagebanner
     if node.content_type == 'contentbanner':
       return node.image.contentbanner
+
+# MPTT Tree Functions
+def resetchildrentoalphatitle():
+  top = Node.objects.filter(node_type='page').get(node_title='Charter Schools')
+  children = top.get_children()
+  children = children.order_by('node_title')
+  parent = children[0]
+  parent.move_to(top, position='first-child')
+  for child in children[1:]:
+    parent = Node.objects.get(pk=parent.pk)
+    child = Node.objects.get(pk=child.pk)
+    child.move_to(parent, position='right')
+    'Moving {0} after {1}'.format(child, parent)
+    parent = child
+    sleep(1)
+
