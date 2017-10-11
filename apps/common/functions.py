@@ -123,7 +123,7 @@ def movechildren(self):
 
 # Upload Image Funcations
 
-def thumbnail_image_upload_to(instance, filename):
+def image_upload_to(instance, filename):
   url = instance.url[1:]
   title = urlclean_objname(instance.title)
   original_file, original_extension = findfileext_media(filename)
@@ -289,7 +289,7 @@ def imagesave(self, *args, **kwargs):
   newname = None
   if self.image_file:
       currentname = findfileext_media(self.image_file.name)
-      newname = thumbnail_image_upload_to(self,currentname[0] + currentname[1])
+      newname = image_upload_to(self,currentname[0] + currentname[1])
       currentname = '/'.join (newname.split('/')[:-1]) + '/' + currentname[0] + currentname[1]
       self.image_file.name = newname
       
