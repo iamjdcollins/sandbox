@@ -356,7 +356,7 @@ def schooldetail(request):
       },
       'main_phone': page.main_phone,
       'main_fax': page.main_fax,
-      'open_enrollment_status': page.open_enrollment_status.title,
+      'openenrollmentstatus': page.openenrollmentstatus.title,
       'enrollment': page.enrollment,
       'website_url': page.website_url,
       'scc_url': page.scc_url,
