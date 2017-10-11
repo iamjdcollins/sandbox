@@ -340,11 +340,36 @@ def charterschools(request):
   return result
 
 def schooldetail(request):
+
+  def schooldetail_dict(page):
+    return {
+      'pk': page.pk,
+      'uuid': page.uuid,
+      'title': page.title,
+      'body': page.body,
+      'building_location': {
+        'street_address': page.building_location.street_address,
+        'city': page.building_location.location_city.title,
+        'state': page.building_location.location_state.title,
+        'zipcode': page.building_location.location_zipcode.title,
+         'google_place': page.building_location.google_place,
+      },
+      'main_phone': page.main_phone,
+      'main_fax': page.main_fax,
+      'open_enrollment_status': page.open_enrollment_status.title,
+      'enrollment': page.enrollment,
+      'website_url': page.website_url,
+      'scc_url': page.scc_url,
+      'boundary_map': page.boundary_map,
+      'update_date': page.update_date
+    }
+
+
   if not request.user.is_authenticated:
     result = cache.get(request.META['HTTP_HOST'] + request.path,None)
     if result != None:
       return result
-  page = get_object_or_404(School, url=request.path)
+  page = schooldetail_dict(get_object_or_404(School, url=request.path))
   pageopts = page._meta
   if request.user.is_authenticated:
     result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
