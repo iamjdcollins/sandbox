@@ -371,7 +371,7 @@ def schooldetail(request):
       return result
   page = get_object_or_404(School, url=request.path)
   pageopts = page._meta
-  schooldetail_dict(page)
+  page = schooldetail_dict(page)
   if request.user.is_authenticated:
     result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
   else:
