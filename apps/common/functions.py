@@ -280,8 +280,8 @@ def imagesave(self, *args, **kwargs):
     except Node.DoesNotExist:
       pass
   oldurl = self.url
-  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/'):
-    self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + is_deleted + urlclean_objname(self.title) + '/')
+  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.title) + '/'):
+    self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.title) + '/')
     if not is_new:
       urlchanged = True
   # Move Files
