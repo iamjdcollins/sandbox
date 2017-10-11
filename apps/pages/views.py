@@ -351,7 +351,7 @@ def schooldetail(request):
     return {
       'pk': page.pk,
       'uuid': page.uuid,
-      'contentbanners': school.contentbanners(),
+      'contentbanners': page.contentbanners(),
       'title': page.title,
       'body': page.body,
       'building_location': {
