@@ -127,9 +127,13 @@ def elementaryschools(request):
       'url': school.url,
     }]
 
+  if not request.user.is_authenticated:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result != None:
+      return result
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-
+  
   schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
   schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
   if schools_directory == None:
@@ -148,9 +152,7 @@ def elementaryschools(request):
   if request.user.is_authenticated:
     result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
   else:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result == None:
-       result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
   return result
 
 def k8schools(request):
@@ -171,6 +173,10 @@ def k8schools(request):
       'url': school.url,
     }]
 
+  if not request.user.is_authenticated:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result != None:
+      return result
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
 
@@ -189,7 +195,11 @@ def k8schools(request):
         schools += [school]
     schools = cache.get_or_set('K8_SCHOOLS_DIRECTORY', schools, 86400)
 
-  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  if request.user.is_authenticated:
+    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  else:
+    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  return result
 
 def middleschools(request):
 
@@ -209,6 +219,10 @@ def middleschools(request):
       'url': school.url,
     }]
 
+  if not request.user.is_authenticated:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result != None:
+      return result
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
 
@@ -227,7 +241,11 @@ def middleschools(request):
         schools += [school]
     schools = cache.get_or_set('MIDDLE_SCHOOLS_DIRECTORY', schools, 86400)
 
-  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  if request.user.is_authenticated:
+    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  else:
+    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  return result
 
 def highschools(request):
   
@@ -247,6 +265,10 @@ def highschools(request):
       'url': school.url,
     }]
 
+  if not request.user.is_authenticated:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result != None:
+      return result
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
 
@@ -265,7 +287,11 @@ def highschools(request):
         schools += [school]
     schools = cache.get_or_set('HIGH_SCHOOLS_DIRECTORY', schools, 86400)
 
-  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  if request.user.is_authenticated:
+    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  else:
+    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  return result
 
 def charterschools(request):
   
@@ -285,6 +311,10 @@ def charterschools(request):
       'url': school.url,
     }]
 
+  if not request.user.is_authenticated:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result != None:
+      return result
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
 
@@ -303,7 +333,24 @@ def charterschools(request):
         schools += [school]
     schools = cache.get_or_set('CHARTER_SCHOOLS_DIRECTORY', schools, 86400)
 
-  return render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  if request.user.is_authenticated:
+    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
+  else:
+    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  return result
+
+def schooldetail(request):
+  if not request.user.is_authenticated:
+    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
+    if result != None:
+      return result
+  page = get_object_or_404(School, url=request.path)
+  pageopts = page._meta
+  if request.user.is_authenticated:
+    result = render(request, 'schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  else:
+    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'schools/schooldetail.html', {'page': page,'pageopts': pageopts,}), 86400)
+  return result
 
 # def departments(request):
 #   page = get_object_or_404(Page, url=request.path)

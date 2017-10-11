@@ -15,6 +15,7 @@ urlpatterns = [
   url(r'^schools/middle-schools/$', views.middleschools, name='middleschools'),
   url(r'^schools/high-schools/$', views.highschools, name='highschools'),
   url(r'^schools/charter-schools/$', views.charterschools, name='charterschools'),
+  url(r'^schools/[a-z0-9-]+\/[a-z0-9-]+\/$', views.schooldetail, name='schooldetail'),
   # url(r'^departments/$', views.departments, name='departments'),
   # url(r'^directory/$', views.directory, name='directory'),
   # url(r'^directory/last-name-(?P<letter>[a-z])/$', views.directory_letter, name='directory_letter'),
