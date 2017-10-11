@@ -7,7 +7,7 @@ from apps.common.classes import DeletedListFilter
 from apps.common.actions import trash_selected, restore_selected, publish_selected, unpublish_selected
 from django.contrib.admin.actions import delete_selected
 from .models import Page, School
-from apps.images.models import Thumbnail
+from apps.images.models import Thumbnail, ContentBanner
 
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
@@ -19,6 +19,14 @@ class ThumbnailInline(admin.TabularInline):
   extra = 0 
   min_num = 0
   max_num = 1
+
+class ContentBannerInline(admin.TabularInline):
+  model = ContentBanner
+  fk_name = 'parent'
+  fields = ('title','image_file','alttext',)
+  extra = 0 
+  min_num = 0
+  max_num = 5
 
 class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
   def get_fields(self, request, obj=None):
@@ -76,7 +84,7 @@ class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
     super().save_model(request, obj, form, change)
 
 class SchoolAdmin(MPTTModelAdmin,GuardedModelAdmin):
-  inlines = [ThumbnailInline,]
+  inlines = [ThumbnailInline, ContentBannerInline]
 
 # Register your models here.
 admin.site.register(Page, PageAdmin)
