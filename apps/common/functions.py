@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth import get_permission_codename
 from guardian.shortcuts import get_perms
 from apps.objects.models import Node
+from django.core.cache import cache
 
 def findfileext_media(media):
   media = media.split('/')[-1:]
@@ -175,6 +176,7 @@ def usersave(self, *args, **kwargs):
         object.save()
       # Move Directory
       silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
+  clearcache(self)
 
 
 def pagesave(self, *args, **kwargs):
@@ -216,6 +218,7 @@ def pagesave(self, *args, **kwargs):
         object.save()
       # Move Directory
       silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
+  clearcache(self)
 
 def taxonomysave(self, *args, **kwargs):
   # Setup New and Deleted Variables
@@ -254,6 +257,7 @@ def taxonomysave(self, *args, **kwargs):
         object.save()
       # Move Directory
       silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
+  clearcache(self)
 
 def imagesave(self, *args, **kwargs):
   f = open('/tmp/movingfile.txt', 'a')
@@ -315,6 +319,7 @@ def imagesave(self, *args, **kwargs):
   # Move File
   if currentname != newname:
     silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
+  clearcache(self)
 
 # Model Inheritance Object
 def nodefindobject(node):
@@ -368,3 +373,6 @@ def resetchildrentoalphatitle():
     parent = child
     sleep(1)
 
+# Cache Functions
+def clearcache(object):
+  pass
