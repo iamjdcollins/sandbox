@@ -1,6 +1,7 @@
 from django.db import models
 from apps.objects.models import DirectoryEntry
 from apps.users.models import Employee
+import apps.common.functions
 
 class SchoolAdministrator(DirectoryEntry):
   PARENT_URL = ''
