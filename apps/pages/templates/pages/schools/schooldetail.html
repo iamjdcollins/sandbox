@@ -51,7 +51,7 @@
     <ul class="slides">
       {% for contentbanner in page.contentbanners %}
       <li class="slide">
-        <img src="{{contentbanner.url}}" alt="{{contentbanner.alttext}}" />
+        <img src="{{contentbanner.image_file.url}}" alt="{{contentbanner.alttext}}" />
       </li>
       {% endfor %}
     </ul>
