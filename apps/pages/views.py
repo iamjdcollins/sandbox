@@ -44,77 +44,6 @@ def schools(request):
   result = render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
   return result
 
-  def school_dict(school):
-    return [{
-      'schooltype': school.schooltype.title,
-      'thumbnails': school.thumbnails(),
-      'title': school.title,
-      'building_location': {
-        'street_address': school.building_location.street_address,
-        'city': school.building_location.location_city.title,
-        'state': school.building_location.location_state.title,
-        'zipcode': school.building_location.location_zipcode.title,
-        'google_place': school.building_location.google_place,
-      },
-      'main_phone': school.main_phone,
-      'website_url': school.website_url,
-      'url': school.url,
-    }]
-
-  if not request.user.is_authenticated:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result != None:
-      return result
-  page = get_object_or_404(Page, url=request.path)
-  pageopts = page._meta
-  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
-  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
-  if schools_directory == None:
-    schools_directory = []
-    for school in schools_query:
-      schools_directory += school_dict(school)
-    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  elementary_schools_directory = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
-  if elementary_schools_directory == None:
-    elementary_schools_directory = []
-    for school in schools_directory:
-      if school['schooltype'] == 'Elementary Schools':
-        elementary_schools_directory += [school]
-    elementary_schools_directory = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', elementary_schools_directory, 86400)
-  k8_schools_directory = cache.get('K8_SCHOOLS_DIRECTORY',None)
-  if k8_schools_directory == None:
-    k8_schools_directory = []
-    for school in schools_directory:
-      if school['schooltype'] == 'K-8 Schools':
-        k8_schools_directory += [school]
-    k8_schools_directory = cache.get_or_set('K8_SCHOOLS_DIRECTORY', k8_schools_directory, 86400)
-  middle_schools_directory = cache.get('MIDDLE_SCHOOLS_DIRECTORY',None)
-  if middle_schools_directory == None:
-    middle_schools_directory = []
-    for school in schools_directory:
-      if school['schooltype'] == 'Middle Schools':
-        middle_schools_directory += [school]
-    middle_schools_directory = cache.get_or_set('MIDDLE_SCHOOLS_DIRECTORY', middle_schools_directory, 86400)
-  high_schools_directory = cache.get('HIGH_SCHOOLS_DIRECTORY',None)
-  if high_schools_directory == None:
-    high_schools_directory = []
-    for school in schools_directory:
-      if school['schooltype'] == 'High Schools':
-        high_schools_directory += [school]
-    high_schools_directory = cache.get_or_set('HIGH_SCHOOLS_DIRECTORY', high_schools_directory, 86400)
-  charter_schools_directory = cache.get('CHARTER_SCHOOLS_DIRECTORY',None)
-  if charter_schools_directory == None:
-    charter_schools_directory = []
-    for school in schools_directory:
-      if school['schooltype'] == 'Charter Schools':
-        charter_schools_directory += [school]
-    charter_schools_directory = cache.get_or_set('CHARTER_SCHOOLS_DIRECTORY', charter_schools_directory, 86400)
-  if request.user.is_authenticated:
-    result = render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory})
-  else:
-    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts, 'elementary_schools_directory': elementary_schools_directory, 'k8_schools_directory': k8_schools_directory,'middle_schools_directory': middle_schools_directory,'high_schools_directory': high_schools_directory,'charter_schools_directory': charter_schools_directory}), 86400)
-  return result
-
 # def temp(request):
 #   schools = School.objects.filter(deleted=0).filter(published=1).order_by('title')
 #   return render(request, 'pages/schools/temp.html', {'schools': schools,})
@@ -122,260 +51,39 @@ def schools(request):
 def elementaryschools(request):
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
-  return result
-
-  def school_dict(school):
-    return [{
-      'schooltype': school.schooltype.title,
-      'thumbnails': school.thumbnails(),
-      'title': school.title,
-      'building_location': {
-        'street_address': school.building_location.street_address,
-        'city': school.building_location.location_city.title,
-        'state': school.building_location.location_state.title,
-        'zipcode': school.building_location.location_zipcode.title,
-        'google_place': school.building_location.google_place,
-      },
-      'main_phone': school.main_phone,
-      'website_url': school.website_url,
-      'url': school.url,
-    }]
-
-  if not request.user.is_authenticated:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result != None:
-      return result
-  page = get_object_or_404(Page, url=request.path)
-  pageopts = page._meta
-  
-  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
-  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
-  if schools_directory == None:
-    schools_directory = []
-    for school in schools_query:
-      schools_directory += school_dict(school)
-    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('ELEMENTARY_SCHOOLS_DIRECTORY',None)
-  if schools == None:
-    schools = []
-    for school in schools_directory:
-      if school['schooltype'] == 'Elementary Schools':
-        schools += [school]
-    schools = cache.get_or_set('ELEMENTARY_SCHOOLS_DIRECTORY', schools, 86400)
-
-  if request.user.is_authenticated:
-    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
-  else:
-    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Elementary Schools').order_by('title')
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
   return result
 
 def k8schools(request):
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
-  return result
-
-  def school_dict(school):
-    return [{
-      'schooltype': school.schooltype.title,
-      'thumbnails': school.thumbnails(),
-      'title': school.title,
-      'building_location': {
-        'street_address': school.building_location.street_address,
-        'city': school.building_location.location_city.title,
-        'state': school.building_location.location_state.title,
-        'zipcode': school.building_location.location_zipcode.title,
-        'google_place': school.building_location.google_place,
-      },
-      'main_phone': school.main_phone,
-      'website_url': school.website_url,
-      'url': school.url,
-    }]
-
-  if not request.user.is_authenticated:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result != None:
-      return result
-  page = get_object_or_404(Page, url=request.path)
-  pageopts = page._meta
-
-  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
-  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
-  if schools_directory == None:
-    schools_directory = []
-    for school in schools_query:
-      schools_directory += school_dict(school)
-    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('K8_SCHOOLS_DIRECTORY',None)
-  if schools == None:
-    schools = []
-    for school in schools_directory:
-      if school['schooltype'] == 'K-8 Schools':
-        schools += [school]
-    schools = cache.get_or_set('K8_SCHOOLS_DIRECTORY', schools, 86400)
-
-  if request.user.is_authenticated:
-    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
-  else:
-    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='K-8 Schools').order_by('title')
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
   return result
 
 def middleschools(request):
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
-  return result
-
-  def school_dict(school):
-    return [{
-      'schooltype': school.schooltype.title,
-      'thumbnails': school.thumbnails(),
-      'title': school.title,
-      'building_location': {
-        'street_address': school.building_location.street_address,
-        'city': school.building_location.location_city.title,
-        'state': school.building_location.location_state.title,
-        'zipcode': school.building_location.location_zipcode.title,
-        'google_place': school.building_location.google_place,
-      },
-      'main_phone': school.main_phone,
-      'website_url': school.website_url,
-      'url': school.url,
-    }]
-
-  if not request.user.is_authenticated:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result != None:
-      return result
-  page = get_object_or_404(Page, url=request.path)
-  pageopts = page._meta
-
-  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
-  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
-  if schools_directory == None:
-    schools_directory = []
-    for school in schools_query:
-      schools_directory += school_dict(school)
-    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('MIDDLE_SCHOOLS_DIRECTORY',None)
-  if schools == None:
-    schools = []
-    for school in schools_directory:
-      if school['schooltype'] == 'Middle Schools':
-        schools += [school]
-    schools = cache.get_or_set('MIDDLE_SCHOOLS_DIRECTORY', schools, 86400)
-
-  if request.user.is_authenticated:
-    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
-  else:
-    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Middle Schools').order_by('title')
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
   return result
 
 def highschools(request):
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
-  return result
-  
-  def school_dict(school):
-    return [{
-      'schooltype': school.schooltype.title,
-      'thumbnails': school.thumbnails(),
-      'title': school.title,
-      'building_location': {
-        'street_address': school.building_location.street_address,
-        'city': school.building_location.location_city.title,
-        'state': school.building_location.location_state.title,
-        'zipcode': school.building_location.location_zipcode.title,
-        'google_place': school.building_location.google_place,
-      },
-      'main_phone': school.main_phone,
-      'website_url': school.website_url,
-      'url': school.url,
-    }]
-
-  if not request.user.is_authenticated:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result != None:
-      return result
-  page = get_object_or_404(Page, url=request.path)
-  pageopts = page._meta
-
-  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
-  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
-  if schools_directory == None:
-    schools_directory = []
-    for school in schools_query:
-      schools_directory += school_dict(school)
-    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('HIGH_SCHOOLS_DIRECTORY',None)
-  if schools == None:
-    schools = []
-    for school in schools_directory:
-      if school['schooltype'] == 'High Schools':
-        schools += [school]
-    schools = cache.get_or_set('HIGH_SCHOOLS_DIRECTORY', schools, 86400)
-
-  if request.user.is_authenticated:
-    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
-  else:
-    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='High Schools').order_by('title')
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
   return result
 
 def charterschools(request):
   page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
-  return result
-  
-  def school_dict(school):
-    return [{
-      'schooltype': school.schooltype.title,
-      'thumbnails': school.thumbnails(),
-      'title': school.title,
-      'building_location': {
-        'street_address': school.building_location.street_address,
-        'city': school.building_location.location_city.title,
-        'state': school.building_location.location_state.title,
-        'zipcode': school.building_location.location_zipcode.title,
-        'google_place': school.building_location.google_place,
-      },
-      'main_phone': school.main_phone,
-      'website_url': school.website_url,
-      'url': school.url,
-    }]
-
-  if not request.user.is_authenticated:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result != None:
-      return result
-  page = get_object_or_404(Page, url=request.path)
-  pageopts = page._meta
-
-  schools_query = School.objects.filter(deleted=0).filter(published=1).order_by('title').select_related()
-  schools_directory = cache.get('SCHOOLS_DIRECTORY',None)
-  if schools_directory == None:
-    schools_directory = []
-    for school in schools_query:
-      schools_directory += school_dict(school)
-    schools_directory = cache.get_or_set('SCHOOLS_DIRECTORY', schools_directory, 86400)
-  schools = cache.get('CHARTER_SCHOOLS_DIRECTORY',None)
-  if schools == None:
-    schools = []
-    for school in schools_directory:
-      if school['schooltype'] == 'Charter Schools':
-        schools += [school]
-    schools = cache.get_or_set('CHARTER_SCHOOLS_DIRECTORY', schools, 86400)
-
-  if request.user.is_authenticated:
-    result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
-  else:
-    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools}), 86400)
+  schools = School.objects.filter(deleted=0).filter(published=1).filter(schooltype__title='Charter Schools').order_by('title')
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts, 'schools': schools})
   return result
 
 def schooldetail(request):
-
   page = get_object_or_404(School, url=request.path)
   pageopts = page._meta
   result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
