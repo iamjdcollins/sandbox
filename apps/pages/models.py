@@ -9,6 +9,7 @@ from apps.pages.help import PageHelp
 from django.contrib.auth import get_permission_codename
 from apps.taxonomy.models import Location, SchoolType, OpenEnrollmentStatus
 from apps.images.models import Thumbnail, PageBanner, ContentBanner
+from apps.directoryentries.models import schooladministrator
 
 # Create your models here.
 
@@ -35,6 +36,7 @@ class School(BasePage):
   
   THUMBNAILS = True
   CONTENTBANNERS = True
+  SCHOOLADMINISTRATOR = True
 
   title = models.CharField(max_length=200, unique=True, help_text='',db_index=True)
   body = RichTextField(null=True, blank=True, help_text='')
@@ -63,6 +65,9 @@ class School(BasePage):
     for contentbanner in ContentBanner.objects.filter(parent=self.pk):
       contentbanners += [{'title':contentbanner.title,'url':contentbanner.image_file.url,'alttext':contentbanner.alttext}]
     return contentbanners
+
+  def schooladministrator(self):
+    return SchoolAdministrator.objects.filter(parent=self.pk)
 
   class Meta:
     db_table = 'pages_school'
