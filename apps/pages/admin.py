@@ -8,7 +8,7 @@ from apps.common.actions import trash_selected, restore_selected, publish_select
 from django.contrib.admin.actions import delete_selected
 from .models import Page, School
 from apps.images.models import Thumbnail, ContentBanner
-from apps.directoryentries import SchoolAdministrator
+from apps.directoryentries.models import SchoolAdministrator
 
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
