@@ -51,6 +51,7 @@ class School(BasePage):
   school_page_node = models.OneToOneField(BasePage, db_column='school_page_node', on_delete=models.CASCADE, parent_link=True,)
 
   def thumbnails(self):
+    return Thumbnail.objects.filter(parent=self.pk)
     thumbnails = []
     for thumbnail in Thumbnail.objects.filter(parent=self.pk):
       thumbnails += [{'title':thumbnail.title,'url':thumbnail.image_file.url,'alttext':thumbnail.alttext}]
