@@ -58,6 +58,7 @@ class School(BasePage):
     return thumbnails
 
   def contentbanners(self):
+    return ContentBanner.objects.filter(parent=self.pk):
     contentbanners = []
     for contentbanner in ContentBanner.objects.filter(parent=self.pk):
       contentbanners += [{'title':contentbanner.title,'url':contentbanner.image_file.url,'alttext':contentbanner.alttext}]
