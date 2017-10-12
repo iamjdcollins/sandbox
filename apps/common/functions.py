@@ -321,6 +321,54 @@ def imagesave(self, *args, **kwargs):
     silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
   clearcache(self)
 
+def directoryentriessave(self, *args, **kwargs):
+  # Setup New and Deleted Variables
+  is_new = self._state.adding
+  is_deleted = '_' if self.deleted == True else ''
+  #Force Title
+  self.title = str(self.employee.email).split('@', 1)[0])
+  # Set UUID if None
+  if self.uuid is None:
+    self.uuid = uuid.uuid4()
+  #Force Parent
+  if self.PARENT_URL:
+    try:
+      self.parent = Node.objects.exclude(uuid=self.uuid).get(url=self.PARENT_URL)
+    except Node.DoesNotExist:
+      pass
+  # Track URL Changes
+  urlchanged = False
+  parent_url = self.parent.url if self.parent else self.PARENT_URL
+  if not self.url.startswith(parent_url):
+    try:
+      self.url = Node.objects.get(pk=self.pk).url
+    except Node.DoesNotExist:
+      pass
+  oldurl = self.url
+  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.title) + '/'):
+    self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.title) + '/')
+    if not is_new:
+      urlchanged = True
+  # Set the node_title for the node
+  self.node_title = self.title
+  # Set the node type
+  self.node_type = 'directoryentry'
+  # Set the content type
+  self.image_type = self._meta.model_name
+  self.content_type = self._meta.model_name
+  # Save the item
+  super(self._meta.model, self).save(*args, **kwargs)
+  if urlchanged:
+      # Save Children
+      for child in self.get_children():
+        object = nodefindobject(child)
+        object.save()
+      # Move Directory
+      silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
+  clearcache(self)
+
+
+
 # Model Inheritance Object
 def nodefindobject(node):
   if node.node_type == 'user':

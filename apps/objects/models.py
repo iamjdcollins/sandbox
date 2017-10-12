@@ -75,7 +75,14 @@ class Image(Node):
     get_latest_by = 'create_date'
     verbose_name = 'Image'
     verbose_name_plural = 'Images'
-  	
 
+class DirectoryEntry(Node):
+  directoryentry_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
 
-# Create your models here.
+  directoryentry_node = models.OneToOneField(Node, db_column='directoryentry_node', on_delete=models.CASCADE, parent_link=True,)
+
+  class Meta:
+    db_table = 'objects_directoryentry'
+    get_latest_by = 'create_date'
+    verbose_name = 'Directory Entry'
+    verbose_name_plural = 'Directory Entries'

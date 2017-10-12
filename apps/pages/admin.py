@@ -8,6 +8,7 @@ from apps.common.actions import trash_selected, restore_selected, publish_select
 from django.contrib.admin.actions import delete_selected
 from .models import Page, School
 from apps.images.models import Thumbnail, ContentBanner
+from apps.directoryentries import SchoolAdministrator
 
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
@@ -24,6 +25,14 @@ class ContentBannerInline(admin.TabularInline):
   model = ContentBanner
   fk_name = 'parent'
   fields = ('title','image_file','alttext',)
+  extra = 0 
+  min_num = 0
+  max_num = 5
+
+class SchoolAdministratorInline(admin.TabularInline):
+  model = SchoolAdministrator
+  fk_name = 'parent'
+  fields = ('employee',)
   extra = 0 
   min_num = 0
   max_num = 5
@@ -84,7 +93,7 @@ class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
     super().save_model(request, obj, form, change)
 
 class SchoolAdmin(MPTTModelAdmin,GuardedModelAdmin):
-  inlines = [ThumbnailInline, ContentBannerInline]
+  inlines = [ThumbnailInline, ContentBannerInline,SchoolAdministratorInline,]
 
 # Register your models here.
 admin.site.register(Page, PageAdmin)
