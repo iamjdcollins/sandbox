@@ -9,7 +9,7 @@ from apps.pages.help import PageHelp
 from django.contrib.auth import get_permission_codename
 from apps.taxonomy.models import Location, SchoolType, OpenEnrollmentStatus
 from apps.images.models import Thumbnail, PageBanner, ContentBanner
-from apps.directoryentries.models import schooladministrator
+from apps.directoryentries.models import SchoolAdministrator
 
 # Create your models here.
 
