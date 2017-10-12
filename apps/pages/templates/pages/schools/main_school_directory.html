@@ -50,14 +50,14 @@
           <div class="card schoolcard">
             <div class="card-image">
               {% for thumbnail in school.thumbnails %}
-              <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{{ thumbnail.url }}" alt="{{ thumbnail.alttext }}" />
+              <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{{ thumbnail.image_file.url }}" alt="{{ thumbnail.alttext }}" />
               {% endfor %}
             </div>
             <div class="card-content">
               <h5 class="school-title">{{ school.title }}</h5>
               <a href="{{ school.building_location.google_place }}" target="_blank">
                 <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
-                <i class="material-icons tiny blank black-text"></i> {{ school.building_location.city }}, {{ school.building_location.state }} {{ school.building_location.zipcode }}<br>
+                <i class="material-icons tiny blank black-text"></i> {{ school.building_location.location_city }}, {{ school.building_location.location_state }} {{ school.building_location.location_zipcode }}<br>
               </a>
               <a href="tel:+{{school.main_phone|slice:"0:1"}}-{{school.main_phone|slice:"1:4"}}-{{school.main_phone|slice:"4:7"}}-{{school.main_phone|slice:"7:11"}}">
                 <i class="material-icons tiny black-text">&#xE0CD;</i> {{school.main_phone|slice:"1:4"}}.{{school.main_phone|slice:"4:7"}}.{{school.main_phone|slice:"7:11"}}
