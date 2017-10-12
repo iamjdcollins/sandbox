@@ -34,9 +34,9 @@ def home(request):
 #   return render(request, 'pages/news/newsyears.html', {'page': page,'pageopts': pageopts,'newsyears': newsyears})
 
 def schools(request):
-  page = get_object_or_404(School, url=request.path)
+  page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  result = render(request, 'pages/schools/main_school_directory.html', {'page': page,'pageopts': pageopts,})
   return result
 
   def school_dict(school):
@@ -115,9 +115,9 @@ def schools(request):
 #   return render(request, 'pages/schools/temp.html', {'schools': schools,})
 
 def elementaryschools(request):
-  page = get_object_or_404(School, url=request.path)
+  page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
   return result
 
   def school_dict(school):
@@ -166,9 +166,9 @@ def elementaryschools(request):
   return result
 
 def k8schools(request):
-  page = get_object_or_404(School, url=request.path)
+  page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
   return result
 
   def school_dict(school):
@@ -217,9 +217,9 @@ def k8schools(request):
   return result
 
 def middleschools(request):
-  page = get_object_or_404(School, url=request.path)
+  page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
   return result
 
   def school_dict(school):
@@ -268,9 +268,9 @@ def middleschools(request):
   return result
 
 def highschools(request):
-  page = get_object_or_404(School, url=request.path)
+  page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
   return result
   
   def school_dict(school):
@@ -319,9 +319,9 @@ def highschools(request):
   return result
 
 def charterschools(request):
-  page = get_object_or_404(School, url=request.path)
+  page = get_object_or_404(Page, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  result = render(request, 'pages/schools/school_directory.html', {'page': page,'pageopts': pageopts,})
   return result
   
   def school_dict(school):
