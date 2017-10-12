@@ -321,7 +321,7 @@ def imagesave(self, *args, **kwargs):
     silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
   clearcache(self)
 
-def directoryentriessave(self, *args, **kwargs):
+def directoryentrysave(self, *args, **kwargs):
   # Setup New and Deleted Variables
   is_new = self._state.adding
   is_deleted = '_' if self.deleted == True else ''
