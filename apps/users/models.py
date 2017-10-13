@@ -41,7 +41,7 @@ from apps.objects.models import User
 class Employee(User):
   PARENT_URL = '/accounts/employees/'
 
-  employee_user_node = models.OneToOneField(User, db_column='employee_user_node', on_delete=models.CASCADE, parent_link=True,)
+  employee_user_node = models.OneToOneField(User, db_column='employee_user_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'users_employee'
@@ -55,7 +55,7 @@ class Employee(User):
 class System(User):
   PARENT_URL = '/accounts/system/'
 
-  system_user_node = models.OneToOneField(User, db_column='system_user_node', on_delete=models.CASCADE, parent_link=True,)
+  system_user_node = models.OneToOneField(User, db_column='system_user_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'users_system'

@@ -17,7 +17,7 @@ class Page(BasePage):
   title = models.CharField(max_length=200, unique=True, help_text='',db_index=True)
   body = RichTextField(null=True, blank=True, help_text=PageHelp.body)
 
-  page_page_node = models.OneToOneField(BasePage, db_column='page_page_node', on_delete=models.CASCADE, parent_link=True,)
+  page_page_node = models.OneToOneField(BasePage, db_column='page_page_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'pages_page'
@@ -50,7 +50,7 @@ class School(BasePage):
   boundary_map = models.URLField(max_length=2048, help_text='', null=True, blank=True)
   openenrollmentstatus = models.ForeignKey(OpenEnrollmentStatus, to_field='openenrollmentstatus_taxonomy_node', on_delete=models.PROTECT, limit_choices_to={'deleted': False,}, help_text='', related_name='pages_school_openenrollmentstatus')
 
-  school_page_node = models.OneToOneField(BasePage, db_column='school_page_node', on_delete=models.CASCADE, parent_link=True,)
+  school_page_node = models.OneToOneField(BasePage, db_column='school_page_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   def thumbnails(self):
     return Thumbnail.objects.filter(parent=self.pk)

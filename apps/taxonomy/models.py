@@ -17,7 +17,7 @@ class Location(Taxonomy):
   location_zipcode = models.ForeignKey('Zipcode',db_column='zipcode', to_field='zipcode_taxonomy_node', on_delete=models.PROTECT, related_name='taxonomy_location_zipcode', limit_choices_to={'deleted': False,}, help_text='')
   google_place = models.URLField(max_length=2048, blank=True,null=True, help_text='')
 
-  location_taxonomy_node = models.OneToOneField(Taxonomy, db_column='location_taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  location_taxonomy_node = models.OneToOneField(Taxonomy, db_column='location_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'taxonomy_location'
@@ -38,7 +38,7 @@ class City(Taxonomy):
 
   title = models.CharField(db_column='city',max_length=200, unique=True, help_text='', db_index=True)
 
-  city_taxonomy_node = models.OneToOneField(Taxonomy, db_column='city_taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  city_taxonomy_node = models.OneToOneField(Taxonomy, db_column='city_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'taxonomy_city'
@@ -59,7 +59,7 @@ class State(Taxonomy):
 
   title = models.CharField(db_column='state',max_length=200, unique=True, help_text='', db_index=True)
 
-  state_taxonomy_node = models.OneToOneField(Taxonomy, db_column='state_taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  state_taxonomy_node = models.OneToOneField(Taxonomy, db_column='state_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'taxonomy_state'
@@ -80,7 +80,7 @@ class Zipcode(Taxonomy):
 
   title = models.CharField(db_column='zipcode',max_length=200, unique=True, help_text='', db_index=True)
 
-  zipcode_taxonomy_node = models.OneToOneField(Taxonomy, db_column='zipcode_taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  zipcode_taxonomy_node = models.OneToOneField(Taxonomy, db_column='zipcode_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'taxonomy_zipcode'
@@ -104,7 +104,7 @@ class Language(Taxonomy):
   language_code = models.CharField(max_length=5, unique=True, help_text='', verbose_name='Language Code')
   language_translationtype = models.ForeignKey('TranslationType',db_column='translationtype',to_field='translationtype_taxonomy_node', on_delete=models.PROTECT, limit_choices_to={'deleted': False,}, related_name='taxonomy_language_translationtype', verbose_name='Translation Type')
 
-  language_taxonomy_node = models.OneToOneField(Taxonomy, db_column='language_taxonomy_node', on_delete=models.CASCADE, parent_link=True, db_index=True)
+  language_taxonomy_node = models.OneToOneField(Taxonomy, db_column='language_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'taxonomy_language'
@@ -125,7 +125,7 @@ class TranslationType(Taxonomy):
 
   title = models.CharField(db_column='translationtype',max_length=200, unique=True, help_text='', verbose_name='Translation Link Type', db_index=True)
 
-  translationtype_taxonomy_node = models.OneToOneField(Taxonomy, db_column='translationtype_taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  translationtype_taxonomy_node = models.OneToOneField(Taxonomy, db_column='translationtype_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'taxonomy_translationtype'
@@ -146,7 +146,7 @@ class SchoolType(Taxonomy):
 
   title = models.CharField(max_length=200, unique=True, help_text='', db_index=True)
 
-  schooltype_taxonomy_node = models.OneToOneField(Taxonomy, db_column='schooltype_taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  schooltype_taxonomy_node = models.OneToOneField(Taxonomy, db_column='schooltype_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'taxonomy_schooltype'
@@ -167,7 +167,7 @@ class OpenEnrollmentStatus(Taxonomy):
 
   title = models.CharField(max_length=200, unique=True, help_text='', db_index=True)
 
-  openenrollmentstatus_taxonomy_node = models.OneToOneField(Taxonomy, db_column='openenrollmentstatus_taxonomy_node', on_delete=models.CASCADE, parent_link=True,)
+  openenrollmentstatus_taxonomy_node = models.OneToOneField(Taxonomy, db_column='openenrollmentstatus_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'taxonomy_openenrollmentstatus'

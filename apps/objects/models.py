@@ -34,7 +34,7 @@ class Node(MPTTModel):
 class User(AbstractUser, Node):
   user_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
 
-  user_node = models.OneToOneField(Node, db_column='user_node', on_delete=models.CASCADE, parent_link=True,)
+  user_node = models.OneToOneField(Node, db_column='user_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'objects_user'
@@ -46,7 +46,7 @@ class User(AbstractUser, Node):
 class Page(Node):
   page_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
 
-  page_node = models.OneToOneField(Node, db_column='page_node', on_delete=models.CASCADE, parent_link=True,)
+  page_node = models.OneToOneField(Node, db_column='page_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'objects_page'
@@ -57,7 +57,7 @@ class Page(Node):
 class Taxonomy(Node):
   taxonomy_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
 
-  taxonomy_node = models.OneToOneField(Node, db_column='taxonomy_node', on_delete=models.CASCADE, parent_link=True, db_index=True)
+  taxonomy_node = models.OneToOneField(Node, db_column='taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'objects_taxonomy'
@@ -68,7 +68,7 @@ class Taxonomy(Node):
 class Image(Node):
   image_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
 
-  image_node = models.OneToOneField(Node, db_column='image_node', on_delete=models.CASCADE, parent_link=True,)
+  image_node = models.OneToOneField(Node, db_column='image_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'objects_image'
