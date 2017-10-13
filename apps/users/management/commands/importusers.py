@@ -4,7 +4,7 @@ from apps.users.models import Employee, System
 import uuid
 
 def importUser(item, account):
-  obj, created = Employee.objects.update_or_create(uuid=uuid.UUID(str(item.objectGUID)), defaults={'email':'tempemail@slcschools.org','url':'/tempemail'})
+  obj, created = Employee.objects.get_or_create(uuid=uuid.UUID(str(item.objectGUID)), defaults={'email':'tempemail@slcschools.org','url':'/tempemail'})
   obj.username = str(item.userPrincipalName).lower()
   obj.first_name = item.givenName
   obj.last_name = item.sn
