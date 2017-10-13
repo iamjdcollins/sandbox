@@ -105,7 +105,7 @@ class SchoolAdmin(MPTTModelAdmin,GuardedModelAdmin):
       obj.save()
     for obj in formset.changed_objects:
       obj[0].update_user = request.user
-      obj[0].save()
+      #obj[0].save()
 
   def save_model(self, request, obj, form, change):
     if getattr(obj, 'create_user', None) is None:
