@@ -12,10 +12,12 @@ def importUser(item, account):
     obj.email = str(item.mail).lower()
   else:
     obj.email = str(item.userPrincipalName).lower()
+
   obj.is_staff = True
   obj.deleted = False
   if created:
     obj.create_user = account
+    
   obj.update_user = account
   obj.save()
 
