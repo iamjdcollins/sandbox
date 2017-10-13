@@ -11,7 +11,7 @@ class SchoolAdministrator(DirectoryEntry):
   employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='directoryenties_schooladministrator_employee')
 
 
-  schooladministrator_directoryentry_node = models.OneToOneField(DirectoryEntry, db_column='schooladministrator_directoryentry_node', on_delete=models.CASCADE, parent_link=True,)
+  schooladministrator_directoryentry_node = models.OneToOneField(DirectoryEntry, db_column='schooladministrator_directoryentry_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'directoryenties_schooladministrator'
