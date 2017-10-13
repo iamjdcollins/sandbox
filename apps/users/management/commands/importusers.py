@@ -12,12 +12,10 @@ def importUser(item, account):
     obj.email = str(item.mail).lower()
   else:
     obj.email = str(item.userPrincipalName).lower()
-
   obj.is_staff = True
   obj.deleted = False
   if created:
     obj.create_user = account
-    
   obj.update_user = account
   obj.save()
 
@@ -35,4 +33,3 @@ class Command(BaseCommand):
   conn.search('OU=INFORMATION_SYSTEMS,DC=SLCSD,DC=NET', '(&(objectClass=user)(|(memberof:1.2.840.113556.1.4.1941:=CN=USR_SERVERS_WEB_ALL_ADULT_STAFF,OU=WEB,OU=SERVERS,DC=SLCSD,DC=NET)(memberof:1.2.840.113556.1.4.1941:=CN=USR_SLCSD_NONEMPLOYEE,DC=SLCSD,DC=NET)))', attributes=['DisplayName','userPrincipalName','givenName','sn','objectGUID','mail'])
   for item in conn.entries:
     importUser(item, importuserssvc)
-
