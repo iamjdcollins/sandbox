@@ -179,5 +179,23 @@ class OpenEnrollmentStatus(Taxonomy):
   def __str__(self):
     return self.title
 
+class SchoolAdministratorType(Taxonomy):
+
+  PARENT_URL = '/taxonomy/school-administrator-types/'
+
+  title = models.CharField(max_length=200, unique=True, help_text='', db_index=True)
+
+  schooladministratortype_taxonomy_node = models.OneToOneField(Taxonomy, db_column='schooladministratortype_taxonomy_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
+
+  class Meta:
+    db_table = 'taxonomy_schooladministratortype'
+    get_latest_by = 'update_date'
+    permissions = (('trash_schooladministratortype', 'Can soft delete school administrator type'),('restore_schooladministratortype', 'Can restore school administrator type'))
+    verbose_name = 'School Administrator Type'
+    verbose_name_plural = 'School Administrator Types'
+
+  def __str__(self):
+    return self.title
+
   save = apps.common.functions.taxonomysave
   delete = apps.common.functions.modeltrash
