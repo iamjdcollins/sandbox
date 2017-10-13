@@ -95,6 +95,24 @@ class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
 class SchoolAdmin(MPTTModelAdmin,GuardedModelAdmin):
   inlines = [ThumbnailInline, ContentBannerInline,SchoolAdministratorInline,]
 
+  def save_formset(self, request, form, formset, change):
+    instances = formset.save(commit=False)
+    for obj in formset.deleted_objects:
+      obj.delete()
+    for obj in formset.new_objects:
+      obj.create_user = request.user
+      obj.update_user = request.user
+      obj.save()
+    for obj in formset.changed_objects:
+      obj[0].update_user = request.user
+      obj[0].save()
+
+  def save_model(self, request, obj, form, change):
+    if getattr(obj, 'create_user', None) is None:
+      obj.create_user = request.user
+    obj.update_user = request.user
+    super().save_model(request, obj, form, change)
+
 # Register your models here.
 admin.site.register(Page, PageAdmin)
 admin.site.register(School, SchoolAdmin)
