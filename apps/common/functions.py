@@ -176,7 +176,6 @@ def usersave(self, *args, **kwargs):
         object.save()
       # Move Directory
       silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
-  clearcache(self)
 
 
 def pagesave(self, *args, **kwargs):
