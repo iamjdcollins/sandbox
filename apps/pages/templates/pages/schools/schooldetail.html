@@ -15,7 +15,9 @@
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
+      {% if page.schooladministrators %}
       <li><a href="#administration">Administration</a></li>
+      {% endif %}
       {% if page.scc_url or page.schools_schoolquicklink_school.all %}
       <li><a href="#quicklinks">Quick Links</a></li>
       {% endif %}
@@ -63,7 +65,9 @@
       <option value="#!" disabled selected style="display:none;">Table of Contents</option>
       <option value="#about">About</option>
       <option value="#contact">Contact</option>
+      {% if page.schooladministrators %}
       <option value="#administration">Administration</option>
+      {% endif %}
       {% if page.scc_url or page.schools_schoolquicklink_school.all %}
       <option value="#quicklinks">Quick Links</option>
       {% endif %}
@@ -132,10 +136,11 @@
         </div>
       </div>
     </div>
+    {% if page.schooladministrators %}
     <div class="row">
       <div id="administration" class="scrollspy contactcardlist">
         <h2>Administration</h2>
-        {% for admin in page.schools_schooladmin_school.all %}
+        {% for admin in page.schooladministrators %}
         <div class="card horizontal">
           <div class="card-image">
             <img src="{% if admin.employee.users_userprofileimage_user.image %}/{{admin.employee.users_userprofileimage_user.image}}{% else %}/users/images/placeholder.jpg{% endif %}" />
@@ -156,6 +161,7 @@
         {% endfor %}
       </div>
     </div>
+    {% endif %}
     {% if page.scc_url or page.schools_schoolquicklink_school.all %}
     <div class="row">
       <div id="quicklinks" class="scrollspy">

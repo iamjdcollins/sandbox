@@ -36,7 +36,7 @@ class School(BasePage):
   
   THUMBNAILS = True
   CONTENTBANNERS = True
-  SCHOOLADMINISTRATOR = True
+  SCHOOLADMINISTRATORS = True
 
   title = models.CharField(max_length=200, unique=True, help_text='',db_index=True)
   body = RichTextField(null=True, blank=True, help_text='')
@@ -54,19 +54,11 @@ class School(BasePage):
 
   def thumbnails(self):
     return Thumbnail.objects.filter(parent=self.pk)
-    thumbnails = []
-    for thumbnail in Thumbnail.objects.filter(parent=self.pk):
-      thumbnails += [{'title':thumbnail.title,'url':thumbnail.image_file.url,'alttext':thumbnail.alttext}]
-    return thumbnails
 
   def contentbanners(self):
     return ContentBanner.objects.filter(parent=self.pk)
-    contentbanners = []
-    for contentbanner in ContentBanner.objects.filter(parent=self.pk):
-      contentbanners += [{'title':contentbanner.title,'url':contentbanner.image_file.url,'alttext':contentbanner.alttext}]
-    return contentbanners
 
-  def schooladministrator(self):
+  def schooladministrators(self):
     return SchoolAdministrator.objects.filter(parent=self.pk)
 
   class Meta:
