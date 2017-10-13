@@ -79,7 +79,7 @@ class Image(Node):
 class DirectoryEntry(Node):
   directoryentry_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
 
-  directoryentry_node = models.OneToOneField(Node, db_column='directoryentry_node', on_delete=models.CASCADE, parent_link=True,)
+  directoryentry_node = models.OneToOneField(Node, db_column='directoryentry_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
 
   class Meta:
     db_table = 'objects_directoryentry'
