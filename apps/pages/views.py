@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.cache import cache
+from django.template import Context, Template
 
 # Create your views here.
 
@@ -86,8 +87,8 @@ def charterschools(request):
 def schooldetail(request):
   page = get_object_or_404(School, url=request.path)
   pageopts = page._meta
-  result = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
-  result = render(request, result.content, {'page': page,'pageopts': pageopts,})
+  template = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  result = Template( template.content ).render(Context({'page': page,'pageopts': pageopts,}))
   return result
 
 # def departments(request):
