@@ -18,8 +18,8 @@
       {% if page.schooladministrators %}
       <li><a href="#administration">Administration</a></li>
       {% endif %}
-      {% if page.scc_url or page.schools_schoolquicklink_school.all %}
-      <li><a href="#quicklinks">Quick Links</a></li>
+      {% if page.scc_url or page.schools_schoolresourcelink_school.all %}
+      <li><a href="#resourcelinks">Resource Links</a></li>
       {% endif %}
       {% if page.boundary_map %}
       <li><a href="#boundarymap">Boundary Map</a></li>
@@ -68,8 +68,8 @@
       {% if page.schooladministrators %}
       <option value="#administration">Administration</option>
       {% endif %}
-      {% if page.scc_url or page.schools_schoolquicklink_school.all %}
-      <option value="#quicklinks">Quick Links</option>
+      {% if page.scc_url or page.schools_schoolresourcelink_school.all %}
+      <option value="#resourcelinks">Resource Links</option>
       {% endif %}
       {% if page.boundary_map %}
       <option value="#boundarymap">Boundary Map</option>
@@ -162,16 +162,16 @@
       </div>
     </div>
     {% endif %}
-    {% if page.scc_url or page.schools_schoolquicklink_school.all %}
+    {% if page.scc_url or page.schools_schoolresourcelink_school.all %}
     <div class="row">
-      <div id="quicklinks" class="scrollspy">
-        <h2>Quick Links</h2>
+      <div id="resourcelinks" class="scrollspy">
+        <h2>Resource Links</h2>
         <div class="collection">
           {% if page.scc_url %}
           <a href="{{ page.scc_url }}" title="School Community Council" class="collection-item">School Community Council <i class="material-icons right">&#xE157;</i></a>
           {% endif %}
-          {% for quicklink in page.schools_schoolquicklink_school.all %}
-          <a href="{{ quicklink.url }}" title="{{ quicklink.title }}" class="collection-item">{{ quicklink.title }} <i class="material-icons right">&#xE157;</i></a>
+          {% for resourcelink in page.schools_schoolresourcelink_school.all %}
+          <a href="{{ resourcelink.url }}" title="{{ resourcelink.title }}" class="collection-item">{{ resourcelink.title }} <i class="material-icons right">&#xE157;</i></a>
           {% endfor %}
         </div>
       </div>
