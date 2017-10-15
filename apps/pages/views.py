@@ -88,7 +88,7 @@ def charterschools(request):
 def schooldetail(request):
   page = get_object_or_404(School, url=request.path)
   pageopts = page._meta
-  template = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
+  return render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
   result = Template( template.content ).render(context=RequestContext(request, {'page': page,'pageopts': pageopts,}))
   return HttpResponse(result)
 
