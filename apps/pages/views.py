@@ -88,7 +88,7 @@ def schooldetail(request):
   page = get_object_or_404(School, url=request.path)
   pageopts = page._meta
   template = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
-  result = Template( template.content ).render(Context({'page': page,'pageopts': pageopts,}))
+  result = Template( template.content ).render(context=Context({'page': page,'pageopts': pageopts,}),request=request)
   return result
 
 # def departments(request):
