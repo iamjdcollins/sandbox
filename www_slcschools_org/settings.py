@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6h%%_qn=63q)-yay7&f-@b@qgxlc^q*oguz%qfuvu+6+hf!qj3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True 
 APPEND_SLASH = True
 ALLOWED_HOSTS = ['www.slcschools.org','www2.slcschools.org']
 MULTISITE_EXTRA_HOSTS = ['www2.slcschools.org']

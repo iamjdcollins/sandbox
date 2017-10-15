@@ -3,6 +3,7 @@ from django.utils import timezone
 from guardian.admin import GuardedModelAdmin
 from mptt.admin import MPTTModelAdmin
 from adminsortable2.admin import SortableAdminMixin
+from ajex_select import make_ajax_form
 from apps.common.classes import DeletedListFilter
 from apps.common.actions import trash_selected, restore_selected, publish_selected, unpublish_selected
 from django.contrib.admin.actions import delete_selected
@@ -36,6 +37,8 @@ class SchoolAdministratorInline(admin.TabularInline):
   extra = 0 
   min_num = 0
   max_num = 5
+
+  form = make_ajax_form(SchoolAdministrator, {'employee': 'employee'})
 
 class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
   def get_fields(self, request, obj=None):
