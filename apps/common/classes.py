@@ -62,10 +62,10 @@ class UUIDLookupChannel(LookupChannel):
         # Return objects in the same order as passed in here
         ids = [pk_type(pk) for pk in ids]
         uuid_to_id = []
-        for id in ids:
+        for int(id) in ids:
           if id.bit_length() > 63:
             user = self.model.objects.get(uuid=uuid.UUID(int=id))
-            uuid_to_id.append(user.id)
+            uuid_to_id.append(str(user.uuid))
           else:
             uuid_to_id.append(id)
         ids = uuid_to_id
