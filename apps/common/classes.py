@@ -61,14 +61,14 @@ class UUIDLookupChannel(LookupChannel):
 
         # Return objects in the same order as passed in here
         ids = [pk_type(pk) for pk in ids]
-        uuid_to_id = []
-        for id in ids:
-          if int(id).bit_length() > 63:
-            user = self.model.objects.get(uuid=uuid.UUID(id))
-            uuid_to_id.append(str(user.uuid))
-          else:
-            uuid_to_id.append(id)
-        ids = uuid_to_id
+        # uuid_to_id = []
+        # for id in ids:
+        #   if int(id).bit_length() > 63:
+        #     user = self.model.objects.get(uuid=uuid.UUID(id))
+        #     uuid_to_id.append(str(user.uuid))
+        #   else:
+        #     uuid_to_id.append(id)
+        # ids = uuid_to_id
         things = self.model.objects.in_bulk(ids)
         return [things[aid] for aid in ids if aid in things]
 
