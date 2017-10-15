@@ -32,7 +32,7 @@ class ContentBannerInline(admin.TabularInline):
 class SchoolAdministratorInline(admin.TabularInline):
   model = SchoolAdministrator
   fk_name = 'parent'
-  fields = ('employee',)
+  fields = ('employee', 'schooladministratortype',)
   extra = 0 
   min_num = 0
   max_num = 5
