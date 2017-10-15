@@ -70,7 +70,7 @@ class UUIDLookupChannel(LookupChannel):
         #     uuid_to_id.append(id)
         # ids = uuid_to_id
         things = self.model.objects.in_bulk(ids)
-        return [things[aid] for aid in ids if aid in things]
+        return [things[uuid.UUID(aid)] for aid in ids if aid in things]
 
 class ModelAdminOverwrite():
   def delete_view(self, request, object_id, extra_context=None):
