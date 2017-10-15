@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.cache import cache
+from django.http import HttpResponse
 from django.template import Context, Template, RequestContext
 
 # Create your views here.
@@ -89,7 +90,7 @@ def schooldetail(request):
   pageopts = page._meta
   template = render(request, 'pages/schools/schooldetail.html', {'page': page,'pageopts': pageopts,})
   result = Template( template.content ).render(context=RequestContext(request, {'page': page,'pageopts': pageopts,}))
-  return result
+  return HttpResponse(result)
 
 # def departments(request):
 #   page = get_object_or_404(Page, url=request.path)
