@@ -26,7 +26,7 @@
           <span class="postedon">Posted: Tue, 08-08-2017 - 08:15 PM</span>
           <p>In the early morning hours on July 26, a record-setting storm made its way across Salt Lake City. More than two inches of rain fell in less than an hour, causing damage at three of our schools: Emerson Elementary, Highland High School, and East High School.</p>
         </div>
-        <a href="/news/article.php?article=658" class="btn-flat right" hreflang="en">Read More <span class="sr-only">about Superintendent's Message</span></a>
+        <a href="/news/article.php?article=658" class="btn-flat right" hreflang="en"><span class="sr-only">Read more about Superintendent's Message</span><span aria-hidden="true">Read More</span></a>
       </div>
       {% for article in news %}
       <div class="row">
@@ -38,7 +38,7 @@
           <span class="postedon">Posted: {{ article.author_date|date:"D. m-d-Y - h:i A" }}</span>
           {{ article.summary|truncatechars_html:400|safe }}
         </div>
-        <a href="{{ article.url }}" class="btn-flat right" hreflang="en">Read More <span class="sr-only">about {{ article.title }}</span></a>
+        <a href="{{ article.url }}" class="btn-flat right" hreflang="en"><span class="sr-only">Read more about {{ article.title }}</span><span aria-hidden="true">Read More</span></a>
       </div>
      {% endfor %}
      <a href="/news/{{ currentyear.long }}/" class="btn-large btn-stretch">Full News Archive</a>
