@@ -41,7 +41,7 @@
           <ul class="shortcuts col s6 m8 l6">
             <li><a href="/" title="Home"><i class="material-icons">&#xE88A;</i><span class="hide-on-med-and-down">Home</span></a></li>
             <li><a href="tel:18015788599" title="Main Phone"><i class="material-icons">&#xE0CD;</i><span class="hide-on-med-and-down">801-578-8599</span></a></li>
-            <li><a href="/" title="Employees"><i class="material-icons">&#xE7FB;</i><span class="hide-on-med-and-down">Employees</span></a></li>
+            <li><a href="/employees/" title="Employees"><i class="material-icons">&#xE7FB;</i><span class="hide-on-med-and-down">Employees</span></a></li>
             {% if not user.is_authenticated %}
             <li><a href="/accounts/login/?next={{ request.path }}" title="Login"><i class="material-icons">&#xE0DA;</i><span class="hide-on-med-and-down">Login</span></a></li>
             {% endif %}
