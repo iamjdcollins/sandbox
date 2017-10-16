@@ -16,17 +16,10 @@ from .models import Page, School
 #from apps.users.models import User
 
 def home(request):
-  if not request.user.is_authenticated:
-    result = cache.get(request.META['HTTP_HOST'] + request.path,None)
-    if result != None:
-      return result
   page = get_object_or_404(Page, url='/home/')
   pageopts = page._meta
   # news = News.objects.all().filter(deleted=0).filter(published=1).order_by('-pinned','-author_date')[0:5]
-  if request.user.is_authenticated:
-    result = render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,})
-  else:
-    result = cache.get_or_set(request.META['HTTP_HOST'] + request.path, render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,}), 86400)
+  result = render(request, 'pages/home.html', {'page': page,'pageopts': pageopts,})
   return result
 
 # def news(request):
