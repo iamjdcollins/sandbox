@@ -27,7 +27,7 @@
         {% endblock %}
       </div>
     </div>
-    <div class="col s12 m8 pull-m4 l9 pull-l3">
+    <div class="col s12 m8 pull-m4 l9 pull-l3 main">
       {% block content %}
         {{ block.super }}
       {% endblock %}
@@ -45,7 +45,7 @@ $(document).ready(function(){
       offset: $('.authenticated.wrapper').height(),
     });
     $('.mobile-table-of-contents').pushpin({
-      top: $('.content.wrapper #main').offset().top,
+      top: $('.content.wrapper .main').offset().top,
       bottom: Infinity,
       offset: $('.authenticated.wrapper').height(),
     });
