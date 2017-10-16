@@ -16,14 +16,14 @@
         <div class="row">
           <div class="col s6">
             <ul id="usermenu" class="dropdown-content">
-              <li><a href="/accounts/logout/" title="Logout"><i class="material-icons">&#xE879;</i>Logout</a></li>
+              <li><a href="/accounts/logout/" title="Logout"><span class="material-icons" aria-hidden="true">&#xE879;</span>Logout</a></li>
             </ul>
-            <a href="#!" class="dropdown-button left btn btn-flat" data-activates="usermenu">Hello, {{ request.user.first_name }}<i class="material-icons right">&#xE5C5;</i></a>
+            <a href="#!" class="dropdown-button left btn btn-flat" data-activates="usermenu">Hello, {{ request.user.first_name }}<span class="material-icons right" aria-hidden="true">&#xE5C5;</span></a>
           </div>
           <div class="col s6">
             {% for item in page_perms %}
             {% if 'change_' in item %}
-            <a id="editpagemodaal" href="{% url pageopts|admin_urlname:'change' page.pk %}" class="right btn btn-flat">Edit Page<i class="material-icons left">&#xE254;</i></a>
+            <a id="editpagemodaal" href="{% url pageopts|admin_urlname:'change' page.pk %}" class="right btn btn-flat">Edit Page<span class="material-icons left" aria-hidden="true">&#xE254;</span></a>
             {% endif %}
             {% endfor %}
           </div>
@@ -84,8 +84,8 @@
                   <li class="hide-on-med-and-down"><a href="{{ item.url }}">{{ item.menu_title }}</a></li>
                   {% endif %}
                 {% endfor %}
-                  <li class="hide-on-large-only"><a class="mainnav-mobile" href="#mainnav-mobile"><i class="material-icons">&#xE5D2;</i></a></li>
-                  <li><a href="#"><i class="material-icons">&#xE8B6;</i></a></li>
+                  <li class="hide-on-large-only"><a class="mainnav-mobile" href="#mainnav-mobile"><span class="material-icons" aria-hidden="true">&#xE5D2;</span></a></li>
+                  <li><a href="#"><span class="material-icons">&#xE8B6;</span></a></li>
               </ul>
             </div>
           </div>
@@ -181,21 +181,21 @@
         <form class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">&#xE7FD;</i>
+              <span class="material-icons prefix" aria-hidden="true">&#xE7FD;</i>
               <input id="name" type="text" class="validate">
               <label for="name">Name</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">&#xE0BE;</i>
+              <span class="material-icons prefix" aria-hidden="true">&#xE0BE;</span>
               <input id="email" type="email" class="validate">
               <label for="email">Email</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">&#xE88E;</i>
+              <span class="material-icons prefix" aria-hidden="true">&#xE88E;</span>
               <select>
                 <option value="1">Question or Comment</option>
                 <option value="2">Incorrect Information</option>
@@ -205,13 +205,13 @@
             </div>
           </div>
           <div class="input-field col s12">
-            <i class="material-icons prefix">&#xE254;</i>
+            <span class="material-icons prefix" aria-hidden="true">&#xE254;</span>
             <input id="subject" type="text" class="validate">
             <label for="subject">Subject</label>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">&#xE0C9;</i>
+              <span class="material-icons prefix" aria-hidden="true">&#xE0C9;</span>
               <textarea id="message" class="materialize-textarea"></textarea>
               <label for="message">Message</label>
             </div>
@@ -223,7 +223,7 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn ">Submit</a>
       </div>
     </div>
-    <a id="backtotop" class="slcschools-grey lighten-1 white-text" title="Back To Top" href="#"><i class="material-icons">&#xE316;</i></a>
+    <a id="backtotop" class="slcschools-grey lighten-1 white-text" title="Back To Top" href="#"><span class="material-icons" aria-hidden="true">&#xE316;</span></a>
     <div id="google_translate_element2"></div>
     <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
     <script type="text/javascript">function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element2');}</script>
