@@ -9,17 +9,14 @@
   </head>
   <body>
     <div class="pushfooter slcschools-grey lighten-3">
-      <a href="#accessibilitymenu" onfocus="this.click()" class="skipto">Go to the accessibility menu for options to skip to important page elements.</a>
       <div id="accessibilitymenu" class="skipto wrapper">
-        <h2>Accessibility Menu</h2>
-        <ol>
-          <li><a href="#toc">Skip to page table of contents</a></li>
-          <li><a href="#main">Skip to main content</a></li>
-          <li><a href="#mainnav">Skip to site navigation</a></li>
-          <li><a href="#afteraccessibilitymenu" onfocus="this.click()">Close Accessibility Menu</a>
+        <h2 class="skipto">Accessibility Menu</h2>
+        <ol class="skipto">
+          <li><a href="#toc" class="skipto">Skip to page table of contents</a></li>
+          <li><a href="#main" class="skipto">Skip to main content</a></li>
+          <li><a href="#mainnav" class="skipto">Skip to site navigation</a></li>
         </ol>
       </div>
-      <div id="afteraccessibilitymenu" class="hide"></div>
       {% if user.is_authenticated %}
       {% get_obj_perms request.user for page as "page_perms" %}
       <div class="authenticated wrapper slcschools-grey white-text">
