@@ -36,14 +36,14 @@
             {% for item in TRANSLATION_ITEMS|slice:":4" %}
             <li class="{% if forloop.counter == 4 or forloop.counter == 3 %}hide-on-med-and-down{% endif %} hide-on-small-only"><a href="#" onclick="doGTranslate('en|{{ item.language_code }}'); return false;"><span class="sr-only">Translate to {{ item.title }}</span> <span class="notranslate" aria-hidden="true">{{ item.native_language }}</span></a></li>
             {% endfor %}
-            <li><a href="#fulltranslationlist" class="fulltranslationlist"><span class="hide-on-small-only"><span class="sr-only">More Translation Languages</span><span aria-hidden="true">More</span> </span><span class="hide-on-med-and-up">Translate<i class="material-icons">&#xE5C5;</i></span></a></li>
+            <li><a href="#fulltranslationlist" class="fulltranslationlist"><span class="hide-on-small-only"><span class="sr-only">More Translation Languages</span><span aria-hidden="true">More</span> </span><span class="hide-on-med-and-up">Translate<span class="material-icons" aria-hidden="true">&#xE5C5;</span></span></a></li>
           </ul>
           <ul class="shortcuts col s6 m8 l6">
-            <li><a href="/" title="Home"><i class="material-icons">&#xE88A;</i><span class="hide-on-med-and-down">Home</span></a></li>
-            <li><a href="tel:18015788599" title="Main Phone"><i class="material-icons">&#xE0CD;</i><span class="hide-on-med-and-down">801-578-8599</span></a></li>
-            <li><a href="/employees/" title="Employees"><i class="material-icons">&#xE7FB;</i><span class="hide-on-med-and-down">Employees</span></a></li>
+            <li><a href="/" title="Home"><span class="material-icons" aria-hidden="true">&#xE88A;</span><span class="hide-on-med-and-down">Home</span></a></li>
+            <li><a href="tel:18015788599" title="Main Phone"><span class="material-icons" aria-hidden="true">&#xE0CD;</span><span class="hide-on-med-and-down">801-578-8599</span></a></li>
+            <li><a href="/employees/" title="Employees"><span class="material-icons" aria-hidden="true">&#xE7FB;</span><span class="hide-on-med-and-down">Employees</span></a></li>
             {% if not user.is_authenticated %}
-            <li><a href="/accounts/login/?next={{ request.path }}" title="Login"><i class="material-icons">&#xE0DA;</i><span class="hide-on-med-and-down">Login</span></a></li>
+            <li><a href="/accounts/login/?next={{ request.path }}" title="Login"><span class="material-icons" aria-hidden="true">&#xE0DA;</span><span class="hide-on-med-and-down">Login</span></a></li>
             {% endif %}
           </ul>
         </div>
