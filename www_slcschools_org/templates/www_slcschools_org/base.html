@@ -170,7 +170,7 @@
         {% block content %}
         <div class="card-action">
           <a class="btn-flat disabled narrow" title="Last Updated">
-            <span class="sr-only">Page last updated {{ page.update_date|date:"N d, Y" }}</span>
+            <span class="sr-only">Page last updated {{ page.update_date|date:"F d, Y" }}</span>
             <span class="material-icons left" aria-hidden="true">&#xE192;</span>
             <span aria-hidden="true">{{ page.update_date|date:"N d, Y" }}</span>
           </a>
