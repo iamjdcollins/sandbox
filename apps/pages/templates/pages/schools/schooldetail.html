@@ -48,6 +48,7 @@
 {% endblock %}{% endcomment %}
 
 {% block content %}
+{% if page.contentbanners %}
 <div class="card">
   <div class="unslider slcschools-grey darken-1">
     <ul class="slides">
@@ -59,6 +60,7 @@
     </ul>
   </div>
 </div>
+{% endif %}
 <div class="card">
   <div class="input-field mobile-table-of-contents hide-on-med-and-up">
     <select id="toc" class="browser-default z-depth-1">
