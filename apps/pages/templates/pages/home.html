@@ -23,7 +23,7 @@
           <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="//www1.slcschools.org/sites/default/files/default_images/Cunningham350.jpg" width="350" height="350" alt="front of East High School" typeof="foaf:Image" class="img-responsive">
         </div>
         <div class="col s12 m8 l9 xl10">
-          <h6><strong>Superintendent's Message</strong></h6>
+          <span class="news-title">Superintendent's Message</span>
           <span class="postedon">Posted: Tue, 08-08-2017 - 08:15 PM</span>
           <p>In the early morning hours on July 26, a record-setting storm made its way across Salt Lake City. More than two inches of rain fell in less than an hour, causing damage at three of our schools: Emerson Elementary, Highland High School, and East High School.</p>
         </div>
@@ -35,7 +35,7 @@
           <img class="b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{% if article.news_newsthumbimage_news %}{{ article.news_newsthumbimage_news.image }}{% else %}/defaults/news/images/placeholder.png{% endif %}" width="350" height="350" alt="{% if article.news_newsthumbimage_news %}{{ article.news_newsthumbimage_news.alttext }}{% else %}Salt Lake City School District Apple{% endif %}" typeof="foaf:Image" class="img-responsive">
         </div>
         <div class="col s12 m8 l9 xl10">
-          <h6><strong>{{ article.title }}</strong></h6>
+          <span class="news-title">{{ article.title }}</span>
           <span class="postedon">Posted: {{ article.author_date|date:"D. m-d-Y - h:i A" }}</span>
           {{ article.summary|truncatechars_html:400|safe }}
         </div>
