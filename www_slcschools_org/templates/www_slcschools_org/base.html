@@ -194,43 +194,41 @@
     <footer class="slcschools-grey white-text">
     </footer>
     <div id="{{ page.uuid }}" class="hide">
-      <div class="modal-content">
-        <div class="modal-start">
-          <h2>Page Feedback Form</h2>
-          <p>Please submit the form below to submit feedback for this page. Thank you for taking the time to let us know how we are doing.</p>
-          <form class="col s12 focus">
-            <div class="input-field col s12">
-              <span class="material-icons prefix" aria-hidden="true">&#xE7FD;</span>
-              <input id="name" type="text" class="validate">
-              <label for="name">Name</label>
-            </div>
-            <div class="input-field col s12">
-              <span class="material-icons prefix" aria-hidden="true">&#xE0BE;</span>
-              <input id="email" type="email" class="validate">
-              <label for="email">Email</label>
-            </div>
-            <div class="input-field col s12">
-              <span class="material-icons prefix" aria-hidden="true">&#xE88E;</span>
-              <select id="feedbackconcerning" class="browser-default">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Question or Comment</option>
-                <option value="2">Incorrect Information</option>
-                <option value="3">Website Malfunction</option>
-              </select>
-              <label for="feedbackconcerning" class="active">Feedback Concerning</label>
-            </div>
-            <div class="input-field col s12">
-              <span class="material-icons prefix" aria-hidden="true">&#xE254;</span>
-              <input id="subject" type="text" class="validate">
-              <label for="subject">Subject</label>
-            </div>
-            <div class="input-field col s12">
-              <span class="material-icons prefix" aria-hidden="true">&#xE0C9;</span>
-              <textarea id="message" class="materialize-textarea"></textarea>
-              <label for="message">Message</label>
-            </div>
-          </form>
-        </div>
+      <div class="modal-content" tabindex="1">
+        <h2>Page Feedback Form</h2>
+        <p>Please submit the form below to submit feedback for this page. Thank you for taking the time to let us know how we are doing.</p>
+        <form class="col s12 focus">
+          <div class="input-field col s12">
+            <span class="material-icons prefix" aria-hidden="true">&#xE7FD;</span>
+            <input id="name" type="text" class="validate">
+            <label for="name">Name</label>
+          </div>
+          <div class="input-field col s12">
+            <span class="material-icons prefix" aria-hidden="true">&#xE0BE;</span>
+            <input id="email" type="email" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <span class="material-icons prefix" aria-hidden="true">&#xE88E;</span>
+            <select id="feedbackconcerning" class="browser-default">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">Question or Comment</option>
+              <option value="2">Incorrect Information</option>
+              <option value="3">Website Malfunction</option>
+            </select>
+            <label for="feedbackconcerning" class="active">Feedback Concerning</label>
+          </div>
+          <div class="input-field col s12">
+            <span class="material-icons prefix" aria-hidden="true">&#xE254;</span>
+            <input id="subject" type="text" class="validate">
+            <label for="subject">Subject</label>
+          </div>
+          <div class="input-field col s12">
+            <span class="material-icons prefix" aria-hidden="true">&#xE0C9;</span>
+            <textarea id="message" class="materialize-textarea"></textarea>
+            <label for="message">Message</label>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <a href="#" onclick="return false;" class="modal-action modal-close waves-effect waves-green btn ">Submit</a>
