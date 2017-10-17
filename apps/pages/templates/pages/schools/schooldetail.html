@@ -61,7 +61,7 @@
 </div>
 <div class="card">
   <div class="input-field mobile-table-of-contents hide-on-med-and-up">
-    <select class="browser-default z-depth-1">
+    <select id="toc" class="browser-default z-depth-1">
       <option value="#!" disabled selected style="display:none;">Table of Contents</option>
       <option value="#about">About</option>
       <option value="#contact">Contact</option>
@@ -75,6 +75,7 @@
       <option value="#boundarymap">Boundary Map</option>
       {% endif %}
     </select>
+    <label for="toc outofview">Table of Contents</label>
   </div>  
   <div class="card-content">
     <h1>{{page.title}}</h1>

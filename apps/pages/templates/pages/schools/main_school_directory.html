@@ -28,7 +28,7 @@
 {% block content %}
 <div class="card">
   <div class="input-field mobile-table-of-contents hide-on-med-and-up">
-    <select class="browser-default z-depth-1">
+    <select id="toc" class="browser-default z-depth-1">
       <option value="#!" disabled selected style="display:none;">Table of Contents</option>
       <option value="#elementaryschools">Elementary Schools ({{ elementary_schools_directory|length }})</option>
       <option value="#k8schools">K-8 Schools ({{ k8_schools_directory|length }})</option>
@@ -36,6 +36,7 @@
       <option value="#highschools">High Schools ({{ high_schools_directory|length }})</option>
       <option value="#charterschools">Charter Schools ({{ charter_schools_directory|length }})</option>
     </select>
+    <label for="toc outofview">Table of Contents</label>
   </div>
   <div class="card-content">
     <h1>{{page.title}} Directory</h1>

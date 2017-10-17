@@ -24,10 +24,11 @@
 {% block content %}
 <div class="card">
   <div class="input-field mobile-table-of-contents hide-on-med-and-up">
-    <select class="browser-default z-depth-1">
+    <select id="toc" class="browser-default z-depth-1">
       <option value="#!" disabled selected style="display:none;">Table of Contents</option>
       <option value="#schools">{{schools.0.parent}} ({{ schools|length }})</option>
     </select>
+    <label for="toc outofview">Table of Contents</label>
   </div>
   <div class="card-content">
     <h1>{{ page.title }} Directory</h1>
