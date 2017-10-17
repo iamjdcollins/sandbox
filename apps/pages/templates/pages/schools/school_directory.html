@@ -32,7 +32,10 @@
   <div class="card-content">
     <h1>{{ page.title }} Directory</h1>
     <form class="textfieldboxes" onsubmit="myFunction(); return false;">
-      <input class="autocomplete" onkeyup="myFunction()" placeholder="Search Schools" title="Search Schools" id="search" type="text">
+      <div class="input-field">
+        <input class="autocomplete" onkeyup="myFunction()" title="Search Schools" id="schoolsfilter" type="text">
+        <label for="schoolsfilter">Filter Schools</label>
+      </div>
     </form>
     <div id="schools" class="scrollspy filterpoint">
       <div class="row">
@@ -76,7 +79,7 @@
 <script>
 function myFunction() {
   var input, filter, filterpoint;
-  input = document.getElementById("search");
+  input = document.getElementById("schoolsfilter");
   filter = input.value.toUpperCase();
   school = document.getElementsByClassName("filterpoint");
   for (i = 0; i < school.length; i++) {
