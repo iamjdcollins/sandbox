@@ -11,7 +11,7 @@
 {% block sidebar_first %}
 <div class="row">
   <div class="table-of-contents">
-  <h5>Contents:</h5>
+  <h2>Contents:</h2>
     <ul>
       <li><a href="#schools">{{schools.0.schooltype }} ({{ schools|length }})</a></li>
     </ul>
@@ -45,7 +45,7 @@
               {% endfor %}
             </div>
             <div class="card-content">
-              <h5 class="school-title">{{ school.title }}</h5>
+              <span class="card-title school-title">{{ school.title }}</span>
               <a href="{{ school.building_location.google_place }}" target="_blank">
                 <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
                 <i class="material-icons tiny blank black-text"></i> {{ school.building_location.location_city }}, {{ school.building_location.location_state }} {{ school.building_location.location_zipcode }}<br>

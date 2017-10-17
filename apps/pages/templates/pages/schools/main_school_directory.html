@@ -11,7 +11,7 @@
 {% block sidebar_first %}
 <div class="row">
   <div class="table-of-contents">
-    <h5>Contents:</h5>
+    <h2>Contents:</h2>
     <ul>
       <li><a href="#elementaryschools" onclick="$('.collapsible').collapsible('open', 0);">Elementary Schools ({{ elementary_schools_directory|length }})</a></li>
       <li><a href="#k8schools" onclick="$('.collapsible').collapsible('open', 1);">K-8 Schools ({{ k8_schools_directory|length }})</a></li>
@@ -54,7 +54,7 @@
               {% endfor %}
             </div>
             <div class="card-content">
-              <h5 class="school-title">{{ school.title }}</h5>
+              <span class="card-title school-title">{{ school.title }}</span>
               <a href="{{ school.building_location.google_place }}" target="_blank">
                 <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
                 <i class="material-icons tiny blank black-text"></i> {{ school.building_location.location_city }}, {{ school.building_location.location_state }} {{ school.building_location.location_zipcode }}<br>
@@ -84,7 +84,7 @@
               {% endfor %}
             </div>
             <div class="card-content">
-              <h5 class="school-title">{{ school.title }}</h5>
+              <span class="card-title school-title">{{ school.title }}</span>
               <a href="{{ school.building_location.google_place }}" target="_blank">
                 <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
                 <i class="material-icons tiny blank black-text"></i> {{ school.building_location.location_city }}, {{ school.building_location.location_state }} {{ school.building_location.location_zipcode }}<br>
@@ -114,7 +114,7 @@
               {% endfor %}
             </div>
             <div class="card-content">
-              <h5 class="school-title">{{ school.title }}</h5>
+              <span class="card-title school-title">{{ school.title }}</span>
               <a href="{{ school.building_location.google_place }}" target="_blank">
                 <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
                 <i class="material-icons tiny blank black-text"></i> {{ school.building_location.location_city }}, {{ school.building_location.location_state }} {{ school.building_location.location_zipcode }}<br>
@@ -144,7 +144,7 @@
               {% endfor %}
             </div>
             <div class="card-content">
-              <h5 class="school-title">{{ school.title }}</h5>
+              <span class="card-title school-title">{{ school.title }}</span>
               <a href="{{ school.building_location.google_place }}" target="_blank">
                 <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
                 <i class="material-icons tiny blank black-text"></i> {{ school.building_location.location_city }}, {{ school.building_location.location_state }} {{ school.building_location.location_zipcode }}<br>
@@ -174,7 +174,7 @@
               {% endfor %}
             </div>
             <div class="card-content">
-              <h5 class="school-title">{{ school.title }}</h5>
+              <span class="card-title school-title">{{ school.title }}</span>
               <a href="{{ school.building_location.google_place }}" target="_blank">
                 <i class="material-icons tiny black-text">&#xE55F;</i> {{ school.building_location.street_address }}<br>
                 <i class="material-icons tiny blank black-text"></i> {{ school.building_location.location_city }}, {{ school.building_location.location_state }} {{ school.building_location.location_zipcode }}<br>

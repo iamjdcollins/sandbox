@@ -11,7 +11,7 @@
 {% block sidebar_first %}
 <div class="row ">
   <div class="table-of-contents">
-    <h5>Contents:</h5>
+    <h2>Contents:</h2>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -146,7 +146,7 @@
           </div>
           <div class="card-stacked">
             <div class="card-content">
-              <h5 class="contactcardname">{{ admin.employee.first_name }} {{ admin.employee.last_name }}</h5>
+              <span class="card-title contactcardname">{{ admin.employee.first_name }} {{ admin.employee.last_name }}</span>
               <strong>{{ admin.admin_type }}</strong> <br />
                <a href="tel:+{{admin.phone|slice:"0:1"}}-{{admin.phone|slice:"1:4"}}-{{admin.phone|slice:"4:7"}}-{{admin.phone|slice:"7:11"}}">
                 <i class="material-icons tiny black-text">&#xE0CD;</i> {{admin.phone|slice:"1:4"}}.{{admin.phone|slice:"4:7"}}.{{admin.phone|slice:"7:11"}}
