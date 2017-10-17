@@ -106,12 +106,12 @@
                 <div class="schoolphone">{{page.main_phone|slice:"1:4"}}.{{page.main_phone|slice:"4:7"}}.{{page.main_phone|slice:"7:11"}}</div>
                 <i class="material-icons secondary-content absolute-right small">&#xE0CD;</i>
               </a>
-              <a href="#!" class="collection-item">
+              <a href="#" onclick="return false;" class="collection-item">
                 <span class="title">Fax</span>
                 <div class="schoolfax">{{page.main_fax|slice:"1:4"}}.{{page.main_fax|slice:"4:7"}}.{{page.main_fax|slice:"7:11"}}</div>
                 <i class="material-icons secondary-content absolute-right small">&#xE8AD;</i>
               </a>
-              <a href="#!" class="collection-item">
+              <a href="#" onclick="return false;" class="collection-item">
                 <span class="title">Enrollment</span>
                 <div class="schoolenrollment">
                   <div class="chip">
@@ -149,9 +149,11 @@
             <div class="card-content">
               <span class="card-title contactcardname">{{ admin.employee.first_name }} {{ admin.employee.last_name }}</span>
               <strong>{{ admin.admin_type }}</strong> <br />
-               <a href="tel:+{{admin.phone|slice:"0:1"}}-{{admin.phone|slice:"1:4"}}-{{admin.phone|slice:"4:7"}}-{{admin.phone|slice:"7:11"}}">
+              {% if admin.phone %}
+              <a href="tel:+{{admin.phone|slice:"0:1"}}-{{admin.phone|slice:"1:4"}}-{{admin.phone|slice:"4:7"}}-{{admin.phone|slice:"7:11"}}">
                 <i class="material-icons tiny black-text">&#xE0CD;</i> {{admin.phone|slice:"1:4"}}.{{admin.phone|slice:"4:7"}}.{{admin.phone|slice:"7:11"}}
               </a>
+              {% endif %}
             </div>
             <div class="card-action">
               <a href="#">SEND ME A MESSAGE</a>
