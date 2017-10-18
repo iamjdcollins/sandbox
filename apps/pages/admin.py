@@ -43,7 +43,7 @@ class SchoolAdministratorInline(admin.TabularInline):
 
 class ResourceLinkInline(admin.TabularInline):
   model = ResourceLink
-  fk_name = 'node'
+  fk_name = 'links_resourcelink_node'
   # fields = ('title','image_file','alttext',)
   extra = 0 
   min_num = 0
