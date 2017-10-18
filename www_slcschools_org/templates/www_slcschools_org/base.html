@@ -108,6 +108,8 @@
         </div>
         <div id="fulltranslationlist" class="hide">
           <div class="modal-content">
+            <span id="fulltranslationlisttitle" class="modal-title">Translation Lanaguage Options</span>
+            <p id="fulltranslationlistdesc">Please select your language from the list below. Please note that Salt Lake City School District uses Google Translate for your website translations. We cannot guarentee the accuracy of these translations. You can close this dialog by pressing escape at any time.</p>
             <ul>
               {% for item in TRANSLATION_ITEMS|dictsort:"title" %}
               <li>
@@ -280,7 +282,7 @@
     <div id="{{ page.uuid }}" class="hide">
       <div class="modal-content">
         <span id="pagefeedbacktitle" class="modal-title">Page Feedback Form</span>
-        <p id="pagefeedbackdesc">Please submit the form below to submit feedback for this page. Thank you for taking the time to let us know how we are doing. You can close this dialog by pressing ESC at any time.</p>
+        <p id="pagefeedbackdesc">Please submit the form below to submit feedback for this page. Thank you for taking the time to let us know how we are doing. You can close this dialog by pressing escape at any time.</p>
         <form class="col s12 focus">
           <div class="input-field col s12">
             <span class="material-icons prefix" aria-hidden="true">&#xE7FD;</span>
