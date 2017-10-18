@@ -86,3 +86,14 @@ class DirectoryEntry(Node):
     get_latest_by = 'create_date'
     verbose_name = 'Directory Entry'
     verbose_name_plural = 'Directory Entries'
+
+class Link(Node):
+  link_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
+
+  link_node = models.OneToOneField(Node, db_column='link_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
+
+  class Meta:
+    db_table = 'objects_link'
+    get_latest_by = 'create_date'
+    verbose_name = 'Link'
+    verbose_name_plural = 'Links'
