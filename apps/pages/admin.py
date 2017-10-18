@@ -42,7 +42,7 @@ class SchoolAdministratorInline(admin.TabularInline):
   form = make_ajax_form(SchoolAdministrator, {'employee': 'employee'})
 
 class ResourceLinkInline(admin.TabularInline):
-  model = ResourceLink
+  model = ResourceLink.related_nodes.through
   fk_name = 'related_nodes'
   # fields = ('title','image_file','alttext',)
   extra = 0 
