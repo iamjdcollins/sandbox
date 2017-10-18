@@ -8,7 +8,7 @@ class ResourceLink(Link):
   URL_PREFIX = ''
 
   title = models.CharField(max_length=200, help_text='')
-  link = models.ImageField(max_length=2000, upload_to=apps.common.functions.image_upload_to, verbose_name='Link', help_text='')
+  link_url = models.CharField(max_length=2000, unique=True, db_index=True)
   node = models.ManyToManyField(Node, related_name='links_resourcelink_node')
 
   resourcelink_link_node = models.OneToOneField(Link, db_column='resourcelink_link_node', on_delete=models.CASCADE, parent_link=True, editable=False)
