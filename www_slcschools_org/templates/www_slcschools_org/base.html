@@ -294,7 +294,7 @@
           </div>
           <div class="input-field col s12">
             <span class="material-icons prefix" aria-hidden="true">&#xE88E;</span>
-            <select id="feedbackconcerning" class="browser-default">
+            <select id="feedbackconcerning" class="browser-default withprefixicon">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Question or Comment</option>
               <option value="2">Incorrect Information</option>
@@ -317,11 +317,11 @@
       <div class="modal-footer">
         <a href="#" onclick="return false;" class="modal-action modal-close waves-effect waves-green btn ">
           <span class="sr-only">Submit page feedback form.</span>
-          <span class="no-sr" aria-hidden="true">Submi</span>
+          <span class="no-sr" aria-hidden="true">Submit</span>
         </a>
         <a href="#" onclick="return false;" class="modal-action modal-close waves-effect waves-green btn-flat ">
           <span class="sr-only">Cancel page feedback form and close dialog.</span>
-          <span class="no-sr" aria-hidden="true">Submi</span>
+          <span class="no-sr" aria-hidden="true">Cancel</span>
         </a>
       </div>
     </div>
@@ -331,9 +331,9 @@
     </a>
     <div id="google_translate_element2"></div>
     <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+    <script type="text/javascript" src="{% static "www_slcschools_org/js/materialize.min.js" %}"></script>
     <script type="text/javascript">$.when(function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element2');}).then($('#goog-gt-tt').remove())</script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
-    <script type="text/javascript" src="{% static "www_slcschools_org/js/materialize.min.js" %}"></script>
     {% block pagescript %}
     {% endblock %}
   </body>
