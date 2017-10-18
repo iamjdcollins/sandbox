@@ -92,6 +92,7 @@ INSTALLED_APPS = [
     'apps.pages',
     'apps.images',
     'apps.directoryentries',
+    'apps.links',
     #'apps.schools',
     #'apps.board',
     #'apps.news',
