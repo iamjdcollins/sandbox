@@ -16,7 +16,7 @@ class ResourceLink(Link):
   class Meta:
     db_table = 'links_resourcelink'
     get_latest_by = 'update_date'
-    permissions = (('trash_resourcelink', 'Can soft delete resource link'),('restore_thumbnail', 'Can restore resource link'))
+    permissions = (('trash_resourcelink', 'Can soft delete resource link'),('restore_resourcelink', 'Can restore resource link'))
     verbose_name = 'Resource Link'
     verbose_name_plural = 'Resource Links'
 

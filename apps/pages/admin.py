@@ -98,6 +98,18 @@ class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
     else:
       return ('published',)
 
+  def save_formset(self, request, form, formset, change):
+    instances = formset.save(commit=False)
+    for obj in formset.deleted_objects:
+      obj.delete()
+    for obj in formset.new_objects:
+      obj.create_user = request.user
+      obj.update_user = request.user
+      obj.save()
+    for obj in formset.changed_objects:
+      obj[0].update_user = request.user
+      obj[0].save()
+
   def save_model(self, request, obj, form, change):
     if getattr(obj, 'create_user', None) is None:
       obj.create_user = request.user
@@ -125,8 +137,72 @@ class SchoolAdmin(MPTTModelAdmin,GuardedModelAdmin):
     obj.update_user = request.user
     super().save_model(request, obj, form, change)
 
-class ResourceLinkAdmin(admin.ModelAdmin):
-  pass
+class ResourceLinkAdmin(MPTTModelAdmin,GuardedModelAdmin):
+  def get_fields(self, request, obj=None):
+    if obj:
+      return ('title', 'link_url','url')
+    else:
+      return ('title', 'link_url','url')
+
+  def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ['url']
+        else:
+            return ['url']
+
+  def get_list_display(self,request):
+    if request.user.has_perm('links.restore_resourcelink'):
+      return ('title','update_date','update_user','published','deleted')
+    else:
+      return ('title','update_date','update_user','published')
+
+  #ordering = ('url',)
+  
+  def get_queryset(self, request):
+   qs = super().get_queryset(request)
+   if request.user.is_superuser:
+     return qs
+   if request.user.has_perm('links.restore_resourcelink'):
+     return qs
+   return qs.filter(deleted=0)
+
+  def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+          del actions['delete_selected']
+        if request.user.has_perm('links.trash_resourcelink'):    
+          actions['trash_selected'] = (trash_selected,'trash_selected',trash_selected.short_description)
+        if request.user.has_perm('links.restore_resourcelink'):
+          actions['restore_selected'] = (restore_selected,'restore_selected',restore_selected.short_description)
+        if request.user.has_perm('links.change_resourcelink'):
+          actions['publish_selected'] = (publish_selected, 'publish_selected', publish_selected.short_description)
+          actions['unpublish_selected'] = (unpublish_selected, 'unpublish_selected', unpublish_selected.short_description)
+        return actions
+  
+
+  def get_list_filter(self, request):
+    if request.user.has_perm('links.restore_resourcelink'):
+      return (DeletedListFilter,'published')
+    else:
+      return ('published',)
+
+  def save_formset(self, request, form, formset, change):
+    instances = formset.save(commit=False)
+    for obj in formset.deleted_objects:
+      obj.delete()
+    for obj in formset.new_objects:
+      obj.create_user = request.user
+      obj.update_user = request.user
+      obj.save()
+    for obj in formset.changed_objects:
+      obj[0].update_user = request.user
+      obj[0].save()
+
+  def save_model(self, request, obj, form, change):
+    if getattr(obj, 'create_user', None) is None:
+      obj.create_user = request.user
+    obj.update_user = request.user
+    super().save_model(request, obj, form, change)
 
 # Register your models here.
 admin.site.register(Page, PageAdmin)
