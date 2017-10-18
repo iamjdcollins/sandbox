@@ -126,8 +126,7 @@ class SchoolAdmin(MPTTModelAdmin,GuardedModelAdmin):
     super().save_model(request, obj, form, change)
 
 class ResourceLinkAdmin(admin.ModelAdmin):
-  inlines = [ResourceLinkInline,]
-  exclude = ('related_nodes',)
+  pass
 
 # Register your models here.
 admin.site.register(Page, PageAdmin)
