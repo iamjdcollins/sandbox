@@ -97,7 +97,7 @@
             </li>
             {% if not user.is_authenticated %}
             <li>
-              <a href="/accounts/login/?next={{ request.path }}" title="Login">
+              <a href="/accounts/login/?next={{ request.path }}">
                 <span class="sr-only">Login to this website.</span>
                 <span class="material-icons" aria-hidden="true">&#xE0DA;</span>
                 <span class="hide-on-med-and-down no-sr" aria-hidden="true">Login</span>
@@ -234,9 +234,15 @@
             <div class="row">
               <div class="nav-wrapper">
                 <div class="col s12">
-                  <a href="/" class="breadcrumb">Home</a>  
+                  <a href="/" class="breadcrumb">
+                    <span class="sr-only">Breadcrumb item: Home</span>
+                    <span class="no-sr" aria-hidden="true">Home</span>
+                  </a>
                   {% for item in BREADCRUMB %}
-                  <a href="{{ item.url }}" class="breadcrumb">{{ item.node_title }}</a>
+                  <a href="{{ item.url }}" class="breadcrumb">
+                    <span class="sr-only">Breadcrumb item: {{ item.node_title }}</span>
+                    <span class="no-sr" aria-hidden="true">{{ item.node_title }}</span>
+                  </a>
                   {% endfor %}
                 </div>
               </div>
@@ -253,12 +259,12 @@
         {% endblock %}
         {% block content %}
         <div class="card-action">
-          <a class="btn-flat disabled narrow" title="Last Updated">
+          <a class="btn-flat disabled narrow" aria-disabled="true">
             <span class="sr-only">Page last updated {{ page.update_date|date:"F d, Y" }}</span>
             <span class="material-icons left no-sr" aria-hidden="true">&#xE192;</span>
             <span class="no-sr" aria-hidden="true">{{ page.update_date|date:"N d, Y" }}</span>
           </a>
-          <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback" title="Page Feedback">
+          <a href="#{{ page.uuid }}" class="btn-flat right narrow pagefeedback">
             <span class="material-icons left" aria-hidden="true">&#xE254;</span>
             <span>Page Feedback</span>
           </a>
