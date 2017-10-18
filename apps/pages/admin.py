@@ -10,6 +10,7 @@ from django.contrib.admin.actions import delete_selected
 from .models import Page, School
 from apps.images.models import Thumbnail, ContentBanner
 from apps.directoryentries.models import SchoolAdministrator
+from apps.links.models import ResourceLink
 
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
@@ -39,6 +40,14 @@ class SchoolAdministratorInline(admin.TabularInline):
   max_num = 5
 
   form = make_ajax_form(SchoolAdministrator, {'employee': 'employee'})
+
+class ResourceLinkInline(admin.TabularInline):
+  model = ResourceLink
+  fk_name = 'node'
+  # fields = ('title','image_file','alttext',)
+  extra = 0 
+  min_num = 0
+  max_num = 50
 
 class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
   def get_fields(self, request, obj=None):
@@ -96,7 +105,7 @@ class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
     super().save_model(request, obj, form, change)
 
 class SchoolAdmin(MPTTModelAdmin,GuardedModelAdmin):
-  inlines = [ThumbnailInline, ContentBannerInline,SchoolAdministratorInline,]
+  inlines = [ThumbnailInline, ContentBannerInline,SchoolAdministratorInline,ResourceLinkInline]
 
   def save_formset(self, request, form, formset, change):
     instances = formset.save(commit=False)
