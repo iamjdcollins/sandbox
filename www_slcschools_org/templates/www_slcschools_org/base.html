@@ -25,12 +25,22 @@
                 </a>
               </li>
             </ul>
-            <a href="#!" class="dropdown-button left btn btn-flat" data-activates="usermenu">Hello, {{ request.user.first_name }}<span class="material-icons right" aria-hidden="true">&#xE5C5;</span></a>
+            <a href="#" class="dropdown-button left btn btn-flat" data-activates="usermenu">
+              <span class="sr-only">Logged in user menu</span>
+              <span class="no-sr" aria-hidden="true">Hello, {{ request.user.first_name }}
+                <span class="material-icons no-sr right" aria-hidden="true">&#xE5C5;</span>
+              </span>
+            </a>
           </div>
           <div class="col s6">
             {% for item in page_perms %}
             {% if 'change_' in item %}
-            <a id="editpagemodaal" href="{% url pageopts|admin_urlname:'change' page.pk %}" class="right btn btn-flat">Edit Page<span class="material-icons left" aria-hidden="true">&#xE254;</span></a>
+            <a id="editpagemodaal" href="{% url pageopts|admin_urlname:'change' page.pk %}" class="right btn btn-flat">
+              <span class="sr-only">Edit Page</span>
+              <span class="no-sr" aria-hidden="true">Edit Page
+                <span class="material-icons left" aria-hidden="true">&#xE254;</span>
+              </span>
+            </a>
             {% endif %}
             {% endfor %}
           </div>
@@ -64,11 +74,35 @@
             </li>
           </ul>
           <ul class="shortcuts col s6 m8 l6">
-            <li><a href="/" title="Home"><span class="material-icons" aria-hidden="true">&#xE88A;</span><span class="hide-on-med-and-down">Home</span></a></li>
-            <li><a href="tel:18015788599" title="Main Phone"><span class="material-icons" aria-hidden="true">&#xE0CD;</span><span class="hide-on-med-and-down">801-578-8599</span></a></li>
-            <li><a href="/employees/" title="Employees"><span class="material-icons" aria-hidden="true">&#xE7FB;</span><span class="hide-on-med-and-down">Employees</span></a></li>
+            <li>
+              <a href="/">
+                <span class="sr-only">Home page for Salt Lake City School District</span>
+                <span class="material-icons no-sr" aria-hidden="true">&#xE88A;</span>
+                <span class="hide-on-med-and-down no-sr" aria-hidden="true">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:18015788599">
+                <span class="sr-only">Main phone number: 801-578-8599</span>
+                <span class="material-icons no-sr" aria-hidden="true">&#xE0CD;</span>
+                <span class="hide-on-med-and-down no-sr" aria-hidden="true">801-578-8599</span>
+              </a>
+            </li>
+            <li>
+              <a href="/employees/">
+                <span class="sr-only">Employee Dashboard (Requires Authentication).</span>
+                <span class="material-icons no-sr" aria-hidden="true">&#xE7FB;</span>
+                <span class="hide-on-med-and-down no-sr" aria-hidden="true">Employees</span>
+              </a>
+            </li>
             {% if not user.is_authenticated %}
-            <li><a href="/accounts/login/?next={{ request.path }}" title="Login"><span class="material-icons" aria-hidden="true">&#xE0DA;</span><span class="hide-on-med-and-down">Login</span></a></li>
+            <li>
+              <a href="/accounts/login/?next={{ request.path }}" title="Login">
+                <span class="sr-only">Login to this website.</span>
+                <span class="material-icons" aria-hidden="true">&#xE0DA;</span>
+                <span class="hide-on-med-and-down no-sr" aria-hidden="true">Login</span>
+              </a>
+            </li>
             {% endif %}
           </ul>
         </div>
@@ -79,7 +113,7 @@
               <li>
                 <a class="btn" href="#" onclick="doGTranslate('en|{{ item.language_code }}'); $('.fulltranslationlist').modaal('close'); return false;" >
                   <span class="sr-only">Translate to {{ item.title }}</span>
-                  <span class="notranslate" aria-hidden="true">{{ item.native_language }}</span>
+                  <span class="notranslate no-sr" aria-hidden="true">{{ item.native_language }}</span>
                 </a>
               </li>
               {% endfor %}
@@ -92,8 +126,8 @@
           <div class="row">
             <div class="col s12 nav-wrapper">
               <a href="/">
-                <span class="brand-logo left"></span>
                 <span class="sr-only">Home page for Salt Lake City School District</span>
+                <span class="brand-logo left"></span>
               </a>
 <!--               <div id="mainnav-mobile" class="hide">
                 <ul>
@@ -110,15 +144,19 @@
                 <ul>
                   {% for item in MENU_ITEMS %}
                     {% if item.url in request.path  %}
-                    <li class="active"><a href="{{ item.url }}">{{ item.menu_title }}</a></li>
+                    <li class="active">
+                      <a href="{{ item.url }}">{{ item.menu_title }}</a>
+                    </li>
                     {% else %}
-                    <li class=""><a href="{{ item.url }}">{{ item.menu_title }}</a></li>
+                    <li class="">
+                      <a href="{{ item.url }}">{{ item.menu_title }}</a>
+                    </li>
                     {% endif %}
                   {% endfor %}
                     <li>
                       <a href="#">
                         <span class="sr-only">Search this website</span>
-                        <span class="material-icons" aria-hidden="true">&#xE8B6;</span>
+                        <span class="material-icons no-sr" aria-hidden="true">&#xE8B6;</span>
                       </a>
                     </li>
                 </ul>
@@ -128,7 +166,7 @@
                   <li class="">
                     <a class="mainnav-mobile" href="#mainnav">
                       <span class="sr-only">Activate Mobile Menu</span>
-                      <span class="material-icons" aria-hidden="true">&#xE5D2;</span>
+                      <span class="material-icons no-sr" aria-hidden="true">&#xE5D2;</span>
                     </a>
                   </li>
                 </ul>
