@@ -54,7 +54,7 @@ class ResourceLinkInline(admin.TabularInline):
 class DocumentInline(EditLinkToInlineObject, admin.TabularInline):
   model = Document
   fk_name = 'parent'
-  readonly_fields = ('title', 'edit_link', )
+  readonly_fields = ('edit_link', )
   fields = ('title', 'edit_link', )
   extra = 0 
   min_num = 0
