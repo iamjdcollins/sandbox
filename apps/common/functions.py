@@ -450,6 +450,15 @@ def filesave(self, *args, **kwargs):
     self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.file_language.title) + '/')
     if not is_new:
       urlchanged = True
+  # Move Files
+  currentname = None
+  newname = None
+  if self.file_file:
+      currentname = findfileext_media(self.file_file.name)
+      newname = file_upload_to(self,currentname[0] + currentname[1])
+      currentname = '/'.join (newname.split('/')[:-1]) + '/' + currentname[0] + currentname[1]
+      self.file_file.name = newname
+      
   # Set the node_title for the node
   self.node_title = self.title
   # Set the node type
@@ -466,6 +475,9 @@ def filesave(self, *args, **kwargs):
         object.save()
       # Move Directory
       silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
+  # Move File
+  if currentname != newname:
+    silentmove_media(settings.MEDIA_ROOT + '/' + currentname, settings.MEDIA_ROOT + '/' + newname)
   clearcache(self)
 
 def documentsave(self, *args, **kwargs):
