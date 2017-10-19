@@ -33137,3 +33137,499 @@ django.db.utils.OperationalError: server closed the connection unexpectedly
 	before or while processing the request.
 
 Invalid HTTP_HOST header: '205.127.72.105'. You may need to add '205.127.72.105' to ALLOWED_HOSTS.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /admin/pages/school/4b586e2c-ae2a-44c2-b74b-b6b48ddd1672/change/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 544, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/sites.py", line 211, in inner
+    return view(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1512, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 67, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 149, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/decorators.py", line 63, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "/usr/lib/python3.5/contextlib.py", line 30, in inner
+    return func(*args, **kwds)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1467, in changeform_view
+    formsets, inline_instances = self._create_formsets(request, obj, change=True)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1799, in _create_formsets
+    for FormSet, inline in self.get_formsets_with_inlines(*get_formsets_args):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 703, in get_formsets_with_inlines
+    yield inline.get_formset(request, obj), inline
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1881, in get_formset
+    fields = flatten_fieldsets(self.get_fieldsets(request, obj))
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 298, in get_fieldsets
+    return [(None, {'fields': self.get_fields(request, obj)})]
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1957, in get_fields
+    form = self.get_formset(request, obj, fields=None).form
+  File "/srv/django/websites/lib/python3.5/site-packages/django/contrib/admin/options.py", line 1952, in get_formset
+    return inlineformset_factory(self.parent_model, self.model, **defaults)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 1034, in inlineformset_factory
+    fk = _get_foreign_key(parent_model, model, fk_name=fk_name)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/forms/models.py", line 989, in _get_foreign_key
+    "'%s' has no field named '%s'." % (model._meta.label, fk_name)
+ValueError: 'links.ResourceLink' has no field named 'node'.
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/www_slcschools_org/apps/pages/views.py", line 19, in home
+    page = get_object_or_404(Page, url='/home/')
+  File "/srv/django/websites/lib/python3.5/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/query.py", line 379, in get
+    num = len(clone)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/query.py", line 238, in __len__
+    self._fetch_all()
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/query.py", line 1087, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/query.py", line 54, in __iter__
+    results = compiler.execute_sql()
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/sql/compiler.py", line 835, in execute_sql
+    cursor.execute(sql, params)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+django.db.utils.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Invalid HTTP_HOST header: '205.127.72.105'. You may need to add '205.127.72.105' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '205.127.72.105'. You may need to add '205.127.72.105' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '205.127.72.105'. You may need to add '205.127.72.105' to ALLOWED_HOSTS.
+Internal Server Error: /schools/
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/srv/django/websites/www_slcschools_org/apps/pages/views.py", line 32, in schools
+    page = get_object_or_404(Page, url=request.path)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/query.py", line 379, in get
+    num = len(clone)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/query.py", line 238, in __len__
+    self._fetch_all()
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/query.py", line 1087, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/query.py", line 54, in __iter__
+    results = compiler.execute_sql()
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/models/sql/compiler.py", line 835, in execute_sql
+    cursor.execute(sql, params)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/utils/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/srv/django/websites/lib/python3.5/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+django.db.utils.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
