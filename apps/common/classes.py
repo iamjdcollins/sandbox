@@ -160,6 +160,6 @@ class EditLinkToInlineObject(object):
         url = reverse('admin:%s_%s_change' % (
             instance._meta.app_label,  instance._meta.model_name),  args=[instance.pk] )
         if instance.pk:
-            return mark_safe(u'<a href="{u}" onclick="return showAddAnotherPopup({u});">edit</a>'.format(u=url))
+            return mark_safe(u'<a href="{u}" onclick="return showAddAnotherPopup({u}); return false;">edit</a>'.format(u=url))
         else:
             return ''
