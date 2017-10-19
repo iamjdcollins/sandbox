@@ -427,7 +427,7 @@ def filesave(self, *args, **kwargs):
   is_new = self._state.adding
   is_deleted = '_' if self.deleted == True else ''
   #Force Title
-  self.title = self.parent.title + ' (' + self.file_language.title + ')'
+  self.title = self.parent.node_title + ' (' + self.file_language.title + ')'
   # Set UUID if None
   if self.uuid is None:
     self.uuid = uuid.uuid4()
