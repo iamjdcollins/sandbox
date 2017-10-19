@@ -136,7 +136,7 @@ class PageAdmin(MPTTModelAdmin,GuardedModelAdmin):
     super().save_model(request, obj, form, change)
 
 class SchoolAdmin(MPTTModelAdmin,GuardedModelAdmin):
-  inlines = [ThumbnailInline, ContentBannerInline,SchoolAdministratorInline,ResourceLinkInline]
+  inlines = [ThumbnailInline, ContentBannerInline,SchoolAdministratorInline,ResourceLinkInline,DocumentInline,]
 
   def save_formset(self, request, form, formset, change):
     instances = formset.save(commit=False)
