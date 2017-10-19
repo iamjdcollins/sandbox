@@ -93,6 +93,8 @@ INSTALLED_APPS = [
     'apps.images',
     'apps.directoryentries',
     'apps.links',
+    'apps.files',
+    'apps.documents',
     #'apps.schools',
     #'apps.board',
     #'apps.news',

@@ -97,3 +97,25 @@ class Link(Node):
     get_latest_by = 'create_date'
     verbose_name = 'Link'
     verbose_name_plural = 'Links'
+
+class File(Node):
+  file_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
+
+  file_node = models.OneToOneField(Node, db_column='file_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
+
+  class Meta:
+    db_table = 'objects_file'
+    get_latest_by = 'create_date'
+    verbose_name = 'File'
+    verbose_name_plural = 'Files'
+
+class Document(Node):
+  document_type = models.CharField(max_length=200, editable=False, null=True, blank=True)
+
+  document_node = models.OneToOneField(Node, db_column='document_node', on_delete=models.CASCADE, parent_link=True,editable=False,)
+
+  class Meta:
+    db_table = 'objects_document'
+    get_latest_by = 'create_date'
+    verbose_name = 'Document'
+    verbose_name_plural = 'Documents'
