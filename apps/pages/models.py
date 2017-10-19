@@ -61,6 +61,9 @@ class School(BasePage):
   def schooladministrators(self):
     return SchoolAdministrator.objects.filter(parent=self.pk)
 
+  def resourcelinks(self):
+    return self.links_resourcelink_node.all()
+
   class Meta:
     db_table = 'pages_school'
     get_latest_by = 'update_date'
