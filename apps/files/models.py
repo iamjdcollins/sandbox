@@ -9,7 +9,7 @@ class File(BaseFile):
   URL_PREFIX = ''
 
   title = models.CharField(max_length=200, help_text='')
-  file_file = models.ImageField(max_length=2000, upload_to=apps.common.functions.file_upload_to, verbose_name='File', help_text='')
+  file_file = models.FileField(max_length=2000, upload_to=apps.common.functions.file_upload_to, verbose_name='File', help_text='')
   file_language = models.ForeignKey(Language, to_field='language_taxonomy_node', on_delete=models.PROTECT, limit_choices_to={'deleted': False,}, help_text='', related_name='files_file_file_language')
   
 
