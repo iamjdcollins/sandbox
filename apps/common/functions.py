@@ -548,6 +548,15 @@ def nodefindobject(node):
       return node.image.pagebanner
     if node.content_type == 'contentbanner':
       return node.image.contentbanner
+  if node.node_type == 'link':
+    if node.content_type == 'resourcelink':
+      return node.link.resourcelink
+  if node.node_type == 'file':
+    if node.content_type == 'file':
+      return node.file.file
+  if node.node_type == 'document':
+    if node.content_type == 'document':
+      return node.document.document
 
 # MPTT Tree Functions
 def resetchildrentoalphatitle():
