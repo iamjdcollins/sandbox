@@ -468,7 +468,7 @@ def filesave(self, *args, **kwargs):
       silentmove_media(settings.MEDIA_ROOT + oldurl, settings.MEDIA_ROOT + self.url)
   clearcache(self)
 
-def linksave(self, *args, **kwargs):
+def documentsave(self, *args, **kwargs):
   # Setup New and Deleted Variables
   is_new = self._state.adding
   is_deleted = '_' if self.deleted == True else ''
