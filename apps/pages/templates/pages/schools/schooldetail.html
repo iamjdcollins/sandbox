@@ -18,7 +18,7 @@
       {% if page.schooladministrators %}
       <li><a href="#administration">Administration</a></li>
       {% endif %}
-      {% if page.scc_url or page.schools_schoolresourcelink_school.all %}
+      {% if page.scc_url or page.links_resourcelink_node.all %}
       <li><a href="#resourcelinks">Resource Links</a></li>
       {% endif %}
       {% if page.boundary_map %}
@@ -70,7 +70,7 @@
       {% if page.schooladministrators %}
       <option value="#administration">Administration</option>
       {% endif %}
-      {% if page.scc_url or page.schools_schoolresourcelink_school.all %}
+      {% if page.scc_url or page.links_resourcelink_node.all %}
       <option value="#resourcelinks">Resource Links</option>
       {% endif %}
       {% if page.boundary_map %}
@@ -166,7 +166,7 @@
       </div>
     </div>
     {% endif %}
-    {% if page.scc_url or page.schools_schoolresourcelink_school.all %}
+    {% if page.scc_url or page.links_resourcelink_node.all %}
     <div class="row">
       <div id="resourcelinks" class="scrollspy">
         <h2>Resource Links</h2>
@@ -174,7 +174,7 @@
           {% if page.scc_url %}
           <a href="{{ page.scc_url }}" title="School Community Council" class="collection-item">School Community Council <i class="material-icons right">&#xE157;</i></a>
           {% endif %}
-          {% for resourcelink in page.schools_schoolresourcelink_school.all %}
+          {% for resourcelink in page.links_resourcelink_node.all %}
           <a href="{{ resourcelink.url }}" title="{{ resourcelink.title }}" class="collection-item">{{ resourcelink.title }} <i class="material-icons right">&#xE157;</i></a>
           {% endfor %}
         </div>
