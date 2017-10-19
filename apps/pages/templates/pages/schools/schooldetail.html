@@ -179,8 +179,12 @@
           {% endfor %}
           {% for document in page.documents_document_node.all %}
           <a href="#{{ document.pk }}" class="collection-item document-inline">{{ document.title }} <i class="material-icons right">&#xE157;</i></a>
-          <div id="{{ document.pk }}" class="hide">>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+          <div id="{{ document.pk }}" class="hide">
+            <div id="{{ document.pk }}-title" class="modal-title">Document Language Selection</div>
+            <p id="{{ document.pk }}-desc" class="modal-desc">This document is available in the languages shown below. Please select a language. You can close this dialog by pressing escape at any time.</p>
+            {% for file in document.files_file_node.all %}
+              {{ file.file_language.title }}
+            {% endfor %}
           </div>
           {% endfor %}
         </div>

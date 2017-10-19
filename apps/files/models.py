@@ -11,6 +11,7 @@ class File(BaseFile):
   title = models.CharField(max_length=200, help_text='')
   file_file = models.FileField(max_length=2000, upload_to=apps.common.functions.file_upload_to, verbose_name='File', help_text='')
   file_language = models.ForeignKey(Language, to_field='language_taxonomy_node', on_delete=models.PROTECT, limit_choices_to={'deleted': False,}, help_text='', related_name='files_file_file_language')
+  related_node = models.ForeignKey(Node, blank=True, null=True, related_name='files_file_node', editable=False)
   
 
   file_file_node = models.OneToOneField(BaseFile, db_column='file_file_node', on_delete=models.CASCADE, parent_link=True, editable=False)
