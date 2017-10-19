@@ -1,6 +1,6 @@
 from django.db import models
 import apps.common.functions
-from apps.objects.models import Document as BaseDocument
+from apps.objects.models import Node, Document as BaseDocument
 
 class Document(BaseDocument):
 
@@ -8,6 +8,7 @@ class Document(BaseDocument):
   URL_PREFIX = '/documents/document/'
 
   title = models.CharField(max_length=200, help_text='')
+  related_node = models.ForeignKey(Node, blank=True, null=True, related_name='documents_document_node', editable=False)
 
   document_document_node = models.OneToOneField(BaseDocument, db_column='document_document_node', on_delete=models.CASCADE, parent_link=True, editable=False)
 
