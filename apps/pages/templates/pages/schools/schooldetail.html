@@ -178,7 +178,7 @@
           <a href="{{ resourcelink.link_url }}" class="collection-item">{{ resourcelink.title }} <i class="material-icons right">&#xE157;</i></a>
           {% endfor %}
           {% for document in page.documents_document_node.all %}
-          <a href="{{ document.url }}" title="{{ document.title }}" class="collection-item">{{ document.title }} <i class="material-icons right">&#xE157;</i></a>
+          <a href="#{{ document.pk }}" class="collection-item">{{ document.title }} <i class="material-icons right">&#xE157;</i></a>
           {% endfor %}
         </div>
       </div>
