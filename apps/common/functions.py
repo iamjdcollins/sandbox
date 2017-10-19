@@ -427,7 +427,7 @@ def filesave(self, *args, **kwargs):
   is_new = self._state.adding
   is_deleted = '_' if self.deleted == True else ''
   #Force Title
-  self.title = self.parent.title + '(' + self.language.title + ')'
+  self.title = self.parent.title + '(' + self.file_language.title + ')'
   # Set UUID if None
   if self.uuid is None:
     self.uuid = uuid.uuid4()
@@ -446,8 +446,8 @@ def filesave(self, *args, **kwargs):
     except Node.DoesNotExist:
       pass
   oldurl = self.url
-  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.language.title) + '/'):
-    self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.language.title) + '/')
+  if self.url != urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.file_language.title) + '/'):
+    self.url = urlclean_remdoubleslashes('/' + parent_url + '/' + self.URL_PREFIX + '/' + is_deleted + urlclean_objname(self.file_language.title) + '/')
     if not is_new:
       urlchanged = True
   # Set the node_title for the node
