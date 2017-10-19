@@ -1,6 +1,6 @@
 from django.db import models
 import apps.common.functions
-from apps.objects.models import File as BaseFile
+from apps.objects.models import Node, File as BaseFile
 from apps.taxonomy.models import Language
 
 class File(BaseFile):
