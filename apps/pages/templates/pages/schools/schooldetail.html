@@ -178,7 +178,10 @@
           <a href="{{ resourcelink.link_url }}" class="collection-item">{{ resourcelink.title }} <i class="material-icons right">&#xE157;</i></a>
           {% endfor %}
           {% for document in page.documents_document_node.all %}
-          <a href="#{{ document.pk }}" class="collection-item">{{ document.title }} <i class="material-icons right">&#xE157;</i></a>
+          <a href="#{{ document.pk }}" class="collection-item document-inline">{{ document.title }} <i class="material-icons right">&#xE157;</i></a>
+          <div id="{{ document.pk }}" class="hide">>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+          </div>
           {% endfor %}
         </div>
       </div>
