@@ -141,7 +141,7 @@ def file_upload_to(instance, filename):
   title = urlclean_objname(instance.title)
   original_file, original_extension = findfileext_media(filename)
   extension = urlclean_fileext(original_extension)
-  full_path = '{0}{1}{2}'.format(url,title, extension)
+  full_path = '{0}-{1}{2}'.format(url,title, extension)
   if not instance.file_file._committed:
     silentdelete_media(settings.MEDIA_ROOT + '/' + full_path)
   return full_path
