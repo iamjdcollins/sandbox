@@ -183,7 +183,10 @@
             <div id="{{ document.pk }}-title" class="modal-title">Document Language Selection</div>
             <p id="{{ document.pk }}-desc" class="modal-desc">This document is available in the languages shown below. Please select a language. You can close this dialog by pressing escape at any time.</p>
             {% for file in document.files_file_node.all %}
-              {{ file.file_language.title }}
+              <a class="btn" href="{{ file.file_file.url }}">
+                  <span class="sr-only">{{ file.title }}</span>
+                  <span class="notranslate no-sr" aria-hidden="true">{{ file.file_language.title }}</span>
+                </a>
             {% endfor %}
           </div>
           {% endfor %}
