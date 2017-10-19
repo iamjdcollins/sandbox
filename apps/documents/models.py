@@ -9,7 +9,7 @@ class Document(BaseDocument):
 
   title = models.CharField(max_length=200, help_text='')
 
-  document_document_node = models.OneToOneField(Link, db_column='document_document_node', on_delete=models.CASCADE, parent_link=True, editable=False)
+  document_document_node = models.OneToOneField(BaseDocument, db_column='document_document_node', on_delete=models.CASCADE, parent_link=True, editable=False)
 
   class Meta:
     db_table = 'documents_document'

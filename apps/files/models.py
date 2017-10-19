@@ -13,7 +13,7 @@ class File(BaseFile):
   file_language = models.ForeignKey(Language, to_field='language_taxonomy_node', on_delete=models.PROTECT, limit_choices_to={'deleted': False,}, help_text='', related_name='files_file_file_language')
   
 
-  file_file_node = models.OneToOneField(Link, db_column='file_file_node', on_delete=models.CASCADE, parent_link=True, editable=False)
+  file_file_node = models.OneToOneField(BaseFile, db_column='file_file_node', on_delete=models.CASCADE, parent_link=True, editable=False)
 
   class Meta:
     db_table = 'files_file'
